@@ -17,12 +17,11 @@ class Form extends React.Component {
     
     handleChange(event) {
         let attr = event.target.name;
-        this.setState({[`${attr}`]: event.target.value});
-        this.updateQuery();
+        this.setState({[`${attr}`]: event.target.value}, this.updateQuery);
     }
     
     updateQuery() {
-        let query = "https://chart.googleapis.com/chart?cht=qr&chs=200x200&chld=|1&chl=";
+        let query = "https://chart.googleapis.com/chart?cht=qr&chs=168x168&chld=|1&chl=";
         let vCard = 
         "BEGIN:VCARD\nVERSION:4.0" +
         "\nFN:" + this.state.name +
@@ -32,7 +31,7 @@ class Form extends React.Component {
         "\nEND:VCARD";
         vCard = encodeURIComponent(vCard);
         query += vCard;
-        this.props.renderCode(query); 
+        this.props.renderCode(query, this.state.name); 
     }
     
     // handleSubmit(event) {
