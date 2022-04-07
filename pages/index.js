@@ -41,7 +41,7 @@ class Home extends React.Component {
   }
 
   componentDidMount() {
-    // this.randomizeScheme();
+    this.randomizeScheme();
   }
 
   render() {
