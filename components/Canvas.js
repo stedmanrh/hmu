@@ -26,6 +26,8 @@ class Canvas extends React.Component {
     canvas.width = 640;
     canvas.height = 960;
     ctx.scale(dpi, dpi);
+    const startSwatch = scheme.group[0];
+    const endSwatch = scheme.group[scheme.group.length-1];
 
     // card
     ctx.rect(0, 0, 320, 480);
@@ -69,14 +71,14 @@ class Canvas extends React.Component {
     ctx.fillStyle = "#222";
     if (name === "") {
         ctx.fillStyle = "#a0a0a0";
-        name = "Your name here";
+        name = "Share your contact info effortlessly.";
     }
     canvasTxt.drawText(ctx, name, 32, 120, 256, 68);
 
     //  QR code
     ctx.beginPath();
     ctx.roundRect(64, 212, 192, 192, 16+4);
-    ctx.shadowColor = this.rgbaColor(scheme.startSwatch, .5);
+    ctx.shadowColor = this.rgbaColor(startSwatch, .5);
     ctx.shadowOffsetY = -4;
     ctx.shadowBlur = 16;
     ctx.fillStyle = "white";
@@ -84,7 +86,7 @@ class Canvas extends React.Component {
 
     ctx.beginPath();
     ctx.roundRect(64, 212, 192, 192, 16+4);
-    ctx.shadowColor = this.rgbaColor(scheme.endSwatch, .5);
+    ctx.shadowColor = this.rgbaColor(endSwatch, .5);
     ctx.shadowOffsetY = 4;
     ctx.shadowBlur = 16;
     ctx.fillStyle = "white";
@@ -94,8 +96,8 @@ class Canvas extends React.Component {
     ctx.shadowOffsetY = ctx.shadowBlur = 0;
     ctx.roundRect(64+4, 212+4, 192-8, 192-8, 16);
     const gradient = ctx.createLinearGradient(64, 212, 64, 404);
-    gradient.addColorStop(0, scheme.startSwatch);
-    gradient.addColorStop(1, scheme.endSwatch);
+    gradient.addColorStop(0, startSwatch);
+    gradient.addColorStop(1, endSwatch);
     ctx.strokeStyle = gradient;
     ctx.lineWidth = 8;
     ctx.stroke();
@@ -124,7 +126,7 @@ class Canvas extends React.Component {
   };
 
   componentDidUpdate(prevProps) {
-    if (prevProps.src !== this.props.src) {
+    if (prevProps !== this.props) {
       this.draw(this.props.src, this.props.scheme, this.props.name);
     }
   }

@@ -4,6 +4,7 @@ import React from "react";
 import Form from "../components/Form.js";
 import Canvas from "../components/Canvas.js";
 import styles from "../styles/Home.module.css";
+import schemes from "../utils/schemes.json";
 
 class Home extends React.Component {
   constructor(props) {
@@ -11,14 +12,11 @@ class Home extends React.Component {
     this.state = {
       src: "https://chart.googleapis.com/chart?cht=qr&chs=168x168&chld=|1&chl=",
       name: "",
-      scheme: {
-        emoji: "🍑",
-        startSwatch: "#F09819",
-        endSwatch: "#FF5858",
-      },
+      scheme: schemes[0],
     };
 
     this.renderCode = this.renderCode.bind(this);
+    this.randomizeScheme = this.randomizeScheme.bind(this);
   }
 
   renderCode(url, name) {
@@ -30,6 +28,20 @@ class Home extends React.Component {
         };
       }
     });
+  }
+
+  randomizeScheme() {
+    this.setState((prevState) => {
+      let randomScheme = "";
+      while (randomScheme === "" || prevState.scheme === randomScheme) {
+        randomScheme = schemes[Math.floor(Math.random() * schemes.length)];
+      }
+      return ({scheme: randomScheme});
+    });
+  }
+
+  componentDidMount() {
+    // this.randomizeScheme();
   }
 
   render() {
@@ -46,7 +58,10 @@ class Home extends React.Component {
 
         <main>
           <p>HMU, world!</p>
-          <Form renderCode={this.renderCode}></Form>
+          <Form
+            renderCode={this.renderCode}
+            randomizeScheme={this.randomizeScheme}
+          ></Form>
           <Canvas
             src={this.state.src}
             name={this.state.name}

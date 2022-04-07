@@ -7,12 +7,12 @@ class Form extends React.Component {
             name: "",
             phone: "",
             email: "",
-            url: ""
+            url: "",
         };
         
         this.handleChange = this.handleChange.bind(this);
         this.updateQuery = this.updateQuery.bind(this);
-        // this.handleSubmit = this.handleSubmit.bind(this);
+        this.handleSubmit = this.handleSubmit.bind(this);
     }
     
     handleChange(event) {
@@ -34,9 +34,10 @@ class Form extends React.Component {
         this.props.renderCode(query, this.state.name); 
     }
     
-    // handleSubmit(event) {
-    //     event.preventDefault();
-    // }
+    handleSubmit(event) {
+        event.preventDefault();
+        this.props.randomizeScheme();
+    }
     
     render() {
         return (
@@ -58,7 +59,7 @@ class Form extends React.Component {
                 URL:
                 <input type="url" name="url" value={this.state.url} onChange={this.handleChange} />
                 </label>
-                {/* <input type="submit" value="Submit" /> */}
+                <input type="submit" value="Refresh style" onClick={this.handleSubmit} />
             </form>
         );
     }
