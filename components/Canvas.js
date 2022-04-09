@@ -1,6 +1,7 @@
 import React from "react";
-import canvasTxt from "../utils/canvas-txt";
 import * as convert from 'color-convert';
+import canvasTxt from "../utils/canvas-txt";
+import roundRect from "../utils/roundRect";
 
 class Canvas extends React.Component {
   constructor(props) {
