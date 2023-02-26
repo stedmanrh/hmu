@@ -120,10 +120,10 @@ class Canvas extends React.Component {
     canvasTxt.fontSize = 14;
     canvasTxt.fontWeight = "normal";
     ctx.fillStyle = "#a0a0a0";
-    canvasTxt.drawText(ctx, promo, 92, 429, 86, 17);
+    canvasTxt.drawText(ctx, promo, 77, 429, 86, 17);
     const textW = ctx.measureText(promo).width;
     canvasTxt.fontWeight = "bold";
-    canvasTxt.drawText(ctx,"hmu.fr", 92+textW, 429, 135-textW, 17);
+    canvasTxt.drawText(ctx,"hmu.world", 77+textW, 429, 165-textW, 17);
   };
 
   componentDidUpdate(prevProps) {
