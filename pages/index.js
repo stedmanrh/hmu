@@ -1,4 +1,5 @@
 import Head from "next/head";
+// not in use, but can be used to import images and improve performance
 import Image from "next/image";
 import React from "react";
 import Form from "../components/Form.js";
