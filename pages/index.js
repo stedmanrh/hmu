@@ -3,7 +3,6 @@ import Head from "next/head";
 import Image from "next/image";
 import React from "react";
 import Form from "../components/Form.js";
-import FormNew from "../components/formNEW.js";
 import Canvas from "../components/Canvas.js";
 import styles from "../styles/Home.module.css";
 import schemes from "../utils/schemes.json";
@@ -18,14 +17,14 @@ class Home extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      // src: "https://chart.googleapis.com/chart?cht=qr&chs=168x168&chld=|1&chl=",
+      src: "https://chart.googleapis.com/chart?cht=qr&chs=168x168&chld=|1&chl=",
       name: "",
-      // scheme: schemes[0],
+      scheme: schemes[0],
     };
 
     // 5B remove event handler bindings
     this.renderCode = this.renderCode.bind(this);
-    // this.randomizeScheme = this.randomizeScheme.bind(this);
+    this.randomizeScheme = this.randomizeScheme.bind(this);
   }
 
   // 3 convert all methods (like this) to functions
@@ -42,20 +41,20 @@ class Home extends React.Component {
     });
   }
 
-  // randomizeScheme() {
-  //   // 6 replace this.setState with the relevant state setter variable
-  //   this.setState((prevState) => {
-  //     let randomScheme = "";
-  //     while (randomScheme === "" || prevState.scheme === randomScheme) {
-  //       randomScheme = schemes[Math.floor(Math.random() * schemes.length)];
-  //     }
-  //     return ({scheme: randomScheme});
-  //   });
-  // }
+  randomizeScheme() {
+    // 6 replace this.setState with the relevant state setter variable
+    this.setState((prevState) => {
+      let randomScheme = "";
+      while (randomScheme === "" || prevState.scheme === randomScheme) {
+        randomScheme = schemes[Math.floor(Math.random() * schemes.length)];
+      }
+      return ({scheme: randomScheme});
+    });
+  }
 
-  // componentDidMount() {
-  //   this.randomizeScheme();
-  // }
+  componentDidMount() {
+    this.randomizeScheme();
+  }
 
   // 2 remove this render method (keep what it's wrapped, the return)
   render() {
@@ -72,15 +71,15 @@ class Home extends React.Component {
 
         <main>
           <p>HMU, world!</p>
-          <FormNew
+          <Form
             renderCode={this.renderCode}
-            // randomizeScheme={this.randomizeScheme}
-          ></FormNew>          
-          {/* <Canvas
+            randomizeScheme={this.randomizeScheme}
+          ></Form>          
+          <Canvas
             src={this.state.src}
             name={this.state.name}
             scheme={this.state.scheme}
-          ></Canvas> */}
+          ></Canvas>
         </main>
       </div>
     );

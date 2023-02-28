@@ -1,73 +1,68 @@
 import React, { useState } from 'react';
 
-// FRANKIE TODO: use chatGPT to refactor
-// and/or try to duplicate this in index.js and 
-// yarn reload page thingie?
+// FRANKIE TODO: refactor from class components to functional components
+// * set restrictions on what can be typed into phone, email, url fields? esp. phone?
+// BUG?? or Frankie's phone is broken: websites don't appear (even on old QR codes that we know worked)
+// F's phone seems to scan *part* of the QR code but doesn't sort itself out when corrected
+// websites work fine on iphone QR code reader
 
-class Form extends React.Component {
+function Form(props) {
 
-    constructor(props) {
-        super(props);
-        this.state = {
-            name: "",
-            phone: "",
-            email: "",
-            url: "",
-        };
-        
-        this.handleChange = this.handleChange.bind(this);
-        this.updateQuery = this.updateQuery.bind(this);
-        this.handleSubmit = this.handleSubmit.bind(this);
+    const [formfield, setFormfield] = useState({
+        name: "",
+        phone: "",
+        email: "",
+        url: "",
+    });
+
+    const handleChange = (event) => {
+        const {name, value} = event.target;
+        setFormfield(prevState => ({
+            ...prevState,
+            [name]: value,
+        }));
+        updateQuery();
     }
-    
-    handleChange(event) {
-        let attr = event.target.name;
-        this.setState({[`${attr}`]: event.target.value}, this.updateQuery);
-    }
-    
-    updateQuery() {
+    const updateQuery = () => {
         let query = "https://chart.googleapis.com/chart?cht=qr&chs=168x168&chld=|1&chl=";
         let vCard = 
         "BEGIN:VCARD\nVERSION:4.0" +
-        "\nFN:" + this.state.name +
-        "\nTEL:" + this.state.phone + 
-        "\nEMAIL:" + this.state.email +
-        "\nURL:" + this.state.url +
+        "\nFN:" + formfield.name +
+        "\nTEL:" + formfield.phone + 
+        "\nEMAIL:" + formfield.email +
+        "\nURL:" + formfield.url +
         "\nEND:VCARD";
         vCard = encodeURIComponent(vCard);
         query += vCard;
-        this.props.renderCode(query, this.state.name); 
+        props.renderCode(query, formfield.name); 
     }
     
-    handleSubmit(event) {
+    const handleSubmit = (event) => {
         event.preventDefault();
-        this.props.randomizeScheme();
+        props.randomizeScheme();
     }
     
-    render() {
-        return (
-            // <form onSubmit={this.handleSubmit}>
-            <form>
-                <label>
-                Name:
-                <input type="text" name="name" required value={this.state.name} onChange={this.handleChange} />
-                </label>
-                <label>
-                Phone:
-                <input type="tel" name="phone" value={this.state.phone} onChange={this.handleChange} />
-                </label>
-                <label>
-                Email:
-                <input type="email" name="email" value={this.state.email} onChange={this.handleChange} />
-                </label>
-                <label>
-                URL:
-                <input type="url" name="url" value={this.state.url} onChange={this.handleChange} />
-                </label>
-                <input type="submit" value="Refresh style" onClick={this.handleSubmit} />
-            </form>
-        );
-    }
+    return (
+        <form onSubmit={handleSubmit}>
+            <label>
+            Name:
+            <input type="text" name="name" required value={formfield.name} onChange={handleChange} />
+            </label>
+            <label>
+            Phone:
+            <input type="tel" name="phone" value={formfield.phone} onChange={handleChange} />
+            </label>
+            <label>
+            Email:
+            <input type="email" name="email" value={formfield.email} onChange={handleChange} />
+            </label>
+            <label>
+            URL:
+            <input type="url" name="url" value={formfield.url} onChange={handleChange} />
+            </label>
+            <input type="submit" value="Refresh style" onClick={handleSubmit} />
+        </form>
+    );
 }
     
 export default Form;
