@@ -1,6 +1,11 @@
-import React from 'react';
+import React, { useState } from 'react';
+
+// FRANKIE TODO: use chatGPT to refactor
+// and/or try to duplicate this in index.js and 
+// yarn reload page thingie?
 
 class Form extends React.Component {
+
     constructor(props) {
         super(props);
         this.state = {
