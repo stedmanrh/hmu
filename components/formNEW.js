@@ -5,24 +5,22 @@ import React, { useState } from 'react';
 // yarn reload page thingie?
 // can ask it to give an exmaple of refactoring a class component to a functional component in code here
 
-class FormNew extends React.Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            name: "",
-            // phone: "",
-            // email: "",
-            // url: "",
-        };
-        
-        this.handleChange = this.handleChange.bind(this);
-        // this.updateQuery = this.updateQuery.bind(this);
-        this.handleSubmit = this.handleSubmit.bind(this);
-    }
+function FormNew(props) {
 
-    handleChange(event) {
-        let attr = event.target.name;
-        this.setState({[`${attr}`]: event.target.value}, this.updateQuery);
+    const [formfield, setFormfield] = useState({
+        name: "",
+        phone: "",
+        email: "",
+        url: "",
+    });
+
+    const handleChange = (event) => {
+        const {name, value} = event.target;
+        setFormfield(prevState => ({
+            ...prevState,
+            [name]: value,
+        }));
+        // updateQuery();
     }
     
     // updateQuery() {
@@ -39,35 +37,33 @@ class FormNew extends React.Component {
     //     this.props.renderCode(query, this.state.name); 
     // }
     
-    handleSubmit(event) {
-        event.preventDefault();
-        this.props.randomizeScheme();
-    }
+    // const handleSubmit = (event) => {
+    //     event.preventDefault();
+    //     props.randomizeScheme();
+    // }
     
-    render() {
-        return (
-            // <form onSubmit={this.handleSubmit}>
-            <form>
-                <label>
-                Name:
-                <input type="text" name="name" required value={this.state.name} onChange={this.handleChange} />
-                </label>
-                {/* <label>
-                Phone:
-                <input type="tel" name="phone" value={this.state.phone} onChange={this.handleChange} />
-                </label>
-                <label>
-                Email:
-                <input type="email" name="email" value={this.state.email} onChange={this.handleChange} />
-                </label>
-                <label>
-                URL:
-                <input type="url" name="url" value={this.state.url} onChange={this.handleChange} />
-                </label>
-                <input type="submit" value="Refresh style" onClick={this.handleSubmit} /> */}
-            </form>
-        );
-    }
+    return (
+        // <form onSubmit={this.handleSubmit}>
+        <form>
+            <label>
+            Name:
+            <input type="text" name="name" required value={formfield.name} onChange={handleChange} />
+            </label>
+            <label>
+            Phone:
+            <input type="tel" name="phone" value={formfield.phone} onChange={handleChange} />
+            </label>
+            <label>
+            Email:
+            <input type="email" name="email" value={formfield.email} onChange={handleChange} />
+            </label>
+            <label>
+            URL:
+            <input type="url" name="url" value={formfield.url} onChange={handleChange} />
+            </label>
+            {/* <input type="submit" value="Refresh style" onClick={this.handleSubmit} /> */}
+        </form>
+    );
 }
     
 export default FormNew;
