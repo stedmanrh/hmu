@@ -2,18 +2,15 @@ import Head from "next/head";
 // not in use, but can be used to import images and improve performance
 import Image from "next/image";
 import React from "react";
-import Form from "../components/Form.js";
+import Form from "../components/form.js";
 import Canvas from "../components/Canvas.js";
 import styles from "../styles/Home.module.css";
 import schemes from "../utils/schemes.json";
 
 // 1 change extends to one of these
-// const Home = () => {
 // function Home(props) {
 class Home extends React.Component {
 
-  // 5A remove constructor
-  // change it to useState
   constructor(props) {
     super(props);
     this.state = {
@@ -22,14 +19,10 @@ class Home extends React.Component {
       scheme: schemes[0],
     };
 
-    // 5B remove event handler bindings
     this.renderCode = this.renderCode.bind(this);
     this.randomizeScheme = this.randomizeScheme.bind(this);
   }
 
-  // 3 convert all methods (like this) to functions
-  // 4 remove references to "this"
-  // lets the text persist when you type into the form
   renderCode(url, name) {
     this.setState((prevState) => {
       if (prevState.src !== url || prevState.name !== name) {
@@ -42,7 +35,6 @@ class Home extends React.Component {
   }
 
   randomizeScheme() {
-    // 6 replace this.setState with the relevant state setter variable
     this.setState((prevState) => {
       let randomScheme = "";
       while (randomScheme === "" || prevState.scheme === randomScheme) {
@@ -56,7 +48,6 @@ class Home extends React.Component {
     this.randomizeScheme();
   }
 
-  // 2 remove this render method (keep what it's wrapped, the return)
   render() {
     return (
       <div className={styles.container}>
