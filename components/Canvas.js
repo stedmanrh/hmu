@@ -1,21 +1,12 @@
 import React from "react";
+import { useEffect, useState } from "react";
 import * as convert from 'color-convert';
 import canvasTxt from "../utils/canvas-txt";
 import roundRect from "../utils/roundRect";
 
-//refactor this to a functional component, example:
+function Canvas (props) {
 
-// function Canvas (props) {
-
-// }
-
-class Canvas extends React.Component {
-  constructor(props) {
-    super(props);
-    this.canvasRef = React.createRef();
-    this.draw = this.draw.bind(this);
-    // this.rgbaColor = this.rgbaColor.bind(this);
-  }
+  const [canvasRef, setCanvasRef] = useState(React.createRef());
 
   // rgbaColor = (hexColor, alpha) => {
   //   const stop = convert.hex.rgb(hexColor);
@@ -23,9 +14,9 @@ class Canvas extends React.Component {
   //   return rgbaColor;
   // }
 
-  draw = (src, scheme, name) => {
+  const draw = (src, scheme, name) => {
     // initialize canvas
-    const canvas = this.canvasRef.current;
+    const canvas = canvasRef.current;
     const ctx = canvas.getContext("2d");
     // const dpi = window.devicePixelRatio;
     // canvas.style.width = "320px";
@@ -70,22 +61,22 @@ class Canvas extends React.Component {
     // canvasTxt.fontSize = 48;
     // canvasTxt.drawText(ctx, emoji, 136, 38, 48, 48);
 
-    // // name text
-    // canvasTxt.font = "Helvetica Neue";
-    // canvasTxt.fontSize = 28;
-    // canvasTxt.lineHeight = 34;
-    // canvasTxt.fontWeight = "bold";
-    // ctx.fillStyle = "#222";
-    // if (name === "") {
-    //     ctx.fillStyle = "#a0a0a0";
-    //     name = "Share your contact info effortlessly.";
-    // }
-    // canvasTxt.drawText(ctx, name, 32, 120, 256, 68);
+    // name text
+    canvasTxt.font = "Helvetica Neue";
+    canvasTxt.fontSize = 28;
+    canvasTxt.lineHeight = 34;
+    canvasTxt.fontWeight = "bold";
+    ctx.fillStyle = "#222";
+    if (name === "") {
+        ctx.fillStyle = "#a0a0a0";
+        name = "Share your contact info effortlessly.";
+    }
+    canvasTxt.drawText(ctx, name, 32, 120, 256, 68);
 
     // //  QR code
     // ctx.beginPath();
     // ctx.roundRect(64, 212, 192, 192, 16+4);
-    // ctx.shadowColor = this.rgbaColor(startSwatch, .5);
+    // ctx.shadowColor = rgbaColor(startSwatch, .5);
     // ctx.shadowOffsetY = -4;
     // ctx.shadowBlur = 16;
     // ctx.fillStyle = "white";
@@ -93,7 +84,7 @@ class Canvas extends React.Component {
 
     // ctx.beginPath();
     // ctx.roundRect(64, 212, 192, 192, 16+4);
-    // ctx.shadowColor = this.rgbaColor(endSwatch, .5);
+    // ctx.shadowColor = rgbaColor(endSwatch, .5);
     // ctx.shadowOffsetY = 4;
     // ctx.shadowBlur = 16;
     // ctx.fillStyle = "white";
@@ -132,20 +123,13 @@ class Canvas extends React.Component {
     // canvasTxt.drawText(ctx,"hmu.fr", 92+textW, 429, 135-textW, 17);
   };
 
-  // componentDidUpdate(prevProps) {
-  //   if (prevProps !== this.props) {
-  //     this.draw(this.props.src, this.props.scheme, this.props.name);
-  //   }
-  // }
-
-  componentDidMount() {
+  // componentDidMount AND componentDidUpdate
+  useEffect(() => {
     //   Pass in an empty state SVG data URI
-    this.draw(this.props.src, this.props.scheme, this.props.name);
-  }
+    draw(props.src, props.scheme, props.name);
+  }, [props.src, props.scheme, props.name]);
 
-  render = () => {
-    return <canvas ref={this.canvasRef} {...this.props} />;
-  };
+  return (<canvas ref={canvasRef} {...props} />);
 }
 
 export default Canvas;
