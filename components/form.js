@@ -1,11 +1,5 @@
 import React, { useState } from 'react';
 
-// FRANKIE TODO: refactor from class components to functional components
-// * set restrictions on what can be typed into phone, email, url fields? esp. phone?
-// BUG?? or Frankie's phone is broken: websites don't appear (even on old QR codes that we know worked)
-// F's phone seems to scan *part* of the QR code but doesn't sort itself out when corrected
-// websites work fine on iphone QR code reader
-
 function Form(props) {
 
     const [formfield, setFormfield] = useState({
