@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
 function Form(props) {
 
@@ -9,14 +9,19 @@ function Form(props) {
         url: "",
     });
 
+    // stops text from lagging 
+    useEffect(() => {
+        updateQuery();
+    }, [formfield]);
+
     const handleChange = (event) => {
         const {name, value} = event.target;
         setFormfield(prevState => ({
             ...prevState,
             [name]: value,
         }));
-        updateQuery();
     }
+
     const updateQuery = () => {
         let query = "https://chart.googleapis.com/chart?cht=qr&chs=168x168&chld=|1&chl=";
         let vCard = 

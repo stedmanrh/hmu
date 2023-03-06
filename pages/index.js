@@ -8,12 +8,12 @@ import styles from "../styles/Home.module.css";
 import schemes from "../utils/schemes.json";
 
 // TODO:
-// * FIX BUG: all "saved" text is 1 keystroke behind the value visible in fields
-// - this is probably to do with how useEffect works
-// * BUG?? or Frankie's phone is broken: websites don't appear (even on old QR codes that we know worked)
-// - F's phone seems to scan *part* of the QR code but doesn't sort itself out when corrected
-// - websites work fine on iphone QR code reader
-// * EXTRA: set restrictions on what can be typed into phone, email, url fields? esp. phone?
+// * FIX:
+// - canvas loading issue on android
+// - iOS dimensions
+// - form styling (wait on Sodi for this)
+// * EXTRA:
+// - set restrictions on what can be typed into phone, email, url fields? esp. phone?
 
 function Home() {
 
