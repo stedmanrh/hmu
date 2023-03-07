@@ -1,12 +1,17 @@
 import React from "react";
-import { useEffect, useState } from "react";
+import { useEffect, useRef } from "react";
 import * as convert from 'color-convert';
 import canvasTxt from "../utils/canvas-txt";
 import roundRect from "../utils/roundRect";
 
 function Canvas (props) {
 
-  const [canvasRef, setCanvasRef] = useState(React.createRef());
+  const width = 320;
+  const height = 480;
+  
+  // useRef lets you persist values without rerendering
+  // is this what we want? feels redundant but i dont think i understand this well
+  const canvasRef = useRef();
 
   const rgbaColor = (hexColor, alpha) => {
     const stop = convert.hex.rgb(hexColor);
@@ -18,17 +23,20 @@ function Canvas (props) {
     // initialize canvas
     const canvas = canvasRef.current;
     const ctx = canvas.getContext("2d");
-    const dpi = window.devicePixelRatio;
-    canvas.style.width = "320px";
-    canvas.style.height = "480px";
-    canvas.width = 640;
-    canvas.height = 960;
-    ctx.scale(dpi, dpi);
+    // how element is displayed on screen
+    canvas.style.width = `${width}px`;
+    canvas.style.height = `${height}px`;
+    // actual width and height of canvas bitmap
+    canvas.width = width*2;
+    canvas.height = height*2;
+    // scale causes the image to be cut off on mobile
+    // const dpi = window.devicePixelRatio;
+    // ctx.scale(dpi, dpi);
     const startSwatch = scheme.group[0];
     const endSwatch = scheme.group[scheme.group.length-1];
 
     // card
-    ctx.rect(0, 0, 320, 480);
+    ctx.rect(0, 0, width, height);
     ctx.fillStyle = "#fcfcfc";
     ctx.strokeStyle = "rgba(0,0,0,.02)";
     ctx.lineWidth = 2;
