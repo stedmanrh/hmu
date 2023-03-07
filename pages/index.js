@@ -9,8 +9,8 @@ import schemes from "../utils/schemes.json";
 
 // TODO:
 // * FIX:
-// - canvas loading issue on android
-// - iOS dimensions
+// - emoji doesn't appear on android
+// - scaling (how do to this without quality loss or cutting things off?)
 // - form styling (wait on Sodi for this)
 // * EXTRA:
 // - set restrictions on what can be typed into phone, email, url fields? esp. phone?

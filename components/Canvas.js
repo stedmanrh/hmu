@@ -27,6 +27,7 @@ function Canvas (props) {
     canvas.style.width = `${width}px`;
     canvas.style.height = `${height}px`;
     // actual width and height of canvas bitmap
+    // canvas gets smaller as these #s get larger
     canvas.width = width*2;
     canvas.height = height*2;
     // scale causes the image to be cut off on mobile
