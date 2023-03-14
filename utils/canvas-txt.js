@@ -38,7 +38,7 @@ const canvasTxt = {
       console.error(
         "%cCanvas-Txt:",
         "font-weight: bold;",
-        "textSize is depricated and has been renamed to fontSize"
+        "textSize is deprecated and has been renamed to fontSize"
       );
     }
 

@@ -5,9 +5,6 @@ import canvasTxt from "../utils/canvas-txt";
 import roundRect from "../utils/roundRect";
 
 function Canvas (props) {
-
-  const width = 320;
-  const height = 480;
   
   // useRef lets you persist values without rerendering
   // is this what we want? feels redundant but i dont think i understand this well
@@ -23,27 +20,27 @@ function Canvas (props) {
     // initialize canvas
     const canvas = canvasRef.current;
     const ctx = canvas.getContext("2d");
+    const dpi = window.devicePixelRatio || 1;
     // how element is displayed on screen
-    canvas.style.width = `${width}px`;
-    canvas.style.height = `${height}px`;
+    canvas.style.width = "320px";
+    canvas.style.height = "480px";
     // actual width and height of canvas bitmap
     // canvas gets smaller as these #s get larger
-    canvas.width = width*2;
-    canvas.height = height*2;
-    // scale causes the image to be cut off on mobile
-    // const dpi = window.devicePixelRatio;
-    // ctx.scale(dpi, dpi);
+    canvas.width = canvas.clientWidth * dpi;
+    canvas.height = canvas.clientHeight * dpi;
+    ctx.scale(dpi, dpi);
     const startSwatch = scheme.group[0];
     const endSwatch = scheme.group[scheme.group.length-1];
 
-    // card
-    ctx.rect(0, 0, width, height);
+    // CARD
+    ctx.rect(0, 0, 320, 480);
     ctx.fillStyle = "#fcfcfc";
     ctx.strokeStyle = "rgba(0,0,0,.02)";
     ctx.lineWidth = 2;
     ctx.fill();
     ctx.stroke();
 
+    // CIRCLE
     // avatar shadow
     ctx.beginPath();
     ctx.arc(160, 68, 36, 0, 360);
@@ -120,7 +117,7 @@ function Canvas (props) {
       ctx.drawImage(img, 64+12, 212+12);
     };
 
-    //  promo
+    // promo
     const promo = "Created with ";
     canvasTxt.font = "Helvetica Neue";
     canvasTxt.fontSize = 14;
@@ -132,7 +129,7 @@ function Canvas (props) {
     canvasTxt.drawText(ctx,"hmu.world", 77+textW, 429, 165-textW, 17);
   };
 
-  // componentDidMount AND componentDidUpdate
+  // refactored componentDidMount AND componentDidUpdate
   useEffect(() => {
     //   Pass in an empty state SVG data URI
     draw(props.src, props.scheme, props.name);

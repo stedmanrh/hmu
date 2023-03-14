@@ -7,6 +7,12 @@ import schemes from "../utils/schemes.json";
 
 // TODO:
 // - form validation for phone, email, url fields
+// * FIX:
+// - emoji doesn't appear on android bc scaling
+// - scaling (how do to this without quality loss or cutting things off?)
+// - form styling (wait on Sodi for this)
+// * EXTRA:
+// - set restrictions on what can be typed into phone, email, url fields? esp. phone?
 
 export default function Home() {
 
