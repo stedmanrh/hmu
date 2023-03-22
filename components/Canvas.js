@@ -1,37 +1,43 @@
 import React from "react";
+import { useEffect, useRef } from "react";
 import * as convert from 'color-convert';
 import canvasTxt from "../utils/canvas-txt";
 import roundRect from "../utils/roundRect";
 
-class Canvas extends React.Component {
-  constructor(props) {
-    super(props);
-    this.canvasRef = React.createRef();
-    this.draw = this.draw.bind(this);
-    this.rgbaColor = this.rgbaColor.bind(this);
-  }
+function Canvas (props) {
 
-  rgbaColor = (hexColor, alpha) => {
+  const width = 320;
+  const height = 480;
+  
+  // useRef lets you persist values without rerendering
+  // is this what we want? feels redundant but i dont think i understand this well
+  const canvasRef = useRef();
+
+  const rgbaColor = (hexColor, alpha) => {
     const stop = convert.hex.rgb(hexColor);
     const rgbaColor = "rgba(" + stop.join(",") + "," + alpha + ")";
     return rgbaColor;
   }
 
-  draw = (src, scheme, name) => {
+  const draw = (src, scheme, name) => {
     // initialize canvas
-    const canvas = this.canvasRef.current;
+    const canvas = canvasRef.current;
     const ctx = canvas.getContext("2d");
-    const dpi = window.devicePixelRatio;
-    canvas.style.width = "320px";
-    canvas.style.height = "480px";
-    canvas.width = 640;
-    canvas.height = 960;
-    ctx.scale(dpi, dpi);
+    // how element is displayed on screen
+    canvas.style.width = `${width}px`;
+    canvas.style.height = `${height}px`;
+    // actual width and height of canvas bitmap
+    // canvas gets smaller as these #s get larger
+    canvas.width = width*2;
+    canvas.height = height*2;
+    // scale causes the image to be cut off on mobile
+    // const dpi = window.devicePixelRatio;
+    // ctx.scale(dpi, dpi);
     const startSwatch = scheme.group[0];
     const endSwatch = scheme.group[scheme.group.length-1];
 
     // card
-    ctx.rect(0, 0, 320, 480);
+    ctx.rect(0, 0, width, height);
     ctx.fillStyle = "#fcfcfc";
     ctx.strokeStyle = "rgba(0,0,0,.02)";
     ctx.lineWidth = 2;
@@ -79,7 +85,7 @@ class Canvas extends React.Component {
     //  QR code
     ctx.beginPath();
     ctx.roundRect(64, 212, 192, 192, 16+4);
-    ctx.shadowColor = this.rgbaColor(startSwatch, .5);
+    ctx.shadowColor = rgbaColor(startSwatch, .5);
     ctx.shadowOffsetY = -4;
     ctx.shadowBlur = 16;
     ctx.fillStyle = "white";
@@ -87,7 +93,7 @@ class Canvas extends React.Component {
 
     ctx.beginPath();
     ctx.roundRect(64, 212, 192, 192, 16+4);
-    ctx.shadowColor = this.rgbaColor(endSwatch, .5);
+    ctx.shadowColor = rgbaColor(endSwatch, .5);
     ctx.shadowOffsetY = 4;
     ctx.shadowBlur = 16;
     ctx.fillStyle = "white";
@@ -126,20 +132,13 @@ class Canvas extends React.Component {
     canvasTxt.drawText(ctx,"hmu.world", 77+textW, 429, 165-textW, 17);
   };
 
-  componentDidUpdate(prevProps) {
-    if (prevProps !== this.props) {
-      this.draw(this.props.src, this.props.scheme, this.props.name);
-    }
-  }
-
-  componentDidMount() {
+  // componentDidMount AND componentDidUpdate
+  useEffect(() => {
     //   Pass in an empty state SVG data URI
-    this.draw(this.props.src, this.props.scheme, this.props.name);
-  }
+    draw(props.src, props.scheme, props.name);
+  }, [props.src, props.scheme, props.name]);
 
-  render = () => {
-    return <canvas ref={this.canvasRef} {...this.props} />;
-  };
+  return (<canvas ref={canvasRef} {...props} />);
 }
 
 export default Canvas;
