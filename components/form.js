@@ -30,7 +30,7 @@ function Form(props) {
             </label>
             <label className={styles.label}>
                 <span className={styles.labelText}>Phone</span>
-                <input className={styles.input} type="tel" name="phone" value={formfield.phone} placeholder="+1678998212" onChange={handleChange} />
+                <input className={styles.input} type="tel" name="phone" value={formfield.phone} placeholder="+16789998212" onChange={handleChange} />
             </label>
             <label className={styles.label}>
                 <span className={styles.labelText}>Email</span>

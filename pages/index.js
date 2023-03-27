@@ -88,6 +88,7 @@ function Home() {
             </Head>
 
             <main className={styles.pageForm}>
+                <div className={styles.siteCode}></div>
                 <heading className={styles.siteHeader}>
                     <p>Share your contact info <span id="shuffle" className={styles.shuffle}>Tactfully.</span></p>
                 </heading>

@@ -2,6 +2,7 @@
     padding: 0 1rem;
     display: flex;
     flex-direction: column;
+    align-content: center;
 }
 
 .label {
@@ -49,11 +50,11 @@
     text-transform: uppercase;
     letter-spacing: 0.1rem;
     font-weight: 500;
-    box-shadow: 7px 7px 10px #cbced1, -7px -7px 10px white;
-    margin-top: 3rem;
-    background: linear-gradient(60deg, #7429c6, #c554e7);
+    box-shadow: .5rem .5rem .75rem #cbced1, -.5rem -.5rem .75rem white;
+    margin-top: 1em;
+    background: linear-gradient(-30deg, #7429c6, #c554e7);
     transition: opacity 0.25s linear, border .25s linear, transform .1s ease, box-shadow .1s ease;
-    opacity: 0.8;
+    opacity: 0.85;
 }
 
 .submit:focus,
@@ -61,10 +62,10 @@
     outline: none;
     opacity: 1;
     border: 2px outset rgba(197, 84, 231, 0.66);
-    box-shadow: 0px 2px 16px rgba(197, 84, 231, 0.66), -7px -7px 10px white;
+    box-shadow: 0px 2px 1rem rgba(197, 84, 231, 0.66), -.5rem -.5rem .75rem white;
 }
 
 .submit:active {
     transform: scale(0.98);
-    box-shadow: 0px 2px 4px rgba(197, 84, 231, 0.66), -7px -7px 10px white;
+    box-shadow: 0px 2px .25rem rgba(197, 84, 231, 0.66), -.5rem -.5rem .75rem white;
 }
