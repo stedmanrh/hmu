@@ -1,0 +1,24 @@
+.pageForm {
+    height: 100vh;
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    justify-content: center;
+    background: #ecf0f3;
+}
+
+.siteHeader {
+    text-align: center;
+    font-size: 3rem;
+    line-height: 1.25em;
+    margin-bottom: 4rem;
+    color: rgb(107 114 128);
+}
+
+.shuffle {
+    height: 1.25em;
+    display: block;
+    color: rgb(147 51 234);
+    text-shadow: 0px 2px 16px rgba(197,84,231,.66);
+}

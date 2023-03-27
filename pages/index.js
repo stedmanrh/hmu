@@ -2,7 +2,7 @@ import Head from "next/head";
 import Image from "next/image";
 import React from "react";
 import { useState, useEffect } from "react";
-import Form from "../components/form.js";
+import Form from "../components/Form.js";
 import Canvas from "../components/Canvas.js";
 import styles from "../styles/Home.module.css";
 import schemes from "../utils/schemes.json";
@@ -17,66 +17,84 @@ import schemes from "../utils/schemes.json";
 
 function Home() {
 
-  const [state, setState] = useState({
-    src: "https://chart.googleapis.com/chart?cht=qr&chs=168x168&chld=|1&chl=",
-    name: "",
-    scheme: schemes[0],
-  });
+    const [state, setState] = useState({
+        src: "https://chart.googleapis.com/chart?cht=qr&chs=168x168&chld=|1&chl=",
+        name: "",
+        scheme: schemes[0],
+    });
 
-  const renderCode = (url, name) => {
-    setState((prevState) => {
-      if (prevState.src !== url || prevState.name !== name) {
-        return {
-          ...prevState,
-          src: url,
-          name: name,
+    const shuffle = () => {
+        const words = ["seamlessly.", "flexibly.", "Tactfully."];
+        let i = -1;
+
+        const animateWord = (word) => {
+            const element = document.getElementById("shuffle");
+            const text = element.textContent;
+            const letters = word.split("");
+            let count = 0;
+            element.textContent = text;
+            let delay = i == 2 ? 8000 : 3000;
+
+            const interval = setInterval(() => {
+                element.textContent += letters[count];
+                count++;
+                if (count >= letters.length) {
+                    clearInterval(interval);
+                    setTimeout(() => animateOut(word), delay);
+                }
+            }, 33);
         };
-      }
-    });
-  }
 
-  const randomizeScheme = () => {
-    setState((prevState) => {
-      let randomScheme = "";
-      while (randomScheme === "" || prevState.scheme === randomScheme) {
-        randomScheme = schemes[Math.floor(Math.random() * schemes.length)];
-      }
-      return ({
-        ...prevState,
-        scheme: randomScheme
-      });
-    });
-  }
+        const animateOut = (word) => {
+            const element = document.getElementById("shuffle");
+            const text = element.textContent;
+            let count = text.length - 1;
 
-  useEffect(() => {
-    randomizeScheme();
-  }, []);
+            const interval = setInterval(() => {
+                element.textContent = text.substring(0, count);
+                count--;
+                if (count < 0) {
+                    clearInterval(interval);
+                    setTimeout(() => {
+                        i++;
+                        if (i >= words.length) {
+                            i = 0;
+                        }
+                        animateWord(words[i]);
+                    }, 33);
+                }
+            }, 33);
+        };
 
-  return (
-    <div className={styles.container}>
-      <Head>
-        <title>HMU | Create a QR code for your contact info</title>
-        <meta
-          name="description"
-          content="Create and save a QR code to easily share your contact info with new friends and acquaintances"
-        />
-        <link rel="icon" href="/favicon.ico" />
-      </Head>
+        const currentWord = document.getElementById("shuffle").textContent;
+        animateOut(currentWord);
+    };
 
-      <main>
-        <p>HMU, world!</p>
-        <Form
-          renderCode={renderCode}
-          randomizeScheme={randomizeScheme}
-        ></Form>          
-        <Canvas
-          src={state.src}
-          name={state.name}
-          scheme={state.scheme}
-        ></Canvas>
-      </main>
-    </div>
-  );
+
+    useEffect(() => {
+        setTimeout(shuffle, 5000);
+    }, []);
+
+    return (
+        <div>
+            <Head>
+                <title>HMU | Create a QR code for your contact info</title>
+                <meta
+                    name="description"
+                    content="Create and save a QR code to easily share your contact info with new friends and acquaintances"
+                />
+                <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+                <link rel="icon" href="/favicon.ico" />
+            </Head>
+
+            <main className={styles.pageForm}>
+                <heading className={styles.siteHeader}>
+                    <p>Share your contact info <span id="shuffle" className={styles.shuffle}>Tactfully.</span></p>
+                </heading>
+                <Form></Form>
+            </main>
+        </div>
+    );
 }
 
 export default Home;
