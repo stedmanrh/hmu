@@ -1,7 +1,9 @@
+import { useRouter } from 'next/router';
 import React, { useState, useEffect } from 'react';
 import styles from "../styles/Form.module.css";
 
 function Form(props) {
+    const router = useRouter();
 
     const [formfield, setFormfield] = useState({
         name: "",
@@ -20,6 +22,7 @@ function Form(props) {
 
     const handleSubmit = (event) => {
         event.preventDefault();
+        router.push("/Canvas");
     }
 
     return (
@@ -34,7 +37,7 @@ function Form(props) {
             </label>
             <label className={styles.label}>
                 <span className={styles.labelText}>Email</span>
-                <input className={styles.input} type="email" name="email" value={formfield.email} placeholder="hmu.world@gmail.com" onChange={handleChange} />
+                <input className={styles.input} type="email" name="email" value={formfield.email} placeholder="hello@hmu.world" onChange={handleChange} />
             </label>
             <label className={styles.label}>
                 <span className={styles.labelText}>URL</span>
