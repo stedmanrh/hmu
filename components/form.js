@@ -21,8 +21,7 @@ function Form(props) {
     }
 
     const handleSubmit = (event) => {
-        event.preventDefault();
-        router.push("/Canvas");
+        router.push("/preview");
     }
 
     return (

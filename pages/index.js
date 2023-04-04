@@ -1,21 +1,14 @@
-import Head from "next/head";
-import Image from "next/image";
 import React from "react";
 import { useState, useEffect } from "react";
+import Header from "../components/Header.js";
 import Form from "../components/Form.js";
-import Canvas from "../components/Canvas.js";
 import styles from "../styles/Home.module.css";
 import schemes from "../utils/schemes.json";
 
 // TODO:
-// * FIX:
-// - emoji doesn't appear on android
-// - scaling (how do to this without quality loss or cutting things off?)
-// - form styling (wait on Sodi for this)
-// * EXTRA:
-// - set restrictions on what can be typed into phone, email, url fields? esp. phone?
+// - form validation for phone, email, url fields
 
-function Home() {
+export default function Home() {
 
     const [state, setState] = useState({
         src: "https://chart.googleapis.com/chart?cht=qr&chs=168x168&chld=|1&chl=",
@@ -47,6 +40,9 @@ function Home() {
 
         const animateOut = (word) => {
             const element = document.getElementById("shuffle");
+            if (!element) {
+                return;
+            }
             const text = element.textContent;
             let count = text.length - 1;
 
@@ -77,16 +73,7 @@ function Home() {
 
     return (
         <div>
-            <Head>
-                <title>HMU | Create a QR code for your contact info</title>
-                <meta
-                    name="description"
-                    content="Create and save a QR code to easily share your contact info with new friends and acquaintances"
-                />
-                <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-                <link rel="icon" href="/favicon.ico" />
-            </Head>
-
+            <Header></Header>
             <main className={styles.pageForm}>
                 <div className={styles.siteCode}></div>
                 <heading className={styles.siteHeader}>
@@ -96,6 +83,4 @@ function Home() {
             </main>
         </div>
     );
-}
-
-export default Home;
+};
