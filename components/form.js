@@ -2,7 +2,7 @@ import { useRouter } from 'next/router';
 import React, { useState, useEffect } from 'react';
 import styles from "../styles/Form.module.css";
 
-function Form(props) {
+export default function Form(props) {
     const router = useRouter();
 
     const [formfield, setFormfield] = useState({
@@ -46,5 +46,3 @@ function Form(props) {
         </form >
     );
 }
-
-export default Form;
