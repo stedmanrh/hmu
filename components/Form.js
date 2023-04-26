@@ -1,8 +1,9 @@
 import { useRouter } from 'next/router';
 import React, { useState, useEffect } from 'react';
 import styles from "../styles/Form.module.css";
+import vibes from "../utils/vibes.json";
 
-export default function Form(props) {
+export default function Form() {
     const router = useRouter();
 
     const [formfield, setFormfield] = useState({
@@ -10,7 +11,10 @@ export default function Form(props) {
         phone: "",
         email: "",
         url: "",
+        vibe: JSON.stringify(vibes[0]),
     });
+
+    const [vibeOptions, setVibeOptions] = useState([]);
 
     const handleChange = (event) => {
         const { name, value } = event.target;
@@ -26,6 +30,11 @@ export default function Form(props) {
         window.sessionStorage.setItem("formValues", formValues);
         router.push("/preview");
     }
+
+    useEffect(() => {
+        setVibeOptions(vibes);
+    }, []);
+
 
     return (
         <form className={styles.form} onSubmit={handleSubmit}>
@@ -44,6 +53,14 @@ export default function Form(props) {
             <label className={styles.label}>
                 <span className={styles.labelText}>URL</span>
                 <input className={styles.input} type="url" name="url" value={formfield.url} placeholder="https://hmu.world" onChange={handleChange} />
+            </label>
+            <label className={styles.label}>
+                <span className={styles.labelText}>Vibe</span>
+                <select className={`${styles.input} + ${styles.select}`} value={formfield.vibe} onChange={handleChange} name="vibe">
+                    {vibeOptions.map((option) => (
+                        <option key={option.label} value={JSON.stringify(option)}>{option.emoji + " " + option.label}</option>
+                    ))}
+                </select>
             </label>
             <input className={styles.submit} type="submit" value="Preview" onClick={handleSubmit} />
         </form >
