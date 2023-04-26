@@ -12,7 +12,7 @@ import schemes from "../utils/schemes.json";
 export default function Preview() {
 
   const [state, setState] = useState({
-    src: "https://chart.googleapis.com/chart?cht=qr&chs=168x168&chld=|1&chl=",
+    src: "https://chart.googleapis.com/chart?cht=qr&chs=168x168&chld=|1&chl=hmu.world",
     name: "",
     scheme: schemes[0],
   });
