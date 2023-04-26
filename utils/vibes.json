@@ -1,5 +1,13 @@
 [
     {
+        "label": "Magical",
+        "emoji": "🔮",
+        "group": [
+            "#cc208e",
+            "#6713d2"
+        ]
+    },
+    {
         "label": "Lovely",
         "emoji": "🥰",
         "group": [
@@ -21,14 +29,6 @@
         "group": [
             "#00f2fe",
             "#4facfe"
-        ]
-    },
-    {
-        "label": "Magical",
-        "emoji": "🔮",
-        "group": [
-            "#cc208e",
-            "#6713d2"
         ]
     },
     {
