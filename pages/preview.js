@@ -17,6 +17,20 @@ export default function Preview() {
     scheme: schemes[0],
   });
 
+  const buildQuery = (formValues) => {
+    let query = "https://chart.googleapis.com/chart?cht=qr&chs=168x168&chld=|1&chl=";
+    let vCard = 
+    "BEGIN:VCARD\nVERSION:4.0" +
+    "\nFN:" + formValues.name +
+    "\nTEL:" + formValues.phone + 
+    "\nEMAIL:" + formValues.email +
+    "\nURL:" + formValues.url +
+    "\nEND:VCARD";
+    vCard = encodeURIComponent(vCard);
+    query += vCard;
+    return query;
+}
+
   const renderCode = (url, name) => {
     setState((prevState) => {
       if (prevState.src !== url || prevState.name !== name) {
@@ -43,6 +57,10 @@ export default function Preview() {
   }
 
   useEffect(() => {
+    const formValues = JSON.parse(window.sessionStorage.getItem("formValues"));
+    const name = formValues.name;
+    const url = buildQuery(formValues);
+    renderCode(url, name);
     randomizeScheme();
   }, []);
 

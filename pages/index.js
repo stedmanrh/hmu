@@ -10,12 +10,6 @@ import schemes from "../utils/schemes.json";
 
 export default function Home() {
 
-    const [state, setState] = useState({
-        src: "https://chart.googleapis.com/chart?cht=qr&chs=168x168&chld=|1&chl=",
-        name: "",
-        scheme: schemes[0],
-    });
-
     const shuffle = () => {
         const words = ["seamlessly.", "flexibly.", "Tactfully."];
         let i = -1;
@@ -68,7 +62,10 @@ export default function Home() {
 
 
     useEffect(() => {
-        setTimeout(shuffle, 5000);
+        const shuffleTimeout = setTimeout(shuffle, 5000);
+        return () => {
+            clearTimeout(shuffleTimeout);
+        }
     }, []);
 
     return (
@@ -76,9 +73,9 @@ export default function Home() {
             <Header></Header>
             <main className={styles.pageForm}>
                 <div className={styles.siteCode}></div>
-                <heading className={styles.siteHeader}>
+                <header className={styles.siteHeader}>
                     <p>Share your contact info <span id="shuffle" className={styles.shuffle}>Tactfully.</span></p>
-                </heading>
+                </header>
                 <Form></Form>
             </main>
         </div>
