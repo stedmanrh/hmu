@@ -1,9 +1,8 @@
 import React from "react";
-import { useState, useEffect } from "react";
+import { useEffect } from "react";
 import Header from "../components/Header.js";
 import Form from "../components/Form.js";
 import styles from "../styles/Home.module.css";
-import schemes from "../utils/schemes.json";
 
 // TODO:
 // - form validation for phone, email, url fields

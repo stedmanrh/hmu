@@ -19,7 +19,7 @@ function Canvas (props) {
     return rgbaColor;
   }
 
-  const draw = (src, scheme, name) => {
+  const draw = (src, vibe, name) => {
     // initialize canvas
     const canvas = canvasRef.current;
     const ctx = canvas.getContext("2d");
@@ -33,8 +33,8 @@ function Canvas (props) {
     // scale causes the image to be cut off on mobile
     // const dpi = window.devicePixelRatio;
     // ctx.scale(dpi, dpi);
-    const startSwatch = scheme.group[0];
-    const endSwatch = scheme.group[scheme.group.length-1];
+    const startSwatch = vibe.group[0];
+    const endSwatch = vibe.group[vibe.group.length-1];
 
     // card
     ctx.rect(0, 0, width, height);
@@ -66,7 +66,7 @@ function Canvas (props) {
     ctx.stroke();
 
     // emoji avatar
-    let emoji = scheme.emoji;
+    let emoji = vibe.emoji;
     canvasTxt.fontSize = 48;
     canvasTxt.drawText(ctx, emoji, 136, 38, 48, 48);
 
@@ -135,8 +135,8 @@ function Canvas (props) {
   // componentDidMount AND componentDidUpdate
   useEffect(() => {
     //   Pass in an empty state SVG data URI
-    draw(props.src, props.scheme, props.name);
-  }, [props.src, props.scheme, props.name]);
+    draw(props.src, props.vibe, props.name);
+  }, [props.src, props.vibe, props.name]);
 
   return (<canvas ref={canvasRef} {...props} />);
 }
