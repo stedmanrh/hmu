@@ -78,7 +78,7 @@ function Canvas (props) {
     ctx.fillStyle = "#222";
     if (name === "") {
         ctx.fillStyle = "#a0a0a0";
-        name = "Share your contact info effortlessly.";
+        name = "Share your contact info Tactfully.";
     }
     canvasTxt.drawText(ctx, name, 32, 120, 256, 68);
 
