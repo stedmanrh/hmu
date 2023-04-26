@@ -21,6 +21,9 @@ export default function Form(props) {
     }
 
     const handleSubmit = (event) => {
+        event.preventDefault();
+        const formValues = JSON.stringify(formfield);
+        window.sessionStorage.setItem("formValues", formValues);
         router.push("/preview");
     }
 
