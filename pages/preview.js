@@ -15,6 +15,8 @@ export default function Preview() {
         src: "https://chart.googleapis.com/chart?cht=qr&chs=168x168&chld=|1&chl=hmu.world",
         name: "",
         vibe: vibes[0],
+        width: "",
+        height: "",
     });
 
     const buildQuery = (formValues) => {
@@ -35,7 +37,9 @@ export default function Preview() {
         setState({
             src: url,
             name: name,
-            vibe: vibe
+            vibe: vibe,
+            width: window.innerWidth,
+            height: window.innerHeight,
         });
     }
 
@@ -50,11 +54,13 @@ export default function Preview() {
     return (
         <div className={styles.container}>
             <Header></Header>
-            <main>
+            <main className="flex">
                 <Canvas
                     src={state.src}
                     name={state.name}
                     vibe={state.vibe}
+                    width={state.width}
+                    height={state.height}
                 ></Canvas>
             </main>
         </div>

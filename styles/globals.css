@@ -8,3 +8,7 @@
 body {
     overscroll-behavior: none;
 }
+
+.flex {
+    display: flex;
+}
