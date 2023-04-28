@@ -12,9 +12,9 @@ import vibes from "../utils/vibes.json";
 export default function Preview() {
 
     const [state, setState] = useState({
-        src: "https://chart.googleapis.com/chart?cht=qr&chs=168x168&chld=|1&chl=hmu.world",
+        src: "",
         name: "",
-        vibe: vibes[0],
+        vibe: "",
         width: "",
         height: "",
     });
@@ -49,6 +49,9 @@ export default function Preview() {
         const vibe = JSON.parse(formValues.vibe);
         const url = buildQuery(formValues);
         renderCode(url, name, vibe);
+        window.addEventListener('resize', () => {
+            renderCode(url, name, vibe);
+        });
     }, []);
 
     return (

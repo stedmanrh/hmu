@@ -5,9 +5,8 @@ import canvasTxt from "../utils/canvas-txt";
 import roundRect from "../utils/roundRect";
 
 function Canvas(props) {
-    // useRef lets you persist values without rerendering
-    // is this what we want? feels redundant but i dont think i understand this well
-    // I think the canvas api needs the ref to redraw to the context
+
+    // use ref to allow canvas to draw to context
     const canvasRef = useRef();
 
     const rgbaColor = (hexColor, alpha) => {
@@ -16,7 +15,7 @@ function Canvas(props) {
         return rgbaColor;
     }
 
-    const draw = (src, vibe, name, width, height) => {
+    const draw = (img, vibe, name, width, height) => {
         // initialize canvas
         const w = width / 100;
         const h = height / 100;
@@ -118,13 +117,9 @@ function Canvas(props) {
         ctx.fillStyle = "white";
         ctx.fill();
 
-        const img = new Image();
-        img.src = src;
-        img.onload = () => {
-            if (qrx > 0) {
-                ctx.drawImage(img, qrx + 12, y + 12);
-            }
-        };
+        if (qrx > 0) {
+            ctx.drawImage(img, qrx + 12, y + 12);
+        }
 
         //  promo
         const promo = "Created with hmu.world";
@@ -138,7 +133,11 @@ function Canvas(props) {
     // componentDidMount AND componentDidUpdate
     useEffect(() => {
         //   Pass in an empty state SVG data URI
-        draw(props.src, props.vibe, props.name, props.width, props.height);
+        const img = new Image();
+        img.src = props.src;
+        img.onload = () => {
+            draw(img, props.vibe, props.name, props.width, props.height);
+        };
     }, [props.src, props.vibe, props.name, props.width, props.height]);
 
     return (<canvas ref={canvasRef} {...props} />);
