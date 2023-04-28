@@ -4,6 +4,7 @@ import Header from "../components/Header.js";
 import Canvas from "../components/Canvas.js";
 import styles from "../styles/Home.module.css";
 import vibes from "../utils/vibes.json";
+import secureLocalStorage from "react-secure-storage";
 
 // TODO:
 // - Emoji rendering (Android)
@@ -44,7 +45,7 @@ export default function Preview() {
     }
 
     useEffect(() => {
-        const formValues = JSON.parse(window.sessionStorage.getItem("formValues"));
+        const formValues = JSON.parse(secureLocalStorage.getItem("formValues"));
         const name = formValues.name;
         const vibe = JSON.parse(formValues.vibe);
         const url = buildQuery(formValues);
