@@ -2,6 +2,7 @@ import { useRouter } from 'next/router';
 import React, { useState, useEffect } from 'react';
 import styles from "../styles/Form.module.css";
 import vibes from "../utils/vibes.json";
+import  secureLocalStorage  from  "react-secure-storage";
 
 export default function Form() {
     const router = useRouter();
@@ -27,7 +28,7 @@ export default function Form() {
     const handleSubmit = (event) => {
         event.preventDefault();
         const formValues = JSON.stringify(formfield);
-        window.sessionStorage.setItem("formValues", formValues);
+        secureLocalStorage.setItem("formValues", formValues);
         router.push("/preview");
     }
 
