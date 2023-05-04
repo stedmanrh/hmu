@@ -3,7 +3,6 @@ import { useState, useEffect } from "react";
 import Header from "../components/Header.js";
 import Canvas from "../components/Canvas.js";
 import styles from "../styles/Home.module.css";
-import vibes from "../utils/vibes.json";
 import secureLocalStorage from "react-secure-storage";
 
 // TODO:

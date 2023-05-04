@@ -1,13 +1,15 @@
+import { useRouter } from 'next/router';
 import React from "react";
 import { useEffect } from "react";
 import Header from "../components/Header.js";
-import Form from "../components/Form.js";
 import styles from "../styles/Home.module.css";
 
-// TODO:
-// - form validation for phone, email, url fields
-
 export default function Home() {
+    const router = useRouter();
+
+    const create = () => {
+        router.push("/create");
+    }
 
     const shuffle = () => {
         const words = ["seamlessly.", "flexibly.", "Tactfully."];
@@ -75,7 +77,7 @@ export default function Home() {
                 <header className={styles.siteHeader}>
                     <p>Share your contact info <span id="shuffle" className={styles.shuffle}>Tactfully.</span></p>
                 </header>
-                <Form></Form>
+                <button className="button" onClick={create}>+ New persona</button>
             </main>
         </div>
     );
