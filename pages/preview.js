@@ -1,15 +1,18 @@
+import { useRouter } from 'next/router';
 import React from "react";
 import { useState, useEffect } from "react";
 import Header from "../components/Header.js";
 import Canvas from "../components/Canvas.js";
 import styles from "../styles/Home.module.css";
 import secureLocalStorage from "react-secure-storage";
+import Home from "./index.js";
 
 // TODO:
 // - Emoji rendering (Android)
 // - Canvas scaling
 
 export default function Preview() {
+    const router = useRouter();
 
     const [state, setState] = useState({
         src: "",
@@ -43,6 +46,10 @@ export default function Preview() {
         });
     }
 
+    const create = () => {
+        router.push("/create");
+    }
+
     useEffect(() => {
         const formValues = JSON.parse(secureLocalStorage.getItem("formValues"));
         const name = formValues.name;
@@ -58,6 +65,7 @@ export default function Preview() {
         <div className={styles.container}>
             <Header></Header>
             <main className="flex">
+                <button className="button-back" onClick={create}>Back</button>
                 <Canvas
                     src={state.src}
                     name={state.name}

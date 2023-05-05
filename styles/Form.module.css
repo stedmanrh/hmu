@@ -46,26 +46,3 @@
     background-position: right .5rem center;
     background-size: 1em;
 }
-
-.cancel {
-    border: none;
-    text-align: center;
-    cursor: pointer;
-    line-height: 0.75rem;
-    align-self: center;
-    color: rgb(71 85 105);
-    text-transform: uppercase;
-    font-weight: 500;
-    font-size: .8rem;
-    letter-spacing: .25ch;
-    margin-top: 1em;
-    padding: .5em 0;
-    transition: border .25s linear;
-    border-bottom: 2px solid transparent;
-}
-
-.cancel:focus,
-.cancel:hover {
-    outline: none;
-    border-bottom: 2px solid rgba(71,85,105,.5);
-}
