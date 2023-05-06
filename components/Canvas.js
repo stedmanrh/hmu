@@ -19,6 +19,7 @@ function Canvas(props) {
         // initialize canvas
         const w = width / 100;
         const h = height / 100;
+        const pxRatio = 2;
         const canvas = canvasRef.current;
         const ctx = canvas.getContext("2d");
         // how element is displayed on screen
@@ -26,11 +27,11 @@ function Canvas(props) {
         canvas.style.height = `${height}px`;
         // actual width and height of canvas bitmap
         // canvas gets smaller as these #s get larger
-        canvas.width = width;
-        canvas.height = height;
+        canvas.width = width*pxRatio;
+        canvas.height = height*pxRatio;
         // scale causes the image to be cut off on mobile
         // const dpi = window.devicePixelRatio;
-        // ctx.scale(dpi, dpi);
+        ctx.scale(pxRatio, pxRatio);
         const startSwatch = vibe.group[0];
         const endSwatch = vibe.group[vibe.group.length - 1];
 
@@ -69,7 +70,7 @@ function Canvas(props) {
 
         // name text
         y = y + 48 + 36;
-        canvasTxt.font = "Helvetica Neue";
+        canvasTxt.font = "Rubik";
         canvasTxt.fontSize = 28;
         canvasTxt.lineHeight = 34;
         canvasTxt.fontWeight = "bold";
@@ -121,7 +122,7 @@ function Canvas(props) {
 
         //  promo
         const promo = "Created with hmu.world";
-        canvasTxt.font = "Helvetica Neue";
+        canvasTxt.font = "Rubik";
         canvasTxt.fontSize = 14;
         canvasTxt.fontWeight = "normal";
         ctx.fillStyle = "#a0a0a0";
