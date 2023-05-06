@@ -2,7 +2,7 @@ import { useRouter } from 'next/router';
 import React, { useState, useEffect } from 'react';
 import styles from "../styles/Form.module.css";
 import vibes from "../utils/vibes.json";
-import  secureLocalStorage  from  "react-secure-storage";
+import secureLocalStorage from "react-secure-storage";
 
 export default function Form() {
     const router = useRouter();
@@ -30,6 +30,10 @@ export default function Form() {
         const formValues = JSON.stringify(formfield);
         secureLocalStorage.setItem("formValues", formValues);
         router.push("/preview");
+    }
+
+    const home = () => {
+        router.push("/");
     }
 
     useEffect(() => {
@@ -63,7 +67,8 @@ export default function Form() {
                     ))}
                 </select>
             </label>
-            <input className={styles.submit} type="submit" value="Preview" onClick={handleSubmit} />
-        </form >
+            <input className="button" type="submit" value="Preview" onClick={handleSubmit} />
+            <button className="button-txt" onClick={home}>Cancel</button>
+        </form>
     );
 }
