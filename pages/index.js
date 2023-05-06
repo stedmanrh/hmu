@@ -75,7 +75,7 @@ export default function Home() {
             <main className={styles.pageForm}>
                 <div className={styles.siteCode}></div>
                 <header className={styles.siteHeader}>
-                    <p>Share your contact info <span id="shuffle" className={styles.shuffle}>Tactfully.</span></p>
+                    <p>Share your contact&nbsp;info <span id="shuffle" className={styles.shuffle}>Tactfully.</span></p>
                 </header>
                 <button className="button" onClick={create}>+ New persona</button>
             </main>

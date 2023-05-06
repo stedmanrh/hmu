@@ -14,7 +14,7 @@ export default function Create() {
             <main className={styles.pageForm}>
                 <div className={styles.siteCode}></div>
                 <header className={styles.siteHeader}>
-                    <p>Enter your contact info</p>
+                    <p>Enter your contact&nbsp;info</p>
                 </header>
                 <Form></Form>
             </main>
