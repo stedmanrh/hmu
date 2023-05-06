@@ -135,10 +135,8 @@ function Canvas(props) {
         img.src = props.src;
         const emoji = new Image();
         emoji.src = "https://emojicdn.elk.sh/"+props.vibe.emoji;
-        img.onload = () => {
-            emoji.onload = () => {
-                draw(img, emoji, props.vibe, props.name, props.width, props.height);
-            }
+        img.onload = emoji.onload = () => {
+            draw(img, emoji, props.vibe, props.name, props.width, props.height);
         };
     }, [props.src, props.vibe, props.name, props.width, props.height]);
 
