@@ -15,7 +15,7 @@ function Canvas(props) {
         return rgbaColor;
     }
 
-    const draw = (img, vibe, name, width, height) => {
+    const draw = (img, emoji, vibe, name, width, height) => {
         // initialize canvas
         const w = width / 100;
         const h = height / 100;
@@ -65,9 +65,7 @@ function Canvas(props) {
         ctx.stroke();
 
         // emoji avatar
-        let emoji = vibe.emoji;
-        canvasTxt.fontSize = 48;
-        canvasTxt.drawText(ctx, emoji, 50 * w - 48 / 2, y - 60 / 2, 48, 48);
+        ctx.drawImage(emoji, 50 * w - 48 / 2, y - 48 / 2, 48, 48);
 
         // name text
         y = y + 48 + 36;
@@ -135,8 +133,12 @@ function Canvas(props) {
         //   Pass in an empty state SVG data URI
         const img = new Image();
         img.src = props.src;
+        const emoji = new Image();
+        emoji.src = "https://emojicdn.elk.sh/"+props.vibe.emoji;
         img.onload = () => {
-            draw(img, props.vibe, props.name, props.width, props.height);
+            emoji.onload = () => {
+                draw(img, emoji, props.vibe, props.name, props.width, props.height);
+            }
         };
     }, [props.src, props.vibe, props.name, props.width, props.height]);
 

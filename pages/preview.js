@@ -5,7 +5,6 @@ import Header from "../components/Header.js";
 import Canvas from "../components/Canvas.js";
 import styles from "../styles/Home.module.css";
 import secureLocalStorage from "react-secure-storage";
-import Home from "./index.js";
 
 // TODO:
 // - Emoji rendering (Android)
