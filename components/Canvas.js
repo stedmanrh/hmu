@@ -134,10 +134,18 @@ function Canvas(props) {
         const img = new Image();
         img.src = props.src;
         const emoji = new Image();
-        emoji.src = "https://emojicdn.elk.sh/"+props.vibe.emoji;
-        img.onload = emoji.onload = () => {
+        emoji.src = "https://emojicdn.elk.sh/" + props.vibe.emoji;
+        const images = [img, emoji];
+        Promise.all(
+            images.map(async (img) => {
+                const syncPromise = new Promise((resolve) => {
+                    img.onload = () => resolve();
+                });
+                await syncPromise;
+            })
+        ).then(() => {
             draw(img, emoji, props.vibe, props.name, props.width, props.height);
-        };
+        });
     }, [props.src, props.vibe, props.name, props.width, props.height]);
 
     return (<canvas ref={canvasRef} {...props} />);
