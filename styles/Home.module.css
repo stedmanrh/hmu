@@ -30,7 +30,7 @@
     width: 128px;
     border-radius: 1rem;
     filter: brightness(.95) opacity(.8);
-    background: url('https://chart.googleapis.com/chart?cht=qr&chs=128x128&chld=|1&chl=hmu.world'), rgba(255,255,255,1);
+    background: url('https://chart.googleapis.com/chart?cht=qr&chs=128x128&chld=|1&chl=https://hmu.world'), rgba(255,255,255,1);
     background-size: 80%;
     background-position: center center;
     background-repeat: no-repeat;
