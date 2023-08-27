@@ -38,6 +38,17 @@ export default function Form() {
 
     useEffect(() => {
         setVibeOptions(vibes);
+        const formValues = JSON.parse(secureLocalStorage.getItem("formValues"));
+        if (formValues != null) {
+            setFormfield(prevState => ({
+                ...prevState,
+                name: formValues.name,
+                phone: formValues.phone,
+                email: formValues.email,
+                url: formValues.url,
+                vibe: formValues.vibe
+            }));
+        }
     }, []);
 
 
