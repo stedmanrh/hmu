@@ -67,6 +67,14 @@ body {
     margin-right: .25em;
 }
 
+.button-edit::before {
+    content: '✎';
+    font-size: 1.1em;
+    position: relative;
+    top: 1px;
+    margin-right: .25em;
+}
+
 .button-txt,
 .button-home,
 .button-edit {

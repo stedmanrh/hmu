@@ -1,14 +1,32 @@
 import { useRouter } from 'next/router';
 import React from "react";
-import { useEffect } from "react";
+import { useState, useEffect } from "react";
 import Header from "../components/Header.js";
 import styles from "../styles/Home.module.css";
+import secureLocalStorage from "react-secure-storage";
 
 export default function Home() {
     const router = useRouter();
 
+    const [contact, setContact] = useState({
+        contactExists: false
+    }, []);
+
+    useEffect(() => {
+        const formValues = JSON.parse(secureLocalStorage.getItem("formValues"));
+        if (formValues != null) {
+            setContact({
+                contactExists: true
+            })
+        }
+    }, [])
+
     const create = () => {
         router.push("/create");
+    }
+
+    const preview = () => {
+        router.push("/preview");
     }
 
     const shuffle = () => {
@@ -77,7 +95,10 @@ export default function Home() {
                 <header className={styles.siteHeader}>
                     <p>Share your contact&nbsp;info <span id="shuffle" className={styles.shuffle}>Tactfully.</span></p>
                 </header>
-                <button className="button" onClick={create}>+ New contact</button>
+                {contact.contactExists ?
+                    (<button className="button" onClick={preview}>Share contact</button>) :
+                    (<button className="button" onClick={create}>+ New contact</button>)
+                }
             </main>
         </div>
     );
