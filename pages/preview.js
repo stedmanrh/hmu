@@ -45,7 +45,11 @@ export default function Preview() {
         });
     }
 
-    const create = () => {
+    const home = () => {
+        router.push("/");
+    }
+
+    const edit = () => {
         router.push("/create");
     }
 
@@ -64,7 +68,8 @@ export default function Preview() {
         <div className={styles.container}>
             <Header></Header>
             <main className="flex">
-                <button className="button-back" onClick={create}>Back</button>
+                <button className="button-home" onClick={home}>Home</button>
+                <button className="button-edit" onClick={edit}>Edit</button>
                 <Canvas
                     src={state.src}
                     name={state.name}

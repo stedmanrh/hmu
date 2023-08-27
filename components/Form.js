@@ -67,7 +67,7 @@ export default function Form() {
                     ))}
                 </select>
             </label>
-            <input className="button" type="submit" value="Preview" onClick={handleSubmit} />
+            <input className="button" type="submit" value="Save" onClick={handleSubmit} />
             <button className="button-txt" onClick={home}>Cancel</button>
         </form>
     );

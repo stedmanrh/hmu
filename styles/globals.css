@@ -47,13 +47,19 @@ body {
     box-shadow: 0px 2px .25rem rgba(197, 84, 231, 0.66), -.5rem -.5rem .75rem white;
 }
 
-.button-back {
+.button-home {
     position: fixed;
     left: 1.25em;
     top: 0em;
 }
 
-.button-back::before {
+.button-edit {
+    position: fixed;
+    right: 1.25em;
+    top: 0em;
+}
+
+.button-home::before {
     content: '‹';
     font-size: 1.62em;
     position: relative;
@@ -62,7 +68,8 @@ body {
 }
 
 .button-txt,
-.button-back {
+.button-home,
+.button-edit {
     background: none;
     border: none;
     text-align: center;
@@ -82,8 +89,10 @@ body {
 
 .button-txt:focus, 
 .button-txt:hover,
-.button-back:focus,
-.button-back:hover {
+.button-home:focus,
+.button-home:hover,
+.button-edit:focus,
+.button-edit:hover {
     outline: none;
     border-bottom: 2px solid rgba(71,85,105,.5);
 }

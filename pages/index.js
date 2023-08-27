@@ -77,7 +77,7 @@ export default function Home() {
                 <header className={styles.siteHeader}>
                     <p>Share your contact&nbsp;info <span id="shuffle" className={styles.shuffle}>Tactfully.</span></p>
                 </header>
-                <button className="button" onClick={create}>+ New persona</button>
+                <button className="button" onClick={create}>+ New contact</button>
             </main>
         </div>
     );
