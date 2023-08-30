@@ -2,7 +2,7 @@ import { useRouter } from 'next/router';
 import React from "react";
 import { useState, useEffect } from "react";
 import Header from "../components/Header.js";
-import styles from "../styles/Home.module.css";
+import styles from "../styles/Base.module.css";
 import secureLocalStorage from "react-secure-storage";
 
 export default function Home() {
@@ -90,7 +90,7 @@ export default function Home() {
     return (
         <div>
             <Header></Header>
-            <main className={styles.pageForm}>
+            <main className={`${styles.page} ${styles.home}`}>
                 <div className={styles.siteCode}></div>
                 <header className={styles.siteHeader}>
                     <p>Share your contact&nbsp;info <span id="shuffle" className={styles.shuffle}>Tactfully.</span></p>

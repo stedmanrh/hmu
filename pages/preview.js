@@ -3,7 +3,7 @@ import React from "react";
 import { useState, useEffect } from "react";
 import Header from "../components/Header.js";
 import Canvas from "../components/Canvas.js";
-import styles from "../styles/Home.module.css";
+import styles from "../styles/Base.module.css";
 import secureLocalStorage from "react-secure-storage";
 
 // TODO:
