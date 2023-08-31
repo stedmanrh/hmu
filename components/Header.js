@@ -11,6 +11,7 @@ export default function Header(props) {
             <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
             <link rel="icon" href="/favicon.ico" />
             <link rel="manifest" href="/manifest.json" />
+            <link rel="apple-touch-icon" href="/icons/apple_icon_x192.png" />
         </Head>
     )
 };
