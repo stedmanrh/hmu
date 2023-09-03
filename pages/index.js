@@ -147,8 +147,8 @@ export default function Home() {
                     : <button className="button" onClick={create}>+ New contact</button>
                 }
                 {appState.showInstallPrompt ?
-                    <button className="button-txt" onClick={prompt}>⬇️ Add to home screen</button>
-                    : <button style={{ visibility: "hidden" }} className="button-txt" onClick={prompt}>⬇️ Add to home screen</button>
+                    <button style={{ marginTop: 24 }} className="button-txt" onClick={prompt}>⬇️ Add to home screen</button>
+                    : <button style={{ visibility: "hidden", marginTop: 24 }} className="button-txt" onClick={prompt}>⬇️ Add to home screen</button>
                 }
             </main>
         </div>

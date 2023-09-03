@@ -1,5 +1,4 @@
 import React from "react";
-import { useEffect } from "react";
 import Header from "../components/Header.js";
 import Form from "../components/Form.js";
 import styles from "../styles/Base.module.css";
