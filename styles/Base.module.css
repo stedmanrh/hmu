@@ -14,14 +14,21 @@
     font-size: 2.5rem;
     line-height: 1.25em;
     margin-bottom: 1em;
-    color: rgb(107 114 128);
+    color: rgb(71 85 105);
+}
+
+.subheading {
+    font-size: 1.25rem;
+    line-height: 1.5em;
+    margin-top: 1em;
+    max-width: 35ch;
 }
 
 .shuffle {
     height: 1.25em;
     display: block;
     color: rgb(147 51 234);
-    text-shadow: 0px 2px 1rem rgba(197,84,231,.66);
+    text-shadow: 0px 2px 1rem rgba(197, 84, 231, 0.66);
 }
 
 .siteCode {
@@ -30,12 +37,14 @@
     height: 128px;
     width: 128px;
     border-radius: 1rem;
-    filter: brightness(.95) opacity(.8);
-    background: url('https://chart.googleapis.com/chart?cht=qr&chs=128x128&chld=|1&chl=https://hmu.world'), rgba(255,255,255,1);
+    filter: brightness(0.95) opacity(0.8);
+    background: url("https://chart.googleapis.com/chart?cht=qr&chs=128x128&chld=|1&chl=https://hmu.world"),
+        rgba(255, 255, 255, 1);
     background-size: 80%;
     background-position: center center;
     background-repeat: no-repeat;
-    box-shadow: -.25rem -.25rem .5rem rgba(255,255,255,0.45), .25rem .25rem .5rem rgba(94,104,121,0.3);
+    box-shadow: -0.25rem -0.25rem 0.5rem rgba(255, 255, 255, 0.45),
+        0.25rem 0.25rem 0.5rem rgba(94, 104, 121, 0.3);
 }
 
 .home .siteCode {
@@ -43,12 +52,12 @@
 }
 
 .siteCode::before {
-    content: '';
+    content: "";
     width: 24px;
     height: 24px;
     position: absolute;
     top: 23px;
     left: 23px;
-    background: url('../assets/icon_x48.png');
+    background: url("../assets/icon_x48.png");
     background-size: 100%;
 }
