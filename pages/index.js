@@ -19,7 +19,7 @@ export default function Home() {
     // Run on page load
     useEffect(() => {
         // Shuffle text on loop
-        loopShuffle();
+        const shuffleTimeout = setTimeout(shuffle, 5000);
 
         // Check if contact exists
         const formValues = JSON.parse(secureLocalStorage.getItem("formValues"));
@@ -48,6 +48,11 @@ export default function Home() {
             // TODO: log install analytics
             console.log('PWA was installed');
         });
+
+        // stop shuffling on unmount
+        return () => {
+            clearTimeout(shuffleTimeout);
+        }
     }, [])
 
     // App install prompt flow
@@ -125,14 +130,6 @@ export default function Home() {
         const currentWord = document.getElementById("shuffle").textContent;
         animateOut(currentWord);
     };
-
-    // Shuffle text on loop
-    const loopShuffle = () => {
-        const shuffleTimeout = setTimeout(shuffle, 5000);
-        return () => {
-            clearTimeout(shuffleTimeout);
-        }
-    }
 
     return (
         <div>
