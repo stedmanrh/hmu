@@ -10,11 +10,9 @@ export default function Home() {
     const router = useRouter();
 
     // Initialize app state
-    const [appState, setAppState] = useState({
-        contactExists: false,
-        showInstallPrompt: false,
-        installPrompt: null
-    }, []);
+    const [contactExists, setContactExists] = useState(false);
+    const [showInstallPrompt, setShowInstallPrompt] = useState(false);
+    const [installPrompt, setInstallPrompt] = useState(null);
 
     // Run on page load
     useEffect(() => {
@@ -24,7 +22,7 @@ export default function Home() {
         // Check if contact exists
         const formValues = JSON.parse(secureLocalStorage.getItem("formValues"));
         if (formValues != null) {
-            setAppState({ contactExists: true });
+            setContactExists(true);
         }
 
         // Check if app install prompt was shown
@@ -32,19 +30,15 @@ export default function Home() {
             // Prevent the mini-infobar from appearing on mobile
             e.preventDefault();
             // Stash the event so it can be triggered later.
-            setAppState({
-                installPrompt: e,
-                showInstallPrompt: true
-            });
+            setInstallPrompt(e);
+            setShowInstallPrompt(true);
         });
 
         // Verify app installation
         window.addEventListener('appinstalled', () => {
             // Hide install promotion, discard prompt
-            setAppState({
-                showInstallPrompt: false,
-                installPrompt: null
-            })
+            setShowInstallPrompt(false);
+            setInstallPrompt(null);
             // TODO: log install analytics
             console.log('PWA was installed');
         });
@@ -58,15 +52,15 @@ export default function Home() {
     // App install prompt flow
     const prompt = async () => {
         // Hide install promotion
-        setAppState({ showInstallPrompt: false });
+        setShowInstallPrompt(false);
         // Show install prompt
-        appState.installPrompt.prompt();
+        installPrompt.prompt();
         // Wait for the user to respond to the prompt ("accepted" | "dismissed")
-        const { outcome } = await appState.installPrompt.userChoice;
+        const { outcome } = await installPrompt.userChoice;
         // TODO: log promo to prompt install analytics
         console.log(`User ${outcome} install prompt`);
         // Discard used prompt
-        setAppState({ installPrompt: null });
+        setInstallPrompt(null);
     }
 
     // Navigate to contact form
@@ -140,11 +134,11 @@ export default function Home() {
                     <p>Share your contact&nbsp;info <span id="shuffle" className={styles.shuffle}>Tactfully.</span></p>
                     <p className={styles.subheading}>Connect faster IRL with personalized QR codes for whatever matters to you.</p>
                 </header>
-                {appState.contactExists ?
+                {contactExists ?
                     <button className="button" onClick={preview}>Share contact</button>
                     : <button className="button" onClick={create}>+ New contact</button>
                 }
-                {appState.showInstallPrompt ?
+                {showInstallPrompt ?
                     <button style={{ marginTop: 24 }} className="button-txt" onClick={prompt}>⬇️ Add to home screen</button>
                     : <button style={{ visibility: "hidden", marginTop: 24 }} className="button-txt" onClick={prompt}>⬇️ Add to home screen</button>
                 }
