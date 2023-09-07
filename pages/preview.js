@@ -51,7 +51,7 @@ export default function Preview() {
     }
 
     const edit = () => {
-        router.push("/create");
+        router.push("/create?editing=true");
     }
 
     useEffect(() => {

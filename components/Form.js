@@ -32,9 +32,11 @@ export default function Form() {
         router.push("/preview");
     }
 
-    const home = () => { 
+    const home = () => {
         // location vs. router.push to fire beforeinstallprompt event
-        window.location = "/";
+        console.log(router.query.editing);
+        router.query.editing ?
+            router.push("/preview") : window.location = "/";
     }
 
     useEffect(() => {
