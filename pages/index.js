@@ -77,7 +77,7 @@ export default function Home() {
     // Shuffle intro text
     // TODO: long-running app causes incorrect strings
     const shuffle = () => {
-        const words = ["seamlessly.", "flexibly.", "Tactfully."];
+        const words = ["instantly.", "flexibly.", "Tactfully."];
         let i = -1;
 
         const animateWord = (word) => {
@@ -141,6 +141,7 @@ export default function Home() {
                 <div className={styles.siteCode}></div>
                 <header className={styles.siteHeader}>
                     <p>Share your contact&nbsp;info <span id="shuffle" className={styles.shuffle}>Tactfully.</span></p>
+                    <p className={styles.subheading}>Connect faster IRL with personalized QR codes for whatever matters to you.</p>
                 </header>
                 {appState.contactExists ?
                     <button className="button" onClick={preview}>Share contact</button>
