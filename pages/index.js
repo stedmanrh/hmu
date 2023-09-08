@@ -1,5 +1,5 @@
 import { useRouter } from 'next/router';
-import React, { useMemo } from "react";
+import {useRef} from "react";
 import { useState, useEffect } from "react";
 import Header from "../components/Header.js";
 import styles from "../styles/Base.module.css";
@@ -16,17 +16,21 @@ export default function Home() {
     const [showInstallPrompt, setShowInstallPrompt] = useState(false);
     const [installPrompt, setInstallPrompt] = useState(null);
 
+    // Create reference to store the DOM element containing the animation
+    const el = useRef("#shuffle");
+
     // Run on page load
     useEffect(() => {
 
-        const typed = new Typed('#shuffle', {
+        const typed = new Typed(el.current, {
             strings: ["instantly.", "flexibly.", "Tactfully."],
-            typeSpeed: 50,
-            backSpeed: 50,
-            showCursor: false,
-            loop: true,
+            startDelay: 5000,
+            backDelay: 5000,
+            typeSpeed: 20,
+            backSpeed: 20,
+            showCursor: false
         });
-        
+
         // Check if contact exists
         const formValues = JSON.parse(secureLocalStorage.getItem("formValues"));
         if (formValues != null) {
@@ -51,6 +55,13 @@ export default function Home() {
             console.log('PWA was installed');
         });
 
+        return () => {
+            // Destroy Typed instance during cleanup to stop animation
+            typed.destroy();
+
+            // setInstallPrompt(null);
+            // window.removeEventListener('beforinstallprompt');
+        };
     }, [])
 
     // App install prompt flow
