@@ -6,6 +6,7 @@ import Canvas from "../components/Canvas.js";
 import styles from "../styles/Base.module.css";
 import secureLocalStorage from "react-secure-storage";
 
+import QRCode from 'qrcode';
 // TODO:
 // - Emoji rendering (Android)
 // - Canvas scaling
@@ -20,9 +21,9 @@ export default function Preview() {
         width: "",
         height: "",
     });
+    const [dataUrl, setDataUrl] = useState("");
 
-    const buildQuery = (formValues) => {
-        let query = "https://chart.googleapis.com/chart?cht=qr&chs=168x168&chld=|1&chl=";
+    const vCardValues = (formValues) => {
         let vCard =
             "BEGIN:VCARD\nVERSION:4.0" +
             "\nFN:" + formValues.name +
@@ -30,9 +31,8 @@ export default function Preview() {
             "\nEMAIL:" + formValues.email +
             "\nURL:" + formValues.url +
             "\nEND:VCARD";
-        vCard = encodeURIComponent(vCard);
-        query += vCard;
-        return query;
+        return vCard;
+
     }
 
     const renderCode = (url, name, vibe) => {
@@ -58,12 +58,18 @@ export default function Preview() {
         const formValues = JSON.parse(secureLocalStorage.getItem("formValues"));
         const name = formValues.name;
         const vibe = JSON.parse(formValues.vibe);
-        const url = buildQuery(formValues);
-        renderCode(url, name, vibe);
+        QRCode.toDataURL(vCardValues(formValues),
+            {
+                width: 168,
+                errorCorrectionLevel: 'H',
+            }).then((url) => {
+                setDataUrl(url)
+            });
+        renderCode(dataUrl, name, vibe);
         window.addEventListener('resize', () => {
             renderCode(url, name, vibe);
         });
-    }, []);
+    }, [dataUrl, setDataUrl]);
 
     return (
         <div className={styles.container}>

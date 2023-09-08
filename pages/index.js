@@ -1,9 +1,11 @@
 import { useRouter } from 'next/router';
-import React from "react";
+import React, { useMemo } from "react";
 import { useState, useEffect } from "react";
 import Header from "../components/Header.js";
 import styles from "../styles/Base.module.css";
 import secureLocalStorage from "react-secure-storage";
+
+import Typed from 'typed.js';
 
 export default function Home() {
     // Initialize router
@@ -16,9 +18,15 @@ export default function Home() {
 
     // Run on page load
     useEffect(() => {
-        // Shuffle text on loop
-        const shuffleTimeout = setTimeout(shuffle, 5000);
 
+        const typed = new Typed('#shuffle', {
+            strings: ["instantly.", "flexibly.", "Tactfully."],
+            typeSpeed: 50,
+            backSpeed: 50,
+            showCursor: false,
+            loop: true,
+        });
+        
         // Check if contact exists
         const formValues = JSON.parse(secureLocalStorage.getItem("formValues"));
         if (formValues != null) {
@@ -43,10 +51,6 @@ export default function Home() {
             console.log('PWA was installed');
         });
 
-        // stop shuffling on unmount
-        return () => {
-            clearTimeout(shuffleTimeout);
-        }
     }, [])
 
     // App install prompt flow
@@ -73,57 +77,6 @@ export default function Home() {
         router.push("/preview");
     }
 
-    // Shuffle intro text
-    // TODO: long-running app causes incorrect strings
-    const shuffle = () => {
-        const words = ["instantly.", "flexibly.", "Tactfully."];
-        let i = -1;
-
-        const animateWord = (word) => {
-            const element = document.getElementById("shuffle");
-            const text = element.textContent;
-            const letters = word.split("");
-            let count = 0;
-            element.textContent = text;
-            let delay = i == 2 ? 8000 : 3000;
-
-            const interval = setInterval(() => {
-                element.textContent += letters[count];
-                count++;
-                if (count >= letters.length) {
-                    clearInterval(interval);
-                    setTimeout(() => animateOut(word), delay);
-                }
-            }, 33);
-        };
-
-        const animateOut = (word) => {
-            const element = document.getElementById("shuffle");
-            if (!element) {
-                return;
-            }
-            const text = element.textContent;
-            let count = text.length - 1;
-
-            const interval = setInterval(() => {
-                element.textContent = text.substring(0, count);
-                count--;
-                if (count < 0) {
-                    clearInterval(interval);
-                    setTimeout(() => {
-                        i++;
-                        if (i >= words.length) {
-                            i = 0;
-                        }
-                        animateWord(words[i]);
-                    }, 33);
-                }
-            }, 33);
-        };
-
-        const currentWord = document.getElementById("shuffle").textContent;
-        animateOut(currentWord);
-    };
 
     return (
         <div>
