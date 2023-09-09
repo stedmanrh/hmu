@@ -1,6 +1,8 @@
 import Script from "next/script";
 
 export default function Analytics(props) {
+    // Google Analytics tag: G-0JWKW8VHW8
+
     return (
         <div>
             <Script src="https://www.googletagmanager.com/gtag/js?id=GA_G-0JWKW8VHW8" />

@@ -30,6 +30,7 @@ export default function Form() {
         const formValues = JSON.stringify(formfield);
         secureLocalStorage.setItem("formValues", formValues);
         router.push("/preview");
+        // TODO: analytics event
     }
 
     const home = () => {
