@@ -58,9 +58,6 @@ export default function Home() {
         return () => {
             // Destroy Typed instance during cleanup to stop animation
             typed.destroy();
-
-            // setInstallPrompt(null);
-            // window.removeEventListener('beforinstallprompt');
         };
     }, [])
 
