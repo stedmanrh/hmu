@@ -26,8 +26,8 @@
             "purpose": "maskable"
         }
     ],
-    "id": "/?source=pwa",
-    "start_url": "/?source=pwa",
+    "id": "/",
+    "start_url": "/",
     "background_color": "#ffffff",
     "display": "standalone",
     "scope": "/",
