@@ -1,5 +1,5 @@
 import { useRouter } from 'next/router';
-import {useRef} from "react";
+import { useRef } from "react";
 import { useState, useEffect } from "react";
 import Header from "../components/Header.js";
 import styles from "../styles/Base.module.css";
@@ -31,9 +31,13 @@ export default function Home() {
             showCursor: false
         });
 
-        // Check if contact exists
-        const formValues = JSON.parse(secureLocalStorage.getItem("formValues"));
-        if (formValues != null) {
+        // Load local storage
+        let formValues;
+        // const formValues = JSON.parse(secureLocalStorage.getItem("formValues"));
+        if (!secureLocalStorage.getItem("formValues")) {
+            formValues = null;
+        } else {
+            formValues = JSON.parse(secureLocalStorage.getItem("formValues"));
             setContactExists(true);
         }
 
