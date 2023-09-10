@@ -1,5 +1,5 @@
 import { useRouter } from 'next/router';
-import { useRef } from "react";
+import {useRef} from "react";
 import { useState, useEffect } from "react";
 import Header from "../components/Header.js";
 import styles from "../styles/Base.module.css";
@@ -33,9 +33,9 @@ export default function Home() {
 
         // Check if contact exists
         const formValues = JSON.parse(secureLocalStorage.getItem("formValues"));
-        typeof formValues === "undefined" || formValues === null ?
-            setContactExists(false)
-            : setContactExists(true)
+        if (formValues != null) {
+            setContactExists(true);
+        }
 
         // Check if app install prompt was shown
         window.addEventListener('beforeinstallprompt', (e) => {
