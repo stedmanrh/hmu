@@ -3,10 +3,12 @@
   "version": "1.0.0",
   "private": true,
   "scripts": {
-    "dev": "next dev",
-    "build": "next build",
+    "dev": "npm run twbuild && next dev",
+    "build": "npm run twbuild && next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "twbuild": "npx tailwindcss -i ./styles/main.css -o ./dist/main.css",
+    "twwatch": "npx tailwindcss -i ./styles/main.css -o ./dist/main.css --watch"
   },
   "dependencies": {
     "canvas-txt": "^3.0.0",

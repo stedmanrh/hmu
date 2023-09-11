@@ -1,8 +1,8 @@
 import { useRouter } from 'next/router';
-import {useRef} from "react";
+import { useRef } from "react";
 import { useState, useEffect } from "react";
-import Header from "../components/Header.js";
-import styles from "../styles/Base.module.css";
+import Page from "../components/Page.js";
+import styles from "../styles/Home.module.css";
 import secureLocalStorage from "react-secure-storage";
 
 import Typed from 'typed.js';
@@ -87,23 +87,20 @@ export default function Home() {
 
 
     return (
-        <div>
-            <Header></Header>
-            <main className={`${styles.page} ${styles.home}`}>
-                <div className={styles.siteCode}></div>
-                <header className={styles.siteHeader}>
-                    <p>Share your contact&nbsp;info <span id="shuffle" className={styles.shuffle}>Tactfully.</span></p>
-                    <p className={styles.subheading}>Connect faster IRL with personalized QR codes for whatever matters to you.</p>
-                </header>
-                {contactExists ?
-                    <button className="button" onClick={preview}>Share contact</button>
-                    : <button className="button" onClick={create}>+ New contact</button>
-                }
-                {showInstallPrompt ?
-                    <button style={{ marginTop: 24 }} className="button-txt" onClick={prompt}>⬇️ Add to home screen</button>
-                    : <button style={{ visibility: "hidden", marginTop: 24 }} className="button-txt" onClick={prompt}>⬇️ Add to home screen</button>
-                }
-            </main>
-        </div>
+        <Page>
+            <div className={styles.siteCode}></div>
+            <header className="">
+                <p>Share your contact&nbsp;info <span id="shuffle">Tactfully.</span></p>
+                <p className="">Connect faster IRL with personalized QR codes for whatever matters to you.</p>
+            </header>
+            {contactExists ?
+                <button className="button" onClick={preview}>Share contact</button>
+                : <button className="button" onClick={create}>+ New contact</button>
+            }
+            {showInstallPrompt ?
+                <button style={{ marginTop: 24 }} className="button-txt" onClick={prompt}>⬇️ Add to home screen</button>
+                : <button style={{ visibility: "hidden", marginTop: 24 }} className="button-txt" onClick={prompt}>⬇️ Add to home screen</button>
+            }
+        </Page>
     );
 };
