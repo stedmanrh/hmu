@@ -1,13 +1,12 @@
 .siteCode {
     position: relative;
-    margin: 0 auto 1.5rem;
     height: 128px;
     width: 128px;
     border-radius: 1rem;
     filter: brightness(0.95) opacity(0.8);
     background: url("https://chart.googleapis.com/chart?cht=qr&chs=128x128&chld=|1&chl=https://hmu.world"),
         rgba(255, 255, 255, 1);
-    background-size: 80%;
+    background-size: 90%;
     background-position: center center;
     background-repeat: no-repeat;
     box-shadow: -0.25rem -0.25rem 0.5rem rgba(255, 255, 255, 0.45),
@@ -16,11 +15,11 @@
 
 .siteCode::before {
     content: "";
-    width: 24px;
-    height: 24px;
+    width: 28px;
+    height: 28px;
     position: absolute;
-    top: 23px;
-    left: 23px;
+    top: 17px;
+    left: 18px;
     background: url("../assets/icon_x48.png");
     background-size: 100%;
 }
