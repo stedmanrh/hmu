@@ -9,6 +9,7 @@ import secureLocalStorage from "react-secure-storage";
 import Typed from 'typed.js';
 
 import styles from "../styles/Home.module.css";
+import TextButton from '../components/TextButton.js';
 
 export default function Home() {
     // Initialize router
@@ -91,20 +92,20 @@ export default function Home() {
 
     return (
         <Page>
-            <div className={`${styles.siteCode} -mt-16`}></div>
-            <header className="mb-8 text-center text-slate-600">
+            <div className={`${styles.siteCode}`}></div>
+            <header className="mb-32 text-center text-slate-600">
                 <p className="mt-8 mb-6 text-4xl leading-tight">Share your contact&nbsp;info
                     <span id="shuffle" className="block h-10 text-purple-600 textGlow">Tactfully.</span>
                 </p>
-                <p className="text-xl max-w-md leading-normal">Connect faster IRL with personalized QR codes for whatever matters to you.</p>
+                <p className="text-xl max-w-md leading-normal">Connect faster IRL with personal QR codes for whatever matters to you.</p>
             </header>
             {contactExists ?
-                <Button onClick={preview}>Share contact</Button>
-                : <Button onClick={create}>+ New contact</Button>
+                <Button className="mb-6" onClick={preview}>Share contact</Button>
+                : <Button className="mb-6" onClick={create}>+ New contact</Button>
             }
             {showInstallPrompt ?
-                <button className="button-txt" onClick={prompt}>⬇️ Add to home screen</button>
-                : <button style={{ visibility: "hidden", marginTop: 24 }} className="button-txt" onClick={prompt}>⬇️ Add to home screen</button>
+                <TextButton onClick={prompt}>⬇️ Add to home screen</TextButton>
+                : <TextButton style={{ visibility: "hidden"}} onClick={prompt}>⬇️ Add to home screen</TextButton>
             }
         </Page>
     );

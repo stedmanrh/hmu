@@ -634,9 +634,10 @@ video {
 .button {
   border: 2px outset transparent;
   text-shadow: rgba(0, 0, 0, 1) 0 0 1rem;
-  box-shadow: .5rem .5rem .75rem #cbced1, -.5rem -.5rem .75rem white;
+  box-shadow: 0.5rem 0.5rem 0.75rem #cbced1, -0.5rem -0.5rem 0.75rem white;
   background: linear-gradient(-30deg, #7429c6, #c554e7);
-  transition: opacity 0.25s linear, border .25s linear, transform .1s ease, box-shadow .1s ease;
+  transition: opacity 0.25s linear, border 0.25s linear, transform 0.1s ease,
+        box-shadow 0.1s ease;
   opacity: 0.85;
 }
 
@@ -645,12 +646,26 @@ video {
   outline: none;
   opacity: 1;
   border: 2px outset rgba(197, 84, 231, 0.66);
-  box-shadow: 0px 2px 1rem rgba(197, 84, 231, 0.66), -.5rem -.5rem .75rem white;
+  box-shadow: 0px 2px 1rem rgba(197, 84, 231, 0.66),
+        -0.5rem -0.5rem 0.75rem white;
 }
 
 .button:active {
   transform: scale(0.98);
-  box-shadow: 0px 2px .25rem rgba(197, 84, 231, 0.66), -.5rem -.5rem .75rem white;
+  box-shadow: 0px 2px 0.25rem rgba(197, 84, 231, 0.66),
+        -0.5rem -0.5rem 0.75rem white;
+}
+
+/* Text buttons */
+
+.textButton {
+  transition: border 0.25s linear;
+  border-bottom: 2px solid transparent;
+  &:focus,
+    &:hover {
+    outline: none;
+    border-bottom: 2px solid rgba(71, 85, 105, 0.5);
+  }
 }
 
 /* Navigation buttons */
@@ -670,65 +685,55 @@ video {
 }
 
 .button-home::before {
-  content: '‹';
+  content: "‹";
   font-size: 1.62em;
   position: relative;
   top: 1px;
-  margin-right: .25em;
+  margin-right: 0.25em;
 }
 
 .button-edit::before {
-  content: '✎';
+  content: "✎";
   font-size: 1.1em;
   position: relative;
   top: 1px;
-  margin-right: .25em;
-}
-
-.button-txt,
-.button-home,
-.button-edit {
-  background: none;
-  border: none;
-  text-align: center;
-  cursor: pointer;
-  line-height: 0.75rem;
-  align-self: center;
-  color: rgb(71 85 105);
-  text-transform: uppercase;
-  font-weight: 500;
-  font-size: .8rem;
-  letter-spacing: .25ch;
-  margin-top: 1em;
-  padding: .5em 0;
-  transition: border .25s linear;
-  border-bottom: 2px solid transparent;
-}
-
-.button-txt:focus, 
-.button-txt:hover,
-.button-home:focus,
-.button-home:hover,
-.button-edit:focus,
-.button-edit:hover {
-  outline: none;
-  border-bottom: 2px solid rgba(71,85,105,.5);
+  margin-right: 0.25em;
 }
 
 .-mt-16{
   margin-top: -4rem;
 }
 
+.mb-4{
+  margin-bottom: 1rem;
+}
+
 .mb-6{
   margin-bottom: 1.5rem;
 }
 
-.mb-8{
-  margin-bottom: 2rem;
-}
-
 .mt-8{
   margin-top: 2rem;
+}
+
+.mb-12{
+  margin-bottom: 3rem;
+}
+
+.mb-16{
+  margin-bottom: 4rem;
+}
+
+.mb-24{
+  margin-bottom: 6rem;
+}
+
+.mb-48{
+  margin-bottom: 12rem;
+}
+
+.mb-32{
+  margin-bottom: 8rem;
 }
 
 .box-border{
@@ -796,9 +801,18 @@ video {
   padding: 0.5rem;
 }
 
+.p-8{
+  padding: 2rem;
+}
+
 .px-8{
   padding-left: 2rem;
   padding-right: 2rem;
+}
+
+.py-2{
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
 }
 
 .py-4{
