@@ -7,6 +7,8 @@ import Button from './Button';
 import Input from './Input';
 import TextButton from './TextButton';
 
+import Swal from 'sweetalert2';
+
 export default function Form() {
     const router = useRouter();
 
@@ -29,11 +31,19 @@ export default function Form() {
     const handleSubmit = (event) => {
         event.preventDefault();
         if (formfield.name == "") {
-            alert("Please enter your name.")
+            Swal.fire({
+                title: 'Please enter your name.',
+                icon: 'error',
+                confirmButtonText: 'OK'
+            });
             return;
         }
         if (formfield.phone == "" && formfield.email == "" && formfield.url == "") {
-            alert("Please enter your contact info.")
+            Swal.fire({
+                title: 'Please enter your contact info.',
+                icon: 'error',
+                confirmButtonText: 'OK'
+            });
             return;
         }
         if (formfield.vibe == "") {

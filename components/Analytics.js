@@ -1,6 +1,24 @@
 import Script from "next/script";
+import { useEffect, useState} from "react";
 
 export default function Analytics(props) {
+
+    const [isPWA, setIsPWA] = useState(false);
+
+    useEffect(() => {
+    const isIos = () => {
+        const userAgent = window.navigator.userAgent.toLowerCase();
+        return /iphone|ipad|ipod/.test(userAgent);
+    }
+
+    const isInStandaloneMode = () => ('standalone' in window.navigator) && (window.navigator.standalone);
+
+    // testing: remove !isIos() && to test on desktop
+    if(!isIos() && !isInStandaloneMode()) {
+        alert("Add to Home Screen for the best experience.");
+    }
+    }, []);
+
     // Google Analytics tag: G-0JWKW8VHW8
     return (
         <div className="container">
