@@ -18,8 +18,6 @@ export default function Form() {
         vibe: "",
     });
 
-    const [vibeOptions, setVibeOptions] = useState([]);
-
     const handleChange = (event) => {
         const { name, value } = event.target;
         setFormfield(prevState => ({
@@ -30,6 +28,17 @@ export default function Form() {
 
     const handleSubmit = (event) => {
         event.preventDefault();
+        if (formfield.name == "") {
+            alert("Please enter your name.")
+            return;
+        }
+        if (formfield.phone == "" && formfield.email == "" && formfield.url == "") {
+            alert("Please enter your contact info.")
+            return;
+        }
+        if (formfield.vibe == "") {
+            formfield.vibe = JSON.stringify(vibes.filter((vibe) => vibe.label == "Extraterrestrial")[0]);
+        }
         const formValues = JSON.stringify(formfield);
         secureLocalStorage.setItem("formValues", formValues);
         router.push("/preview");
@@ -44,7 +53,6 @@ export default function Form() {
     }
 
     useEffect(() => {
-        setVibeOptions(vibes);
         const formValues = JSON.parse(secureLocalStorage.getItem("formValues"));
         if (formValues != null) {
             setFormfield(prevState => ({
@@ -72,7 +80,7 @@ export default function Form() {
                 <span className="mb-1 text-slate-600">Vibe</span>
                 <select className={`${styles.input} + ${styles.select}`} value={formfield.vibe} onChange={handleChange} name="vibe">
                     <option value="" disabled>Choose a vibe</option>
-                    {vibeOptions.sort((a, b) => (
+                    {vibes.sort((a, b) => (
                         a.label.localeCompare(b.label)
                     )).map((option) => (
                         <option key={option.label} value={JSON.stringify(option)}>{option.emoji + " " + option.label}</option>
