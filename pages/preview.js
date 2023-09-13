@@ -47,7 +47,6 @@ export default function Preview() {
 
     const home = () => {
         // location vs. router.push to fire beforeinstallprompt event
-        // do we need ?source=pwa query string to load android secure storage?
         window.location = "/";
     }
 
@@ -63,6 +62,7 @@ export default function Preview() {
             {
                 width: 168,
                 errorCorrectionLevel: 'L',
+
             }).then((url) => {
                 setDataUrl(url)
             });
