@@ -1,0 +1,70 @@
+/* Primary buttons */
+
+.button {
+    border: 2px outset transparent;
+    text-shadow: rgba(0, 0, 0, 1) 0 0 1rem;
+    box-shadow: 0.5rem 0.5rem 0.75rem #cbced1, -0.5rem -0.5rem 0.75rem white;
+    background: linear-gradient(-30deg, #7429c6, #c554e7);
+    transition: opacity 0.25s linear, border 0.25s linear, transform 0.1s ease,
+        box-shadow 0.1s ease;
+    opacity: 0.85;
+}
+
+.button:focus,
+.button:hover {
+    outline: none;
+    opacity: 1;
+    border: 2px outset rgba(197, 84, 231, 0.66);
+    box-shadow: 0px 2px 1rem rgba(197, 84, 231, 0.66),
+        -0.5rem -0.5rem 0.75rem white;
+}
+
+.button:active {
+    transform: scale(0.98);
+    box-shadow: 0px 2px 0.25rem rgba(197, 84, 231, 0.66),
+        -0.5rem -0.5rem 0.75rem white;
+}
+
+/* Text buttons */
+
+.textButton {
+    transition: border 0.25s linear;
+    border-bottom: 2px solid transparent;
+
+    &:focus,
+    &:hover {
+        outline: none;
+        border-bottom: 2px solid rgba(71, 85, 105, 0.5);
+    }
+}
+
+/* Navigation buttons */
+/* TODO: improve these—tab bar? */
+
+.button-home {
+    position: fixed;
+    left: 1.25em;
+    top: 0em;
+}
+
+.button-edit {
+    position: fixed;
+    right: 1.25em;
+    top: 0em;
+}
+
+.button-home::before {
+    content: "‹";
+    font-size: 1.62em;
+    position: relative;
+    top: 1px;
+    margin-right: 0.25em;
+}
+
+.button-edit::before {
+    content: "✎";
+    font-size: 1.1em;
+    position: relative;
+    top: 1px;
+    margin-right: 0.25em;
+}

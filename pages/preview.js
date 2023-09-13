@@ -1,9 +1,8 @@
 import { useRouter } from 'next/router';
 import React from "react";
 import { useState, useEffect } from "react";
-import Header from "../components/Header.js";
+import Page from "../components/Page";
 import Canvas from "../components/Canvas.js";
-import styles from "../styles/Base.module.css";
 import secureLocalStorage from "react-secure-storage";
 
 import QRCode from 'qrcode';
@@ -73,19 +72,16 @@ export default function Preview() {
     }, [dataUrl, setDataUrl]);
 
     return (
-        <div className={styles.container}>
-            <Header></Header>
-            <main className="flex">
-                <button className="button-home" onClick={home}>Home</button>
-                <button className="button-edit" onClick={edit}>Edit</button>
-                <Canvas
-                    src={state.src}
-                    name={state.name}
-                    vibe={state.vibe}
-                    width={state.width}
-                    height={state.height}
-                ></Canvas>
-            </main>
-        </div>
+        <Page>
+            <button className="button-home" onClick={home}>Home</button>
+            <button className="button-edit" onClick={edit}>Edit</button>
+            <Canvas
+                src={state.src}
+                name={state.name}
+                vibe={state.vibe}
+                width={state.width}
+                height={state.height}
+            ></Canvas>
+        </Page>
     );
 };

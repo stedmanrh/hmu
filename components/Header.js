@@ -4,7 +4,7 @@ import Analytics from "./Analytics";
 export default function Header(props) {
     return (
         <Head>
-            <title>Tactful | Share your contact info with a QR code</title>
+            <title>Tactful | Personal QR codes for whatever matters to you</title>
             <meta
                 name="description"
                 content="Share your contact info with a QR code"
