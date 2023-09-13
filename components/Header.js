@@ -1,4 +1,5 @@
-import Head from "next/head"
+import Head from "next/head";
+import Analytics from "./Analytics";
 
 export default function Header(props) {
     return (
@@ -12,6 +13,7 @@ export default function Header(props) {
             <link rel="icon" href="/favicon.ico" />
             <link rel="manifest" href="/manifest.json" />
             <link rel="apple-touch-icon" href="/icons/apple_icon_x192.png" />
+            <Analytics></Analytics>
         </Head>
     )
 };

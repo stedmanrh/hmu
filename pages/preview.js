@@ -61,7 +61,8 @@ export default function Preview() {
         QRCode.toDataURL(vCardValues(formValues),
             {
                 width: 168,
-                errorCorrectionLevel: 'H',
+                errorCorrectionLevel: 'L',
+
             }).then((url) => {
                 setDataUrl(url)
             });
