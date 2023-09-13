@@ -3,6 +3,9 @@ import React, { useState, useEffect } from 'react';
 import styles from "../styles/Form.module.css";
 import vibes from "../utils/vibes.json";
 import secureLocalStorage from "react-secure-storage";
+import Button from './Button';
+import Input from './Input';
+import TextButton from './TextButton';
 
 export default function Form() {
     const router = useRouter();
@@ -12,7 +15,7 @@ export default function Form() {
         phone: "",
         email: "",
         url: "",
-        vibe: JSON.stringify(vibes[0]),
+        vibe: "",
     });
 
     const [vibeOptions, setVibeOptions] = useState([]);
@@ -55,35 +58,29 @@ export default function Form() {
         }
     }, []);
 
+    // TODO:
+    // - form validation for phone, email, url fields
 
     return (
-        <form className={styles.form} onSubmit={handleSubmit}>
-            <label className={styles.label}>
-                <span className={styles.labelText}>Name</span>
-                <input className={styles.input} type="text" name="name" required value={formfield.name} placeholder="Hello World" onChange={handleChange} />
-            </label>
-            <label className={styles.label}>
-                <span className={styles.labelText}>Phone</span>
-                <input className={styles.input} type="tel" name="phone" value={formfield.phone} placeholder="+16789998212" onChange={handleChange} />
-            </label>
-            <label className={styles.label}>
-                <span className={styles.labelText}>Email</span>
-                <input className={styles.input} type="email" name="email" value={formfield.email} placeholder="hello@hmu.world" onChange={handleChange} />
-            </label>
-            <label className={styles.label}>
-                <span className={styles.labelText}>URL</span>
-                <input className={styles.input} type="url" name="url" value={formfield.url} placeholder="https://hmu.world" onChange={handleChange} />
-            </label>
-            <label className={styles.label}>
-                <span className={styles.labelText}>Vibe</span>
+        <form className="w-full max-w-md px-2 flex flex-col content-center"
+            onSubmit={handleSubmit}>
+            <Input name="name" label="Name" type="text" required={true} value={formfield.name} placeholder="Soulja Boy" onChange={handleChange} />
+            <Input name="phone" label="Phone" type="tel" value={formfield.phone} placeholder="6789998212" onChange={handleChange} />
+            <Input name="email" label="Email" type="email" value={formfield.email} placeholder="swag@hmu.world" onChange={handleChange} />
+            <Input name="url" label="URL" type="url" value={formfield.url} placeholder="https://hmu.world" onChange={handleChange} />
+            <label className="block mb-4">
+                <span className="block mb-1 text-slate-600">Vibe</span>
                 <select className={`${styles.input} + ${styles.select}`} value={formfield.vibe} onChange={handleChange} name="vibe">
-                    {vibeOptions.map((option) => (
+                    <option value="" disabled>Choose a vibe</option>
+                    {vibeOptions.sort((a, b) => (
+                        a.label.localeCompare(b.label)
+                    )).map((option) => (
                         <option key={option.label} value={JSON.stringify(option)}>{option.emoji + " " + option.label}</option>
                     ))}
                 </select>
             </label>
-            <input className="button" type="submit" value="Save" onClick={handleSubmit} />
-            <button className="button-txt" onClick={home}>Cancel</button>
+            <Button onClick={handleSubmit} className="my-4">Save</Button>
+            <TextButton onClick={home}>Cancel</TextButton>
         </form>
     );
 }

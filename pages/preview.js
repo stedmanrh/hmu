@@ -3,7 +3,6 @@ import React from "react";
 import { useState, useEffect } from "react";
 import Header from "../components/Header.js";
 import Canvas from "../components/Canvas.js";
-import styles from "../styles/Base.module.css";
 import secureLocalStorage from "react-secure-storage";
 
 import QRCode from 'qrcode';
@@ -73,7 +72,7 @@ export default function Preview() {
     }, [dataUrl, setDataUrl]);
 
     return (
-        <div className={styles.container}>
+        <div>
             <Header></Header>
             <main className="flex">
                 <button className="button-home" onClick={home}>Home</button>

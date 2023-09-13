@@ -1,3 +1,5 @@
 :root {
     -webkit-tap-highlight-color: transparent;
+    @apply selection:bg-purple-300;
+    @apply selection:text-purple-900;
 }
