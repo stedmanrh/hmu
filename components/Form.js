@@ -62,14 +62,14 @@ export default function Form() {
     // - form validation for phone, email, url fields
 
     return (
-        <form className="w-full max-w-md px-2 flex flex-col content-center"
+        <form className="w-full max-w-md flex flex-col px-2"
             onSubmit={handleSubmit}>
             <Input name="name" label="Name" type="text" required={true} value={formfield.name} placeholder="Soulja Boy" onChange={handleChange} />
             <Input name="phone" label="Phone" type="tel" value={formfield.phone} placeholder="6789998212" onChange={handleChange} />
             <Input name="email" label="Email" type="email" value={formfield.email} placeholder="swag@hmu.world" onChange={handleChange} />
             <Input name="url" label="URL" type="url" value={formfield.url} placeholder="https://hmu.world" onChange={handleChange} />
-            <label className="block mb-4">
-                <span className="block mb-1 text-slate-600">Vibe</span>
+            <label className="mb-4">
+                <span className="mb-1 text-slate-600">Vibe</span>
                 <select className={`${styles.input} + ${styles.select}`} value={formfield.vibe} onChange={handleChange} name="vibe">
                     <option value="" disabled>Choose a vibe</option>
                     {vibeOptions.sort((a, b) => (
@@ -79,8 +79,8 @@ export default function Form() {
                     ))}
                 </select>
             </label>
-            <Button onClick={handleSubmit} className="my-4">Save</Button>
-            <TextButton onClick={home}>Cancel</TextButton>
+            <Button onClick={handleSubmit} className="self-center my-4">Save contact</Button>
+            <TextButton onClick={home} className="self-center">Cancel</TextButton>
         </form>
     );
 }
