@@ -1,6 +1,6 @@
 import Script from "next/script";
 
-export default function Analytics(props) {
+export default function Analytics() {
     // Google Analytics tag: G-0JWKW8VHW8
     return (
         <div className="container">
