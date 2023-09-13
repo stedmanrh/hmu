@@ -28,16 +28,22 @@ export default function Form() {
 
     const handleSubmit = (event) => {
         event.preventDefault();
+        
+        // Check for name
         if (formfield.name == "") {
             alert("Please enter your name.")
             return;
         }
+
+        //Check for contact info
         if (formfield.phone == "" && formfield.email == "" && formfield.url == "") {
             alert("Please enter your contact info.")
             return;
         }
+
+        // Randomize vibe if not set
         if (formfield.vibe == "") {
-            formfield.vibe = JSON.stringify(vibes.filter((vibe) => vibe.label == "Extraterrestrial")[0]);
+            formfield.vibe = JSON.stringify(vibes[Math.floor(Math.random()*(vibes.length-1))]);
         }
         const formValues = JSON.stringify(formfield);
         secureLocalStorage.setItem("formValues", formValues);
