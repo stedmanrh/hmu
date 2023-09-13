@@ -1,11 +1,15 @@
 import { useRouter } from 'next/router';
-import {useRef} from "react";
+import { useRef } from "react";
 import { useState, useEffect } from "react";
-import Header from "../components/Header.js";
-import styles from "../styles/Base.module.css";
-import secureLocalStorage from "react-secure-storage";
 
+import Page from "../components/Page.js";
+import Button from '../components/Button.js';
+
+import secureLocalStorage from "react-secure-storage";
 import Typed from 'typed.js';
+
+import styles from "../styles/Home.module.css";
+import TextButton from '../components/TextButton.js';
 
 export default function Home() {
     // Initialize router
@@ -87,23 +91,22 @@ export default function Home() {
 
 
     return (
-        <div>
-            <Header></Header>
-            <main className={`${styles.page} ${styles.home}`}>
-                <div className={styles.siteCode}></div>
-                <header className={styles.siteHeader}>
-                    <p>Share your contact&nbsp;info <span id="shuffle" className={styles.shuffle}>Tactfully.</span></p>
-                    <p className={styles.subheading}>Connect faster IRL with personalized QR codes for whatever matters to you.</p>
-                </header>
-                {contactExists ?
-                    <button className="button" onClick={preview}>Share contact</button>
-                    : <button className="button" onClick={create}>+ New contact</button>
-                }
-                {showInstallPrompt ?
-                    <button style={{ marginTop: 24 }} className="button-txt" onClick={prompt}>⬇️ Add to home screen</button>
-                    : <button style={{ visibility: "hidden", marginTop: 24 }} className="button-txt" onClick={prompt}>⬇️ Add to home screen</button>
-                }
-            </main>
-        </div>
+        <Page>
+            <div className={`${styles.siteCode}`}></div>
+            <header className="mb-32 text-center text-slate-600">
+                <p className="mt-8 mb-6 text-4xl leading-tight">Share your contact&nbsp;info
+                    <span id="shuffle" className="block h-10 text-purple-600 textGlow">Tactfully.</span>
+                </p>
+                <p className="text-xl max-w-md leading-normal">Connect faster IRL with personal QR codes for whatever matters to you.</p>
+            </header>
+            {contactExists ?
+                <Button className="mb-6" onClick={preview}>Share contact</Button>
+                : <Button className="mb-6" onClick={create}>+ New contact</Button>
+            }
+            {showInstallPrompt ?
+                <TextButton onClick={prompt}>⬇️ Add to home screen</TextButton>
+                : <TextButton style={{ visibility: "hidden"}} onClick={prompt}>⬇️ Add to home screen</TextButton>
+            }
+        </Page>
     );
 };

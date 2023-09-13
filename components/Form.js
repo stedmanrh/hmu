@@ -3,6 +3,9 @@ import React, { useState, useEffect } from 'react';
 import styles from "../styles/Form.module.css";
 import vibes from "../utils/vibes.json";
 import secureLocalStorage from "react-secure-storage";
+import Button from './Button';
+import Input from './Input';
+import TextButton from './TextButton';
 
 export default function Form() {
     const router = useRouter();
@@ -12,10 +15,8 @@ export default function Form() {
         phone: "",
         email: "",
         url: "",
-        vibe: JSON.stringify(vibes[0]),
+        vibe: "",
     });
-
-    const [vibeOptions, setVibeOptions] = useState([]);
 
     const handleChange = (event) => {
         const { name, value } = event.target;
@@ -27,6 +28,17 @@ export default function Form() {
 
     const handleSubmit = (event) => {
         event.preventDefault();
+        if (formfield.name == "") {
+            alert("Please enter your name.")
+            return;
+        }
+        if (formfield.phone == "" && formfield.email == "" && formfield.url == "") {
+            alert("Please enter your contact info.")
+            return;
+        }
+        if (formfield.vibe == "") {
+            formfield.vibe = JSON.stringify(vibes.filter((vibe) => vibe.label == "Extraterrestrial")[0]);
+        }
         const formValues = JSON.stringify(formfield);
         secureLocalStorage.setItem("formValues", formValues);
         router.push("/preview");
@@ -41,7 +53,6 @@ export default function Form() {
     }
 
     useEffect(() => {
-        setVibeOptions(vibes);
         const formValues = JSON.parse(secureLocalStorage.getItem("formValues"));
         if (formValues != null) {
             setFormfield(prevState => ({
@@ -55,35 +66,29 @@ export default function Form() {
         }
     }, []);
 
+    // TODO:
+    // - form validation for phone, email, url fields
 
     return (
-        <form className={styles.form} onSubmit={handleSubmit}>
-            <label className={styles.label}>
-                <span className={styles.labelText}>Name</span>
-                <input className={styles.input} type="text" name="name" required value={formfield.name} placeholder="Hello World" onChange={handleChange} />
-            </label>
-            <label className={styles.label}>
-                <span className={styles.labelText}>Phone</span>
-                <input className={styles.input} type="tel" name="phone" value={formfield.phone} placeholder="+16789998212" onChange={handleChange} />
-            </label>
-            <label className={styles.label}>
-                <span className={styles.labelText}>Email</span>
-                <input className={styles.input} type="email" name="email" value={formfield.email} placeholder="hello@hmu.world" onChange={handleChange} />
-            </label>
-            <label className={styles.label}>
-                <span className={styles.labelText}>URL</span>
-                <input className={styles.input} type="url" name="url" value={formfield.url} placeholder="https://hmu.world" onChange={handleChange} />
-            </label>
-            <label className={styles.label}>
-                <span className={styles.labelText}>Vibe</span>
+        <form className="w-full max-w-md flex flex-col px-2"
+            onSubmit={handleSubmit}>
+            <Input name="name" label="Name" type="text" required={true} value={formfield.name} placeholder="Soulja Boy" onChange={handleChange} />
+            <Input name="phone" label="Phone" type="tel" value={formfield.phone} placeholder="6789998212" onChange={handleChange} />
+            <Input name="email" label="Email" type="email" value={formfield.email} placeholder="swag@hmu.world" onChange={handleChange} />
+            <Input name="url" label="URL" type="url" value={formfield.url} placeholder="https://hmu.world" onChange={handleChange} />
+            <label className="mb-4">
+                <span className="mb-1 text-slate-600">Vibe</span>
                 <select className={`${styles.input} + ${styles.select}`} value={formfield.vibe} onChange={handleChange} name="vibe">
-                    {vibeOptions.map((option) => (
+                    <option value="" disabled>Choose a vibe</option>
+                    {vibes.sort((a, b) => (
+                        a.label.localeCompare(b.label)
+                    )).map((option) => (
                         <option key={option.label} value={JSON.stringify(option)}>{option.emoji + " " + option.label}</option>
                     ))}
                 </select>
             </label>
-            <input className="button" type="submit" value="Save" onClick={handleSubmit} />
-            <button className="button-txt" onClick={home}>Cancel</button>
+            <Button onClick={handleSubmit} className="self-center my-4">Save contact</Button>
+            <TextButton onClick={home} className="self-center">Cancel</TextButton>
         </form>
     );
 }
