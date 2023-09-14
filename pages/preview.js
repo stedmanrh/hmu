@@ -2,7 +2,7 @@ import { useRouter } from 'next/router';
 import React from "react";
 import { useState, useEffect } from "react";
 import Page from "../components/Page";
-import Canvas from "../components/Canvas.js";
+import Contact from '../components/Contact';
 import secureLocalStorage from "react-secure-storage";
 
 import QRCode from 'qrcode';
@@ -13,14 +13,11 @@ import QRCode from 'qrcode';
 export default function Preview() {
     const router = useRouter();
 
-    const [state, setState] = useState({
+    const [contact, setContact] = useState({
         src: "",
         name: "",
         vibe: "",
-        width: "",
-        height: "",
     });
-    const [dataUrl, setDataUrl] = useState("");
 
     const vCardValues = (formValues) => {
         let vCard =
@@ -31,17 +28,6 @@ export default function Preview() {
             "\nURL:" + formValues.url +
             "\nEND:VCARD";
         return vCard;
-
-    }
-
-    const renderCode = (url, name, vibe) => {
-        setState({
-            src: url,
-            name: name,
-            vibe: vibe,
-            width: window.innerWidth,
-            height: window.innerHeight,
-        });
     }
 
     const home = () => {
@@ -55,33 +41,30 @@ export default function Preview() {
 
     useEffect(() => {
         const formValues = JSON.parse(secureLocalStorage.getItem("formValues"));
-        const name = formValues.name;
-        const vibe = JSON.parse(formValues.vibe);
-        QRCode.toDataURL(vCardValues(formValues),
-            {
-                width: 168,
-                errorCorrectionLevel: 'L',
-
-            }).then((url) => {
-                setDataUrl(url)
-            });
-        renderCode(dataUrl, name, vibe);
-        window.addEventListener('resize', () => {
-            renderCode(url, name, vibe);
-        });
-    }, [dataUrl, setDataUrl]);
+        if (formValues) {
+            const name = formValues.name;
+            const vibe = JSON.parse(formValues.vibe);
+            QRCode.toDataURL(vCardValues(formValues),
+                {
+                    width: 168,
+                    errorCorrectionLevel: 'L',
+                }).then((url) => {
+                    setContact({
+                        src: url,
+                        name: name,
+                        vibe: vibe,
+                    })
+                });
+        } else home();
+    }, []);
 
     return (
-        <Page>
-            <button className="button-home" onClick={home}>Home</button>
-            <button className="button-edit" onClick={edit}>Edit</button>
-            <Canvas
-                src={state.src}
-                name={state.name}
-                vibe={state.vibe}
-                width={state.width}
-                height={state.height}
-            ></Canvas>
+        <Page className="pt-24">
+            <nav>
+                <button className="button-home" onClick={home}>Home</button>
+                <button className="button-edit" onClick={edit}>Edit</button>
+            </nav>
+            <Contact src={contact.src} name={contact.name} vibe={contact.vibe} />
         </Page>
     );
 };

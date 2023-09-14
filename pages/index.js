@@ -91,7 +91,7 @@ export default function Home() {
 
 
     return (
-        <Page>
+        <Page className="justify-center bg-slate-100">
             <div className={`${styles.siteCode}`}></div>
             <header className="mb-32 text-center text-slate-600">
                 <p className="mt-8 mb-6 text-4xl leading-tight">Share your contact&nbsp;info

@@ -5,10 +5,10 @@ import '../dist/main.css';
 
 function MyApp({ Component, pageProps }) {
   return (
-    <>
+    <div>
       <Analytics />
       <Component {...pageProps} />
-    </>
+    </div>
   )
 }
 
