@@ -28,7 +28,6 @@ export default function Preview() {
             "\nURL:" + formValues.url +
             "\nEND:VCARD";
         return vCard;
-
     }
 
     const home = () => {
@@ -54,13 +53,13 @@ export default function Preview() {
                         src: url,
                         name: name,
                         vibe: vibe,
-                    });
+                    })
                 });
         } else home();
     }, []);
 
     return (
-        <Page>
+        <Page className="pt-24">
             <nav>
                 <button className="button-home" onClick={home}>Home</button>
                 <button className="button-edit" onClick={edit}>Edit</button>
