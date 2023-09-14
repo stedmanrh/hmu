@@ -37,34 +37,3 @@
         border-bottom: 2px solid rgba(71, 85, 105, 0.5);
     }
 }
-
-/* Navigation buttons */
-/* TODO: improve these—tab bar? */
-
-.button-home {
-    position: fixed;
-    left: 1.25em;
-    top: 0em;
-}
-
-.button-edit {
-    position: fixed;
-    right: 1.25em;
-    top: 0em;
-}
-
-.button-home::before {
-    content: "‹";
-    font-size: 1.62em;
-    position: relative;
-    top: 1px;
-    margin-right: 0.25em;
-}
-
-.button-edit::before {
-    content: "✎";
-    font-size: 1.1em;
-    position: relative;
-    top: 1px;
-    margin-right: 0.25em;
-}
