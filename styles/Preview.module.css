@@ -18,14 +18,12 @@
 
 .edit {
     position: relative;
-    /* left: 1.5em; */
 }
 
 .edit::before {
     content: '';
     height: 1em;
     width: 1.25em;
-    /* transform: rotate(90deg); */
     position: absolute;
     left: -1.625em;
     top: .4em;

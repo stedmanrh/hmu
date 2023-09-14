@@ -1,7 +1,7 @@
 export default function Input(props) {
     return (
         <label className="mb-4">
-            <span className="mb-1 text-slate-600">{props.label}</span>
+            <div className="mb-1 text-slate-600">{props.label}</div>
             {props.required ?
                 <input className="p-2 w-full max-w-md text-lg border rounded-md border-slate-300 text-slate-800
                 placeholder:text-slate-400
