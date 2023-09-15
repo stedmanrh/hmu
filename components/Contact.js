@@ -56,7 +56,7 @@ export default function Contact(props) {
             <div className="p-3 flex items-center justify-center mt-8 rounded-[24px]"
                 style={{ "background": `linear-gradient(${angle}deg, ${stops.start}, ${stops.end})`,
                 "boxShadow": `0 -4px 16px 0 ${stops.startRGBA}, 0 4px 16px 0 ${stops.endRGBA}` }}>
-                <div className="p-1 rounded-[16px]
+                <div className="p-1.5 rounded-[16px]
                 bg-white">
                     <img src={props.src} />
                 </div>
