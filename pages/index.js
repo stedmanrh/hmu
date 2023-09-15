@@ -34,7 +34,6 @@ export default function Home() {
             if (formValues != null) {
                 setContactExists(true);
             }
-            alert(formValues);
         });
 
         return () => {
