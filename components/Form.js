@@ -8,7 +8,7 @@ import { useRouter } from 'next/router';
 import { useState, useEffect } from 'react';
 import secureLocalStorage from "react-secure-storage";
 
-export default function Form() {
+export default function Form(props) {
     const router = useRouter();
 
     const [formfield, setFormfield] = useState({
@@ -25,6 +25,9 @@ export default function Form() {
             ...prevState,
             [name]: value,
         }));
+        if (event.target.name == "vibe") {
+            props.handleChange(event.target.value);
+        }
     }
 
     const handleSubmit = (event) => {
@@ -89,7 +92,7 @@ export default function Form() {
                     ))}
                 </select>
             </label>
-            <Button onClick={handleSubmit} className="self-center my-4">Save contact</Button>
+            <Button onClick={handleSubmit} className="self-center my-4 shadow-none">Save contact</Button>
             <TextButton onClick={cancel} className="self-center">Cancel</TextButton>
         </form>
     );

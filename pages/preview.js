@@ -58,8 +58,7 @@ export default function Preview() {
 
     return (
         <Page className="pt-24">
-            <nav className="fixed z-10 top-0 w-full p-6 flex justify-between
-            ">
+            <nav className="fixed z-10 top-0 w-full p-6 flex justify-between">
                 <TextButton className={styles.home} onClick={home}>Home</TextButton>
                 <TextButton className={styles.edit} onClick={edit}>Edit</TextButton>
             </nav>
