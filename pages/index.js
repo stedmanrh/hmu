@@ -20,9 +20,8 @@ export default function Home() {
     // Create reference to store the DOM element containing the animation
     const el = useRef("#shuffle");
 
-    // Run on page load
     useEffect(() => {
-
+        // Initialize headline shuffle
         const typed = new Typed(el.current, {
             strings: ["instantly.", "flexibly.", "Tactfully."],
             startDelay: 5000,
@@ -96,14 +95,10 @@ export default function Home() {
                 </p>
                 <p className="text-xl max-w-md leading-normal">Connect faster IRL with personal QR codes for whatever matters to you.</p>
             </header>
-            {contactExists ?
-                <Button className="mb-6" onClick={preview}>Share contact</Button>
-                : <Button className="mb-6" onClick={create}>+ New contact</Button>
-            }
-            {showInstallPrompt ?
-                <TextButton onClick={prompt}>⬇️ Add to home screen</TextButton>
-                : <TextButton style={{ visibility: "hidden"}} onClick={prompt}>⬇️ Add to home screen</TextButton>
-            }
+            <Button className="mb-6" onClick={contactExists ? preview : create}>
+                {contactExists ? "Share contact" : "+ New contact"}</Button>
+            <TextButton onClick={prompt}
+                style={showInstallPrompt ? {} : { visibility: "hidden" }}>⬇️ Add to home screen</TextButton>
         </Page>
     );
 };
