@@ -53,7 +53,7 @@ export default function Contact(props) {
                     <p className="text-2xl text-slate-600">Contact</p>
                 </div>
             </header>
-            <div className="p-2.5 flex items-center justify-center mt-8 rounded-[24px]"
+            <div className="p-3 flex items-center justify-center mt-8 rounded-[24px]"
                 style={{ "background": `linear-gradient(${angle}deg, ${stops.start}, ${stops.end})`,
                 "boxShadow": `0 -4px 16px 0 ${stops.startRGBA}, 0 4px 16px 0 ${stops.endRGBA}` }}>
                 <div className="p-1 rounded-[16px]
