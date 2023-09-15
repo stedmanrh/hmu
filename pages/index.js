@@ -1,6 +1,6 @@
+import styles from "../styles/Home.module.css";
 import Page from "../components/Page.js";
 import Button from "../components/Button.js";
-import styles from "../styles/Home.module.css";
 
 import { useRouter } from "next/router";
 import { useEffect, useRef, useState } from "react";
