@@ -1,6 +1,5 @@
 import Page from "../components/Page.js";
 import Button from "../components/Button.js";
-import TextButton from "../components/TextButton.js";
 import styles from "../styles/Home.module.css";
 
 import { useRouter } from "next/router";
@@ -14,8 +13,6 @@ export default function Home() {
 
     // Initialize app state
     const [contactExists, setContactExists] = useState(false);
-    const [showInstallPrompt, setShowInstallPrompt] = useState(false);
-    const [installPrompt, setInstallPrompt] = useState(null);
 
     // Create reference to store the DOM element containing the animation
     const el = useRef("#shuffle");
@@ -31,49 +28,17 @@ export default function Home() {
             showCursor: false
         });
 
-        // Check if contact exists
+        // Check if contact data is stored
         const formValues = JSON.parse(secureLocalStorage.getItem("formValues"));
         if (formValues != null) {
             setContactExists(true);
         }
-
-        // Check if app install prompt was shown
-        window.addEventListener('beforeinstallprompt', (e) => {
-            // Prevent the mini-infobar from appearing on mobile
-            e.preventDefault();
-            // Stash the event so it can be triggered later.
-            setInstallPrompt(e);
-            setShowInstallPrompt(true);
-        });
-
-        // Verify app installation
-        window.addEventListener('appinstalled', () => {
-            // Hide install promotion, discard prompt
-            setShowInstallPrompt(false);
-            setInstallPrompt(null);
-            // TODO: log install analytics
-            console.log('PWA was installed');
-        });
 
         return () => {
             // Destroy Typed instance during cleanup to stop animation
             typed.destroy();
         };
     }, [])
-
-    // App install prompt flow
-    const prompt = async () => {
-        // Hide install promotion
-        setShowInstallPrompt(false);
-        // Show install prompt
-        installPrompt.prompt();
-        // Wait for the user to respond to the prompt ("accepted" | "dismissed")
-        const { outcome } = await installPrompt.userChoice;
-        // TODO: log promo to prompt install analytics
-        console.log(`User ${outcome} install prompt`);
-        // Discard used prompt
-        setInstallPrompt(null);
-    }
 
     // Navigate to contact form
     const create = () => {
@@ -97,8 +62,6 @@ export default function Home() {
             </header>
             <Button className="mb-6" onClick={contactExists ? preview : create}>
                 {contactExists ? "Share contact" : "+ New contact"}</Button>
-            <TextButton onClick={prompt}
-                style={showInstallPrompt ? {} : { visibility: "hidden" }}>⬇️ Add to home screen</TextButton>
         </Page>
     );
 };
