@@ -28,13 +28,11 @@ export default function Home() {
             showCursor: false
         });
 
-        window.addEventListener("load", (e)=> {
-            // Check if contact data is stored
-            const formValues = JSON.parse(secureLocalStorage.getItem("formValues"));
-            if (formValues != null) {
-                setContactExists(true);
-            }
-        });
+        // Check if contact data is stored
+        const formValues = JSON.parse(secureLocalStorage.getItem("formValues"));
+        if (formValues != null) {
+            setContactExists(true);
+        }
 
         return () => {
             // Destroy Typed instance during cleanup to stop animation
