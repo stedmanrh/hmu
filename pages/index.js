@@ -17,12 +17,13 @@ export default function Home() {
     // Create reference to store the DOM element containing the animation
     const el = useRef("#shuffle");
 
-    // Check if contact data is stored
-    const checkData = async () => {
-        return secureLocalStorage.getItem("formValues");
-    }
-
     useEffect(() => {
+        // Check if "formValues" exists in secureLocalStorage
+        const formValues = secureLocalStorage.getItem("formValues");
+        if (formValues) {
+            setContactExists(true);
+        }
+
         // Initialize headline shuffle
         const typed = new Typed(el.current, {
             strings: ["instantly.", "flexibly.", "Tactfully."],
@@ -32,13 +33,6 @@ export default function Home() {
             backSpeed: 20,
             showCursor: false
         });
-
-        window.onload = (e) => {
-            checkData().then(data => {
-                if (data)
-                    setContactExists(true);
-            });
-        }
 
         return () => {
             // Destroy Typed instance during cleanup to stop animation
