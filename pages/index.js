@@ -17,6 +17,11 @@ export default function Home() {
     // Create reference to store the DOM element containing the animation
     const el = useRef("#shuffle");
 
+    // Check if contact data is stored
+    const checkData = async () => {
+        return secureLocalStorage.getItem("formValues");
+    }
+
     useEffect(() => {
         // Initialize headline shuffle
         const typed = new Typed(el.current, {
@@ -28,10 +33,11 @@ export default function Home() {
             showCursor: false
         });
 
-        // Check if contact data is stored
-        const formValues = JSON.parse(secureLocalStorage.getItem("formValues"));
-        if (formValues != null) {
-            setContactExists(true);
+        window.onload = (e) => {
+            checkData().then(data => {
+                if (data)
+                    setContactExists(true);
+            });
         }
 
         return () => {
