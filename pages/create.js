@@ -1,4 +1,3 @@
-import React from "react";
 import Page from "../components/Page.js";
 import Form from "../components/Form.js";
 
