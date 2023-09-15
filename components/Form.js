@@ -1,11 +1,12 @@
-import { useRouter } from 'next/router';
-import React, { useState, useEffect } from 'react';
 import styles from "../styles/Form.module.css";
 import vibes from "../utils/vibes.json";
-import secureLocalStorage from "react-secure-storage";
 import Button from './Button';
 import Input from './Input';
 import TextButton from './TextButton';
+
+import { useRouter } from 'next/router';
+import { useState, useEffect } from 'react';
+import secureLocalStorage from "react-secure-storage";
 
 export default function Form() {
     const router = useRouter();
@@ -71,9 +72,6 @@ export default function Form() {
             }));
         }
     }, []);
-
-    // TODO:
-    // - form validation for phone, email, url fields
 
     return (
         <form className="w-full max-w-md flex flex-col px-2"
