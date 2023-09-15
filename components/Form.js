@@ -52,11 +52,9 @@ export default function Form() {
         // TODO: analytics event
     }
 
-    const home = () => {
-        // location vs. router.push to fire beforeinstallprompt event
-        console.log(router.query.editing);
+    const cancel = () => {
         router.query.editing ?
-            router.push("/preview") : window.location = "/";
+            router.push("/preview") : router.push("/");
     }
 
     useEffect(() => {
@@ -92,7 +90,7 @@ export default function Form() {
                 </select>
             </label>
             <Button onClick={handleSubmit} className="self-center my-4">Save contact</Button>
-            <TextButton onClick={home} className="self-center">Cancel</TextButton>
+            <TextButton onClick={cancel} className="self-center">Cancel</TextButton>
         </form>
     );
 }

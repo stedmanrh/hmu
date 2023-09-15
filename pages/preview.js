@@ -30,7 +30,7 @@ export default function Preview() {
 
     const home = () => {
         // location vs. router.push to fire beforeinstallprompt event
-        window.location = "/";
+        router.push("/");
     }
 
     const edit = () => {
