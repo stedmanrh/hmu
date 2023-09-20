@@ -2,7 +2,7 @@ import '../styles/reset.css';
 import '../dist/main.css';
 import Analytics from '../components/Analytics';
 
-function MyApp({ Component, pageProps }) {
+function Tactful({ Component, pageProps }) {
   return (
     <div>
       <Analytics />
@@ -11,4 +11,4 @@ function MyApp({ Component, pageProps }) {
   )
 }
 
-export default MyApp
+export default Tactful

@@ -1,6 +1,16 @@
 module.exports = {
-  reactStrictMode: true,
-  images: {
-    domains: ['chart.googleapis.com']
-  }
+    reactStrictMode: true,
+    beforeFiles: [
+        // app subdomain rewrites
+        {
+            source: '/:path*',
+            has: [
+                {
+                    type: 'host',
+                    value: 'app.hmu.world',
+                },
+            ],
+            destination: '/app/:path*',
+        },
+    ]
 }
