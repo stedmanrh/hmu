@@ -30,14 +30,14 @@ export default function Home() {
     return (
         <Page className="justify-center bg-slate-100">
             <div className={styles.siteCode}></div>
-            <header className="mb-32 text-center text-slate-600">
+            <header className="text-center text-slate-600">
                 <p className="mt-8 mb-6 text-4xl leading-tight">Share your contact&nbsp;info
                     <span id="shuffle" className="block h-10 text-purple-600 textGlow">Tactfully.</span>
                 </p>
                 <p className="text-xl max-w-md leading-normal">Connect faster IRL with personal QR codes for whatever matters to you.</p>
             </header>
             <Contacts />
-            <Button onClick={null}>Install app</Button>
+            {/* <Button className="mt-16" onClick={null}>Install app</Button> */}
         </Page>
     );
 };

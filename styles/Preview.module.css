@@ -31,3 +31,16 @@
     background-repeat: no-repeat;
     opacity: .75;
 }
+
+.miniCard::after {
+    content: '';
+    height: 1.75em;
+    width: 1.75em;
+    transform: rotate(-90deg);
+    position: absolute;
+    right: .75em;
+    top: 1.1em;
+    background: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='rgba(71, 85, 105)' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
+    background-repeat: no-repeat;
+    opacity: .75;
+}
