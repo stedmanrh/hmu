@@ -1,16 +1,20 @@
 module.exports = {
     reactStrictMode: true,
-    beforeFiles: [
-        // app subdomain rewrites
-        {
-            source: '/:path*',
-            has: [
+    rewrites() {
+        return {
+            beforeFiles: [
+                // app.hmu.world subdomain rewrites
                 {
-                    type: 'host',
-                    value: 'app.hmu.world',
+                    source: '/:path*',
+                    has: [
+                        {
+                            type: 'host',
+                            value: 'app.hmu.world',
+                        },
+                    ],
+                    destination: '/app/:path*',
                 },
-            ],
-            destination: '/app/:path*',
-        },
-    ]
+            ]
+        }
+    }
 }
