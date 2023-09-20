@@ -1,7 +1,7 @@
-import Page from "../../components/Page";
-import Contact from "../../components/Contact";
-import TextButton from "../../components/TextButton";
-import styles from "../../styles/Preview.module.css";
+import Page from "../components/Page";
+import Contact from "../components/Contact";
+import TextButton from "../components/TextButton";
+import styles from "../styles/Preview.module.css";
 
 import { useRouter } from 'next/router';
 import { useState, useEffect } from "react";
@@ -30,7 +30,7 @@ export default function Preview() {
 
     const home = () => {
         // location vs. router.push to fire beforeinstallprompt event
-        router.push("/app");
+        router.push("/");
     }
 
     const edit = () => {
