@@ -69,7 +69,7 @@ export default function Contacts() {
         }
     }, []);
 
-    if (!contact.name != "") {
+    if (contact.name != "") {
         return (
             <div className={`${styles.miniCard} relative mt-16 rounded-xl
             cursor-pointer active:scale-[.98] p-0.5`}

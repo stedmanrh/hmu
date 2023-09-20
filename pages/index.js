@@ -7,6 +7,8 @@ import { useEffect, useRef, useState } from "react";
 import Typed from "typed.js";
 
 export default function Home() {
+    const [isStandalone, setIsStandalone] = useState(false);
+
     // Create reference to store the DOM element containing the animation
     const el = useRef("#shuffle");
 
@@ -20,6 +22,13 @@ export default function Home() {
             backSpeed: 20,
             showCursor: false
         });
+
+        // Standalone mode media query
+        if (window.matchMedia("(display-mode: standalone)").matches) {
+            setIsStandalone(true);
+        } else {
+            
+        }
 
         return () => {
             // Destroy Typed instance during cleanup to stop animation
@@ -36,7 +45,10 @@ export default function Home() {
                 </p>
                 <p className="text-xl max-w-md leading-normal">Connect faster IRL with personal QR codes for whatever matters to you.</p>
             </header>
-            <Contacts />
+            {isStandalone ?
+                <Contacts />
+                : null
+            }
             {/* <Button className="mt-16" onClick={null}>Install app</Button> */}
         </Page>
     );
