@@ -1,6 +1,6 @@
-import Page from "../components/Page";
-import Contact from "../components/Contact";
-import TextButton from "../components/TextButton";
+import Page from "../../components/Page";
+import Contact from "../../components/Contact";
+import TextButton from "../../components/TextButton";
 import styles from "../styles/Preview.module.css";
 
 import { useRouter } from 'next/router';
