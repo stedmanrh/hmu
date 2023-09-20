@@ -1,29 +1,16 @@
 import styles from "../styles/Home.module.css";
 import Page from "../components/Page.js";
 import Button from "../components/Button.js";
+import Contacts from "../components/Contacts";
 
-import { useRouter } from "next/router";
 import { useEffect, useRef, useState } from "react";
-import secureLocalStorage from "react-secure-storage";
 import Typed from "typed.js";
 
 export default function Home() {
-    // Initialize router
-    const router = useRouter();
-
-    // Initialize app state
-    const [contactExists, setContactExists] = useState(false);
-
     // Create reference to store the DOM element containing the animation
     const el = useRef("#shuffle");
 
     useEffect(() => {
-        // Check if "formValues" exists in secureLocalStorage
-        const formValues = secureLocalStorage.getItem("formValues");
-        if (formValues) {
-            setContactExists(true);
-        }
-
         // Initialize headline shuffle
         const typed = new Typed(el.current, {
             strings: ["instantly.", "flexibly.", "Tactfully."],
@@ -40,17 +27,6 @@ export default function Home() {
         };
     }, [])
 
-    // Navigate to contact form
-    const create = () => {
-        router.push("/create");
-    }
-
-    // Navigate to QR code
-    const preview = () => {
-        router.push("/preview");
-    }
-
-
     return (
         <Page className="justify-center bg-slate-100">
             <div className={styles.siteCode}></div>
@@ -60,8 +36,8 @@ export default function Home() {
                 </p>
                 <p className="text-xl max-w-md leading-normal">Connect faster IRL with personal QR codes for whatever matters to you.</p>
             </header>
-            <Button className="mb-6" onClick={contactExists ? preview : create}>
-                {contactExists ? "Share contact" : "+ New contact"}</Button>
+            <Contacts />
+            <Button onClick={null}>Install app</Button>
         </Page>
     );
 };
