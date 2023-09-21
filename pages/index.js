@@ -10,9 +10,22 @@ export default function Home() {
     const [isStandalone, setIsStandalone] = useState(false);
     const [os, setOs] = useState(null);
     const [isPromptable, setIsPromptable] = useState(false);
+    const [prompt, setPrompt] = useState(null);
 
     // Create reference to store the DOM element containing the animation
     const el = useRef("#shuffle");
+
+    // App install prompt flow
+    const showPrompt = async () => {
+        // Show install prompt
+        prompt.prompt();
+        // Wait for the user to respond to the prompt ("accepted" | "dismissed")
+        const { outcome } = await prompt.userChoice;
+        // TODO: log promo to prompt install analytics
+        console.log(`User ${outcome} install prompt`);
+        // Discard used prompt
+        setPrompt(null);
+    }
 
     useEffect(() => {
         // Initialize headline shuffle
@@ -36,10 +49,16 @@ export default function Home() {
                 // Android check
             } else if (/android/.test(userAgentString)) {
                 setOs("android");
-                alert("android!");
                 // Prompt flow check
                 if (("onbeforeinstallprompt" in window)) {
                     setIsPromptable(true);
+                    // Check if app install prompt was shown
+                    window.addEventListener('beforeinstallprompt', (e) => {
+                        // Prevent the mini-infobar from appearing on mobile
+                        e.preventDefault();
+                        // Stash the event so it can be triggered later.
+                        setInstallPrompt(e);
+                    });
                 }
             }
         }
@@ -61,9 +80,8 @@ export default function Home() {
             </header>
             {isStandalone ?
                 <Contacts />
-                : null
+                : <Button className="mt-16" onClick={isPromptable ? showPrompt : null}>Install app</Button>
             }
-            {/* <Button className="mt-16" onClick={null}>Install app</Button> */}
         </Page>
     );
 };
