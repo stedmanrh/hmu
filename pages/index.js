@@ -8,6 +8,8 @@ import Typed from "typed.js";
 
 export default function Home() {
     const [isStandalone, setIsStandalone] = useState(false);
+    const [os, setOs] = useState(null);
+    const [isPromptable, setIsPromptable] = useState(false);
 
     // Create reference to store the DOM element containing the animation
     const el = useRef("#shuffle");
@@ -27,7 +29,18 @@ export default function Home() {
         if (window.matchMedia("(display-mode: standalone)").matches) {
             setIsStandalone(true);
         } else {
-            
+            const userAgentString = window.navigator.userAgent.toLowerCase();
+            // iOS check
+            if (/iphone|ipad|ipod/.test(userAgentString)) {
+                setOs("ios");
+                // Android check
+            } else if (/android/.test(userAgentString)) {
+                setOs("android");
+                // Prompt flow check
+                if (("onbeforeinstallprompt" in window)) {
+                    setIsPromptable(true);
+                }
+            }
         }
 
         return () => {
