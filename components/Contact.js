@@ -1,7 +1,8 @@
-import { useState, useEffect } from "react";
 import * as convert from 'color-convert';
+import Image from 'next/image';
+import { useState, useEffect } from "react";
 
-export default function Contact({name, vibe, src}) {
+export default function Contact({ name, vibe, src }) {
     const [stops, setStops] = useState({
         start: "",
         startRGBA: "",
@@ -39,14 +40,17 @@ export default function Contact({name, vibe, src}) {
     return (
         <div className="flex flex-col items-center justify-center z-0">
             <div className="-z-10 fixed top-0 right-0 bottom-0 left-0 opacity-20"
-            style={{ "background": `linear-gradient(-${angle}deg, ${stops.start}, ${stops.end})` }}>
+                style={{ "background": `linear-gradient(-${angle}deg, ${stops.start}, ${stops.end})` }}>
             </div>
             <header className="flex flex-col items-center space-y-6">
                 <div className="w-20 h-20 rounded-full
             flex justify-center items-center shrink-0
             bg-white shadow-md
             text-5xl">
-                    {vibe.emoji}
+                    {vibe.emoji &&
+                        <Image src={`/emoji/${vibe.emoji}.png`}
+                            width={48} height={48} priority={true} />
+                    }
                 </div>
                 <div className="text-center">
                     <h1 className="text-3xl leading-normal text-slate-800">{name}</h1>
@@ -54,11 +58,15 @@ export default function Contact({name, vibe, src}) {
                 </div>
             </header>
             <div className="p-3 flex items-center justify-center mt-8 rounded-[24px]"
-                style={{ "background": `linear-gradient(${angle}deg, ${stops.start}, ${stops.end})`,
-                "boxShadow": `0 -4px 16px 0 ${stops.startRGBA}, 0 4px 16px 0 ${stops.endRGBA}` }}>
-                <div className="p-1.5 rounded-[16px]
+                style={{
+                    "background": `linear-gradient(${angle}deg, ${stops.start}, ${stops.end})`,
+                    "boxShadow": `0 -4px 16px 0 ${stops.startRGBA}, 0 4px 16px 0 ${stops.endRGBA}`
+                }}>
+                <div className="flex p-1.5 rounded-[16px]
                 bg-white">
-                    <img src={src} />
+                    {src &&
+                        <Image src={src} width={168} height={168} priority={true} />
+                    }
                 </div>
             </div>
         </div>
