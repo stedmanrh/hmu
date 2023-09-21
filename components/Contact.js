@@ -53,8 +53,8 @@ export default function Contact({ name, vibe, src }) {
                     }
                 </div>
                 <div className="text-center">
-                    <h1 className="text-3xl leading-normal text-slate-800">{name}</h1>
-                    <p className="text-xl text-slate-600">Contact</p>
+                    <h1 className="text-3xl leading-tight max-w-sm text-slate-800">{name}</h1>
+                    <p className="mt-2 text-xl text-slate-600">Contact</p>
                 </div>
             </header>
             <div className="p-3 flex items-center justify-center mt-8 rounded-[24px]"

@@ -87,7 +87,7 @@ export default function Home() {
                 </p>
                 <p className="text-xl max-w-md leading-normal">Connect faster IRL with personal QR codes for what matters to you.</p>
             </header>
-            {isStandalone ?
+            {!isStandalone ?
                 <Contacts />
                 : <div className="mt-16 flex flex-col items-center">
                     <Button className="mb-4" onClick={isPromptable ? showPrompt : toggleInstallModal}>Install app</Button>

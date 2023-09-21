@@ -2,6 +2,7 @@ import Button from "./Button.js";
 import styles from "../styles/Preview.module.css";
 
 import * as convert from 'color-convert';
+import Image from "next/image.js";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import secureLocalStorage from "react-secure-storage";
@@ -78,10 +79,13 @@ export default function Contacts() {
                     "boxShadow": `0 -2px 8px 0 ${stops.startRGBA}, 0 2px 8px 0 ${stops.endRGBA}`
                 }}
                 onClick={preview}>
-                <div className="w-80 pl-6 pr-10 py-4 flex items-center rounded-xl
+                <div className="w-80 pl-4 pr-10 py-4 flex items-center rounded-xl
             bg-white shadow-md">
-                    <span className="mr-3 text-2xl">
-                        {contact.vibe.emoji}
+                    <span className="mr-3 text-2xl flex items-center">
+                        {contact.vibe.emoji &&
+                            <Image src={`/emoji/${contact.vibe.emoji}.png`} alt={contact.vibe.emoji}
+                                width={24} height={24} priority={true} />
+                        }
                     </span>
                     <p className="text-lg truncate text-slate-800">{contact.name}</p>
                 </div>
