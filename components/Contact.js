@@ -48,7 +48,7 @@ export default function Contact({ name, vibe, src }) {
             bg-white shadow-md
             text-5xl">
                     {vibe.emoji &&
-                        <Image src={`/emoji/${vibe.emoji}.png`}
+                        <Image src={`/emoji/${vibe.emoji}.png`} alt={vibe.emoji}
                             width={48} height={48} priority={true} />
                     }
                 </div>
@@ -65,7 +65,8 @@ export default function Contact({ name, vibe, src }) {
                 <div className="flex p-1.5 rounded-[16px]
                 bg-white">
                     {src &&
-                        <Image src={src} width={168} height={168} priority={true} />
+                        <Image src={src} width={168} height={168} priority={true}
+                        alt={`QR code for ${name}'s contact information`} />
                     }
                 </div>
             </div>
