@@ -1,12 +1,13 @@
 import Page from "../components/Page.js";
 import Form from "../components/Form.js";
 
+import Image from "next/image.js";
 import { useEffect, useState } from "react";
 import secureLocalStorage from "react-secure-storage";
 
 export default function Create() {
 
-    const [emoji, setEmoji] = useState();
+    const [emoji, setEmoji] = useState(null);
 
     const [stops, setStops] = useState({
         start: "",
@@ -48,7 +49,9 @@ export default function Create() {
                 flex justify-center items-center shrink-0 
                 bg-white shadow-md
                 text-5xl">
-                    {emoji ? emoji : "👤"}
+                    <Image src={emoji ? `/emoji/${emoji}.png` : "/emoji/👤.png"}
+                        width={48} height={48} priority={true}
+                        alt={emoji || "👤"} />
                 </div>
                 <h1 className="text-center text-4xl leading-tight text-slate-600">
                     Enter your contact&nbsp;info
