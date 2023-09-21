@@ -81,13 +81,13 @@ export default function Home() {
                 <p className="mt-8 mb-6 text-4xl leading-tight">Share your contact&nbsp;info
                     <span id="shuffle" className="block h-10 text-purple-600 textGlow">Tactfully.</span>
                 </p>
-                <p className="text-xl max-w-md leading-normal">Connect faster IRL with personal QR codes for whatever matters to you.</p>
+                <p className="text-xl max-w-md leading-normal">Connect faster IRL with personal QR codes for what matters to you.</p>
             </header>
             {isStandalone ?
                 <Contacts />
                 : <Button className="mt-16" onClick={isPromptable ? showPrompt : toggleModal}>Install app</Button>
             }
-            {modal ? <InstallModal dismiss={toggleModal} /> : null}
+            {modal ? <InstallModal dismiss={toggleModal} os={os} /> : null}
         </Page>
     );
 };

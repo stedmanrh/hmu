@@ -4,7 +4,7 @@
     width: 128px;
     border-radius: 1rem;
     filter: brightness(0.95) opacity(0.8);
-    background: url("https://chart.googleapis.com/chart?cht=qr&chs=128x128&chld=|1&chl=https://hmu.world"),
+    background: url("../assets/hmu-qr.png"),
         rgba(255, 255, 255, 1);
     background-size: 90%;
     background-position: center center;
@@ -22,4 +22,28 @@
     left: 18px;
     background: url("../assets/icon_x48.png");
     background-size: 100%;
+    background-repeat: no-repeat;
+}
+
+.install::before {
+    content: "";
+    width: 26px;
+    height: 26px;
+    position: absolute;
+    left: -1.75em;
+    background: url("../assets/icon_x48.png");
+    background-size: 100%;
+    background-repeat: no-repeat;
+}
+
+.share::before {
+    content: "";
+    width: 1rem;
+    height: 1.5rem;
+    position: absolute;
+    left: 0;
+    bottom: 1px;
+    background: url("../assets/safari-share.png");
+    background-size: 100%;
+    background-repeat: no-repeat;
 }
