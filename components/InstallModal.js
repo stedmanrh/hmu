@@ -64,7 +64,7 @@ export default function InstallModal({ os, dismiss }) {
                     <p className={`relative left-8 text-xl font-normal uppercase tracking-wider text-purple-600 ${styles.install}`}>Install Tactful</p>
                 </div>
                 <Instructions os={os} />
-                <div class="text-right">
+                <div className="text-right">
                     <TextButton className="mt-4" onClick={dismiss}>Dismiss</TextButton>
                 </div>
             </div>
