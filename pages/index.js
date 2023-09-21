@@ -87,7 +87,7 @@ export default function Home() {
                 <Contacts />
                 : <Button className="mt-16" onClick={isPromptable ? showPrompt : toggleModal}>Install app</Button>
             }
-            {modal ? <InstallModal dismiss={toggleModal} os={os} /> : null}
+            {modal ? <InstallModal os={os} dismiss={toggleModal} /> : null}
         </Page>
     );
 };

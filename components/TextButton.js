@@ -1,11 +1,11 @@
-export default function TextButton(props) {
+export default function TextButton({className, onClick, children}) {
     return (
         <button className={`
         py-2 cursor-pointer
         text-sm text-slate-600 uppercase tracking-widest leading-3 textButton
-        ${props.className}`}
-            onClick={props.onClick}>
-            {props.children}
+        ${className}`}
+            onClick={onClick}>
+            {children}
         </button>
     );
 }

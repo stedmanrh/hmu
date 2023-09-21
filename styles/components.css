@@ -37,3 +37,28 @@
         border-bottom: 2px solid rgba(71, 85, 105, 0.5);
     }
 }
+
+/* Modal */
+
+.modalTitle::before {
+    content: "";
+    width: 26px;
+    height: 26px;
+    position: absolute;
+    left: -1.75em;
+    background: url("../assets/icon_x48.png");
+    background-size: 100%;
+    background-repeat: no-repeat;
+}
+
+.share::before {
+    content: "";
+    width: 1rem;
+    height: 1.5rem;
+    position: absolute;
+    left: 0;
+    bottom: 1px;
+    background: url("../assets/safari-share.png");
+    background-size: 100%;
+    background-repeat: no-repeat;
+}
