@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import * as convert from 'color-convert';
 
-export default function Contact(props) {
+export default function Contact({name, vibe, src}) {
     const [stops, setStops] = useState({
         start: "",
         startRGBA: "",
@@ -24,17 +24,17 @@ export default function Contact(props) {
     }
 
     useEffect(() => {
-        if (props.vibe.group) {
+        if (vibe.group) {
             setStops({
-                start: props.vibe.group[0],
-                end: props.vibe.group[props.vibe.group.length - 1],
-                startRGBA: rgbaColor(props.vibe.group[0], 0.5),
-                endRGBA: rgbaColor(props.vibe.group[props.vibe.group.length - 1], 0.5)
+                start: vibe.group[0],
+                end: vibe.group[vibe.group.length - 1],
+                startRGBA: rgbaColor(vibe.group[0], 0.5),
+                endRGBA: rgbaColor(vibe.group[vibe.group.length - 1], 0.5)
             });
         }
         const interval = setInterval(updateGradientAngle, 15);
         return () => clearInterval(interval);
-    }, [props]);
+    }, [vibe, name, src]);
 
     return (
         <div className="flex flex-col items-center justify-center z-0">
@@ -46,10 +46,10 @@ export default function Contact(props) {
             flex justify-center items-center shrink-0
             bg-white shadow-md
             text-5xl">
-                    {props.vibe.emoji}
+                    {vibe.emoji}
                 </div>
                 <div className="text-center">
-                    <h1 className="text-3xl leading-normal text-slate-800">{props.name}</h1>
+                    <h1 className="text-3xl leading-normal text-slate-800">{name}</h1>
                     <p className="text-xl text-slate-600">Contact</p>
                 </div>
             </header>
@@ -58,7 +58,7 @@ export default function Contact(props) {
                 "boxShadow": `0 -4px 16px 0 ${stops.startRGBA}, 0 4px 16px 0 ${stops.endRGBA}` }}>
                 <div className="p-1.5 rounded-[16px]
                 bg-white">
-                    <img src={props.src} />
+                    <img src={src} />
                 </div>
             </div>
         </div>
