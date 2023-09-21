@@ -39,7 +39,7 @@
           "name": "Share contact",
           "description": "Share your primary contact",
           "url": "/preview",
-          "icons": [{ "src": "/icons/apple_icon_x192.png", "sizes": "192x192" }]
+          "icons": [{ "src": "/icons/icon_x192.png", "sizes": "192x192" }]
         }
     ]
 }
