@@ -2,7 +2,7 @@ export default function Input(props) {
     return (
         <label className="mb-4">
             <div className="mb-1 text-slate-600">{props.label}</div>
-            <input className="p-2 w-full max-w-md text-lg border rounded-md border-slate-300 text-slate-800
+            <input className="py-2 px-3 w-full max-w-md text-lg border rounded-md border-slate-300 text-slate-800
                 placeholder:text-slate-400
                 focus:outline-none focus:border-purple-500 focus:shadow-[inset_0_0_0.25rem_rgb(216,180,254)]"
                 type={props.type} 
