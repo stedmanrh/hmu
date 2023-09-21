@@ -1,4 +1,4 @@
-import Modal from "./Modal";
+import Modal from "./Modal.js";
 
 function Instructions({ os }) {
     if (os == "ios") {

@@ -1,8 +1,8 @@
+import Button from './Button.js';
+import Input from './Input.js';
+import TextButton from './TextButton.js';
 import styles from "../styles/Form.module.css";
 import vibes from "../utils/vibes.json";
-import Button from './Button';
-import Input from './Input';
-import TextButton from './TextButton';
 
 import { useRouter } from 'next/router';
 import { useState, useEffect } from 'react';

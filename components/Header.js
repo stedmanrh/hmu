@@ -1,5 +1,6 @@
+import Analytics from "../components/Analytics.js";
+
 import Head from "next/head";
-import Analytics from "../components/Analytics";
 
 export default function Header() {
     return (

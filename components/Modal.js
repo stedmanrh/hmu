@@ -1,4 +1,4 @@
-import TextButton from "../components/TextButton";
+import TextButton from "./TextButton.js";
 
 import { useEffect, useRef } from "react";
 

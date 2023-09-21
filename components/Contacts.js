@@ -1,4 +1,4 @@
-import Button from "./Button";
+import Button from "./Button.js";
 import styles from "../styles/Preview.module.css";
 
 import * as convert from 'color-convert';

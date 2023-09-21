@@ -1,18 +1,21 @@
-import styles from "../styles/Home.module.css";
 import Page from "../components/Page.js";
 import Button from "../components/Button.js";
-import Contacts from "../components/Contacts";
-import InstallModal from "../components/InstallModal";
+import Contacts from "../components/Contacts.js";
+import InstallModal from "../components/InstallModal.js";
+import Modal from "../components/Modal.js";
+import styles from "../styles/Home.module.css";
 
 import { useEffect, useRef, useState } from "react";
 import Typed from "typed.js";
+import TextButton from "../components/TextButton";
 
 export default function Home() {
     const [isStandalone, setIsStandalone] = useState(false);
     const [os, setOs] = useState(null);
     const [isPromptable, setIsPromptable] = useState(false);
     const [installPrompt, setInstallPrompt] = useState(null);
-    const [modal, setModal] = useState(false);
+    const [installModal, setInstallModal] = useState(false);
+    const [privacyModal, setPrivacyModal] = useState(false);
 
     // Create reference to store the DOM element containing the animation
     const el = useRef("#shuffle");
@@ -72,7 +75,8 @@ export default function Home() {
         setInstallPrompt(null);
     }
 
-    const toggleModal = () => { setModal(!modal) }
+    const toggleInstallModal = () => { setInstallModal(!installModal) }
+    const togglePrivacyModal = () => { setPrivacyModal(!privacyModal) }
 
     return (
         <Page className="justify-center bg-slate-100">
@@ -85,9 +89,25 @@ export default function Home() {
             </header>
             {isStandalone ?
                 <Contacts />
-                : <Button className="mt-16" onClick={isPromptable ? showPrompt : toggleModal}>Install app</Button>
+                : <div className="mt-16 flex flex-col items-center">
+                    <Button className="mb-4" onClick={isPromptable ? showPrompt : toggleInstallModal}>Install app</Button>
+                    <TextButton onClick={togglePrivacyModal}>Privacy</TextButton>
+                </div>
             }
-            {modal ? <InstallModal os={os} dismiss={toggleModal} /> : null}
+            {installModal ? <InstallModal os={os} dismiss={toggleInstallModal} /> : null}
+            {privacyModal ?
+                <Modal title="Privacy" dismiss={togglePrivacyModal}>
+                    <div className="text-base text-slate-600 space-y-3">
+                        <p>Tactful doesn't keep your personal information. Any data that the app uses is encrypted and stored locally on your mobile device.</p>
+                        <p>If you'd like to delete your data:</p>
+                        <ol className="ml-5 list-decimal space-y-3">
+                            <li>Open the site settings for <span className="text-purple-600">hmu.world</span> on your mobile device.</li>
+                            <li>Delete the site data.</li>
+                            <li>Quit and reopen the app.</li>
+                        </ol>
+                    </div>
+                </Modal>
+                : null}
         </Page>
     );
 };
