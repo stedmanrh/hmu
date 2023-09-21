@@ -36,6 +36,7 @@ export default function Home() {
                 // Android check
             } else if (/android/.test(userAgentString)) {
                 setOs("android");
+                alert("android!");
                 // Prompt flow check
                 if (("onbeforeinstallprompt" in window)) {
                     setIsPromptable(true);
