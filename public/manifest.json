@@ -33,5 +33,12 @@
     "display": "standalone",
     "scope": "/",
     "theme_color": "#9333ea",
-    "description": "Personal QR codes for whatever matters to you"
+    "description": "Connect faster IRL with personal QR codes for what matters to you.",
+    "shortcuts": [
+        {
+          "name": "Share contact",
+          "description": "Share your primary contact",
+          "url": "/preview"
+        }
+    ]
 }
