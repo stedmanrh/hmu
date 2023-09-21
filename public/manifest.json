@@ -37,7 +37,8 @@
     "shortcuts": [
         {
           "name": "Share contact",
-          "description": "Share your primary contact",
+          "short_name": "Contact",
+          "description": "Share your primary Tactful contact",
           "url": "/preview",
           "icons": [{ "src": "/icons/icon_x192.png", "sizes": "192x192" }]
         }
