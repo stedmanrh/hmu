@@ -50,7 +50,7 @@ export default function Contact(props) {
                 </div>
                 <div className="text-center">
                     <h1 className="text-3xl leading-normal text-slate-800">{props.name}</h1>
-                    <p className="text-2xl text-slate-600">Contact</p>
+                    <p className="text-xl text-slate-600">Contact</p>
                 </div>
             </header>
             <div className="p-3 flex items-center justify-center mt-8 rounded-[24px]"

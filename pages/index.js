@@ -2,6 +2,7 @@ import styles from "../styles/Home.module.css";
 import Page from "../components/Page.js";
 import Button from "../components/Button.js";
 import Contacts from "../components/Contacts";
+import InstallModal from "../components/InstallModal";
 
 import { useEffect, useRef, useState } from "react";
 import Typed from "typed.js";
@@ -11,6 +12,7 @@ export default function Home() {
     const [os, setOs] = useState(null);
     const [isPromptable, setIsPromptable] = useState(false);
     const [installPrompt, setInstallPrompt] = useState(null);
+    const [modal, setModal] = useState(false);
 
     // Create reference to store the DOM element containing the animation
     const el = useRef("#shuffle");
@@ -70,6 +72,8 @@ export default function Home() {
         setInstallPrompt(null);
     }
 
+    const toggleModal = () => { setModal(!modal) }
+
     return (
         <Page className="justify-center bg-slate-100">
             <div className={styles.siteCode}></div>
@@ -81,8 +85,9 @@ export default function Home() {
             </header>
             {isStandalone ?
                 <Contacts />
-                : <Button className="mt-16" onClick={isPromptable ? showPrompt : null}>Install app</Button>
+                : <Button className="mt-16" onClick={isPromptable ? showPrompt : toggleModal}>Install app</Button>
             }
+            {modal ? <InstallModal dismiss={toggleModal} /> : null}
         </Page>
     );
 };
