@@ -28,13 +28,14 @@
         }
     ],
     "id": "/",
-    "start_url": "/",
+    "start_url": "/preview",
     "background_color": "#ffffff",
     "display": "standalone",
     "scope": "/",
     "theme_color": "#9333ea",
     "description": "Connect faster IRL with personal QR codes for what matters to you.",
-    "shortcuts": [
+    "//": "For use with multiple contacts",
+    "//shortcuts": [
         {
           "name": "Share contact",
           "short_name": "Contact",
