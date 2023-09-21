@@ -1,6 +1,8 @@
 import TextButton from "./TextButton";
 import styles from "../styles/Home.module.css";
 
+import { useEffect, useRef } from "react";
+
 function Instructions({ os }) {
     if (os == "ios") {
         return (
@@ -36,11 +38,28 @@ function Instructions({ os }) {
 
 export default function InstallModal({ os, dismiss }) {
 
+    const shim = useRef(0);
+    const modal = useRef(1);
+
+    useEffect(() => {
+
+        const shimNode = shim.current;
+        const modalNode = modal.current;
+
+        shimNode.style.opacity = 1;
+        modalNode.style.top = "50%";
+
+        return () => {
+            shimNode.style.opacity = 0;
+            modalNode.style.top = "45%";
+        }
+    }, [])
+
     return (
-        <div className="fixed w-full h-full bg-black/[.15]">
-            <div className="fixed left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2
+        <div ref={shim} className="fixed w-full h-full bg-black/[.15] opacity-0 transition-all duration-300">
+            <div ref={modal} className="fixed left-1/2 top-[45%] -translate-x-1/2 -translate-y-1/2
             w-full max-w-[23rem] px-8 pt-6 pb-4 rounded-xl flex flex-col
-            bg-white shadow-2xl">
+            bg-white shadow-2xl transition-all duration-300">
                 <div className="pb-4 mb-5 border-b border-solid border-purple-200">
                     <p className={`relative left-8 text-xl font-normal uppercase tracking-wider text-purple-600 ${styles.install}`}>Install Tactful</p>
                 </div>
