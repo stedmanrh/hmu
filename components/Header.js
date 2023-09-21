@@ -1,5 +1,3 @@
-import Analytics from "../components/Analytics.js";
-
 import Head from "next/head";
 
 export default function Header() {
@@ -13,7 +11,6 @@ export default function Header() {
             <link rel="icon" href="/favicon.ico" />
             <link rel="manifest" href="/manifest.json" />
             <link rel="apple-touch-icon" href="/icons/apple_icon_x192.png" />
-            <Analytics />
 
             <link rel="apple-touch-startup-image" media="screen and (device-width: 430px) and (device-height: 932px) and (-webkit-device-pixel-ratio: 3) and (orientation: landscape)" href="/splash_screens/iPhone_14_Pro_Max_landscape.png" />
             <link rel="apple-touch-startup-image" media="screen and (device-width: 393px) and (device-height: 852px) and (-webkit-device-pixel-ratio: 3) and (orientation: landscape)" href="/splash_screens/iPhone_14_Pro_landscape.png" />

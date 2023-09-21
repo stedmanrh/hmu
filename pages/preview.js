@@ -28,10 +28,10 @@ export default function Preview() {
         return vCard;
     }
 
-    const home = useCallback(() => {
+    const home = () => {
         // location vs. router.push to fire beforeinstallprompt event
         router.push("/");
-    }, []);
+    }
 
     const edit = () => {
         router.push("/create?editing=true");
@@ -54,7 +54,7 @@ export default function Preview() {
                     })
                 });
         } else home();
-    }, [home]);
+    });
 
     return (
         <Page className="pt-24">
