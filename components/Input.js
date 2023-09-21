@@ -4,7 +4,7 @@ export default function Input(props) {
             <div className="mb-1 text-slate-600">{props.label}</div>
             <input className="py-2 px-3 w-full max-w-md text-lg border rounded-md border-slate-300 text-slate-800
                 placeholder:text-slate-400
-                focus:outline-none focus:border-purple-500 focus:shadow-[inset_0_0_0.25rem_rgb(216,180,254)]"
+                focus:outline-none focus:border-purple-400 focus:shadow-[inset_0_0_0.25rem_rgb(216,180,254)]"
                 type={props.type} 
                 name={props.name} 
                 value={props.value} 

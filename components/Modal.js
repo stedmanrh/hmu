@@ -22,7 +22,7 @@ export default function Modal({ title, children, dismiss }) {
     }, [])
 
     return (
-        <div ref={shim} className="fixed w-full h-full bg-black/[.15] opacity-0 transition-all duration-300">
+        <div ref={shim} className="fixed w-full h-full left-0 top-0 bg-black/[.15] opacity-0 transition-all duration-300">
             <div ref={modal} className="fixed left-1/2 top-[45%] -translate-x-1/2 -translate-y-1/2
             w-full max-w-[23rem] px-8 pt-6 pb-4 rounded-xl flex flex-col
             bg-white shadow-2xl transition-all duration-300">

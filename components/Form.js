@@ -1,7 +1,7 @@
 import Button from './Button.js';
 import Input from './Input.js';
+import Modal from './Modal.js';
 import TextButton from './TextButton.js';
-import styles from "../styles/Form.module.css";
 import vibes from "../utils/vibes.json";
 
 import { useRouter } from 'next/router';
@@ -19,6 +19,8 @@ export default function Form(props) {
         vibe: "",
     });
 
+    const [modal, setModal] = useState(null);
+
     const handleChange = (event) => {
         const { name, value } = event.target;
         setFormfield(prevState => ({
@@ -32,27 +34,39 @@ export default function Form(props) {
 
     const handleSubmit = (event) => {
         event.preventDefault();
-        
+
         // Check for name
         if (formfield.name == "") {
-            alert("Please enter your name.")
+            setModal(
+                <Modal title="No name" dismiss={dismiss}>
+                    Please enter your name.
+                </Modal>
+            );
             return;
         }
 
         //Check for contact info
         if (formfield.phone == "" && formfield.email == "" && formfield.url == "") {
-            alert("Please enter your contact info.")
+            setModal(
+                <Modal title="No contact info" dismiss={dismiss}>
+                    Please enter your contact info.
+                </Modal>
+            );
             return;
         }
 
         // Randomize vibe if not set
         if (formfield.vibe == "") {
-            formfield.vibe = JSON.stringify(vibes[Math.floor(Math.random()*(vibes.length-1))]);
+            formfield.vibe = JSON.stringify(vibes[Math.floor(Math.random() * (vibes.length - 1))]);
         }
         const formValues = JSON.stringify(formfield);
         secureLocalStorage.setItem("formValues", formValues);
         router.push("/preview");
         // TODO: analytics event
+    }
+
+    const dismiss = () => {
+        setModal(null);
     }
 
     const cancel = () => {
@@ -82,8 +96,8 @@ export default function Form(props) {
             <Input name="email" label="Email" type="email" value={formfield.email} placeholder="swag@hmu.world" onChange={handleChange} />
             <Input name="url" label="URL" type="url" value={formfield.url} placeholder="https://hmu.world" onChange={handleChange} />
             <label className="mb-4">
-                <span className="mb-1 text-slate-600">Vibe</span>
-                <select className={`${styles.input} + ${styles.select}`} value={formfield.vibe} onChange={handleChange} name="vibe">
+                <div className="mb-1 text-slate-600">Vibe</div>
+                <select className="select" value={formfield.vibe} onChange={handleChange} name="vibe">
                     <option value="" disabled>Choose a vibe</option>
                     {vibes.sort((a, b) => (
                         a.label.localeCompare(b.label)
@@ -94,6 +108,7 @@ export default function Form(props) {
             </label>
             <Button onClick={handleSubmit} className="self-center my-4 shadow-none">Save contact</Button>
             <TextButton onClick={cancel} className="self-center">Cancel</TextButton>
+            {modal}
         </form>
     );
 }
