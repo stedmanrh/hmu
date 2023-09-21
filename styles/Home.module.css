@@ -4,8 +4,7 @@
     width: 128px;
     border-radius: 1rem;
     filter: brightness(0.95) opacity(0.8);
-    background: url("../assets/hmu-qr.png"),
-        rgba(255, 255, 255, 1);
+    background: url("../assets/hmu-qr.png"), rgba(255, 255, 255, 1);
     background-size: 90%;
     background-position: center center;
     background-repeat: no-repeat;
@@ -20,7 +19,7 @@
     position: absolute;
     top: 17px;
     left: 18px;
-    background: url("../assets/icon_x48.png");
+    background: url("/icons/icon_x48.png");
     background-size: 100%;
     background-repeat: no-repeat;
 }
