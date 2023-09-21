@@ -38,7 +38,8 @@
         {
           "name": "Share contact",
           "description": "Share your primary contact",
-          "url": "/preview"
+          "url": "/preview",
+          "icons": [{ "src": "/icons/maskable_icon_x192.png", "sizes": "192x192" }]
         }
     ]
 }
