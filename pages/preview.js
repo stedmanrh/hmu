@@ -54,7 +54,7 @@ export default function Preview() {
                     })
                 });
         } else home();
-    }, []);
+    }, [home]);
 
     return (
         <Page className="pt-24">

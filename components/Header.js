@@ -5,9 +5,9 @@ import Head from "next/head";
 export default function Header() {
     return (
         <Head>
-            <title>Tactful | Personal QR codes for whatever matters to you</title>
+            <title>Tactful</title>
             
-            <meta name="description" content="Share your contact info with a QR code" />
+            <meta name="description" content="Connect faster IRL with personal QR codes for what matters to you." />
             <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
             
             <link rel="icon" href="/favicon.ico" />
