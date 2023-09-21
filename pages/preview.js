@@ -4,7 +4,7 @@ import TextButton from "../components/TextButton.js";
 import styles from "../styles/Preview.module.css";
 
 import { useRouter } from 'next/router';
-import { useState, useEffect } from "react";
+import { useCallback, useEffect, useState } from "react";
 import secureLocalStorage from "react-secure-storage";
 import QRCode from "qrcode";
 
@@ -28,10 +28,10 @@ export default function Preview() {
         return vCard;
     }
 
-    const home = () => {
+    const home = useCallback(() => {
         // location vs. router.push to fire beforeinstallprompt event
         router.push("/");
-    }
+    }, []);
 
     const edit = () => {
         router.push("/create?editing=true");
