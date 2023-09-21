@@ -4,7 +4,7 @@
     width: 128px;
     border-radius: 1rem;
     filter: brightness(0.95) opacity(0.8);
-    background: url("../assets/hmu-qr.png"), rgba(255, 255, 255, 1);
+    background: url("/assets/hmu-qr.png"), rgba(255, 255, 255, 1);
     background-size: 90%;
     background-position: center center;
     background-repeat: no-repeat;
