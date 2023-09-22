@@ -7,7 +7,20 @@ export default function Header() {
 
             <meta name="description" content="Connect faster IRL with personal QR codes for what matters to you." />
             <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+
             <meta name="apple-mobile-web-app-capable" content="yes" />
+
+            <meta property="og:title" content="Tactful" />
+            <meta property="og:description" content="Connect faster IRL with personal QR codes for what matters to you." />
+            <meta property="og:type" content="website" />
+            <meta property="og:image" content="https://hmu.world/assets/og-image.png" />
+            <meta property="og:url" content="https://hmu.world" />
+
+            <meta name="twitter:card" content="summary_large" />
+            <meta name="twitter:creator" content="@stedmanhalliday" />
+            <meta name="twitter:title" content="Tactful" />
+            <meta name="twitter:description" content="Connect faster IRL with personal QR codes for what matters to you." />
+            <meta name="twitter:image" content="https://hmu.world/assets/og-image.png" />
 
             <link rel="icon" href="/favicon.ico" />
             <link rel="manifest" href="/manifest.json" />
