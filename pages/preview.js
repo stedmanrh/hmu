@@ -29,7 +29,25 @@ export default function Preview() {
             iconSrc: "/assets/instagram.svg",
             label: "Instagram",
             displayName: "",
-            url: ""
+            displayNamePrepend: "@",
+            url: "",
+            urlPrepend: "https://instagram.com/"
+        },
+        twitter: {
+            iconSrc: "/assets/twitter.svg",
+            label: "X (Twitter)",
+            displayName: "",
+            displayNamePrepend: "@",
+            url: "",
+            urlPrepend: "https://twitter.com/"
+        },
+        linkedin: {
+            iconSrc: "/assets/linkedin.svg",
+            label: "Instagram",
+            displayName: "",
+            displayNamePrepend: "",
+            url: "",
+            urlPrepend: "https://linkedin.com/in/"
         }
     });
 
@@ -71,7 +89,7 @@ export default function Preview() {
     }
 
     const editLinks = () => {
-        // router.push("/links");
+        router.push("/links");
     }
 
     useEffect(() => {
@@ -111,8 +129,7 @@ export default function Preview() {
                 style={editing ? { "opacity": 0 } : null} />
             {Object.entries(links).filter(([key, value]) => value.url != "").length < 1 ?
                 <TextButton className="z-10 mt-24 px-8 py-5 rounded-full bg-black/10
-                active:bg-black/[.15] opacity-75 transition-all duration-100
-                text-xl !border-none"
+                active:bg-black/[.15] opacity-75 transition-all duration-100 !border-none"
                     style={editing ? { "opacity": 0 } : null}
                     onClick={editLinks}>Add links</TextButton> : null}
             {editing ? <EditPane editContact={editContact} editLinks={null} /> : null}

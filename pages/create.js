@@ -57,7 +57,7 @@ export default function Create() {
                     Enter your contact&nbsp;info
                 </h1>
             </header>
-            <Form handleChange={handleChange}></Form>
+            <Form handleChange={handleChange} />
         </Page>
     );
 };
