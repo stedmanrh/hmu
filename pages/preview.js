@@ -28,10 +28,10 @@ export default function Preview() {
         return vCard;
     }
 
-    const home = () => {
+    const home = useCallback(()=> {
         // location vs. router.push to fire beforeinstallprompt event
         router.push("/");
-    }
+    });
 
     const edit = () => {
         router.push("/create?editing=true");
