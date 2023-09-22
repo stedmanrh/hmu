@@ -1,6 +1,7 @@
 import Page from "../components/Page.js";
 import Contact from "../components/Contact.js";
 import EditPane from "../components/EditPane.js";
+import SocialLink from "../components/SocialLink.js";
 import TextButton from "../components/TextButton.js";
 import styles from "../styles/Preview.module.css";
 
@@ -26,7 +27,6 @@ export default function Preview() {
 
     const [links, setLinks] = useState({
         instagram: {
-            iconSrc: "/assets/instagram.svg",
             label: "Instagram",
             displayName: "",
             displayNamePrepend: "@",
@@ -34,7 +34,6 @@ export default function Preview() {
             urlPrepend: "https://instagram.com/"
         },
         twitter: {
-            iconSrc: "/assets/twitter.svg",
             label: "X (Twitter)",
             displayName: "",
             displayNamePrepend: "@",
@@ -42,14 +41,15 @@ export default function Preview() {
             urlPrepend: "https://twitter.com/"
         },
         linkedin: {
-            iconSrc: "/assets/linkedin.svg",
-            label: "Instagram",
+            label: "LinkedIn",
             displayName: "",
-            displayNamePrepend: "",
+            displayNamePrepend: "@",
             url: "",
             urlPrepend: "https://linkedin.com/in/"
         }
     });
+
+    const [activeLink, setActiveLink] = useState("");
 
     const [editing, setEditing] = useState(false);
 
@@ -92,8 +92,35 @@ export default function Preview() {
         router.push("/links");
     }
 
+    const toggleActiveLink = (e) => {
+        const type = e.target.getAttribute("data-type");
+        const displayName = e.target.getAttribute("data-displayName");
+        const label = e.target.getAttribute("data-label");
+        const url = e.target.getAttribute("data-url");
+
+        if (activeLink == type) {
+            setActiveLink("");
+            displayContact()
+        } else {
+            setActiveLink(type);
+            QRCode.toDataURL(url,
+                {
+                    width: 168,
+                    errorCorrectionLevel: 'L',
+                }).then((dataUrl) => {
+                    setData((prevData) => ({
+                        ...prevData,
+                        src: dataUrl,
+                        displayName: displayName,
+                        label: label,
+                    }));
+                });
+        }
+    }
+
     useEffect(() => {
         const formValues = JSON.parse(secureLocalStorage.getItem("formValues"));
+        const linkValues = JSON.parse(secureLocalStorage.getItem("linkValues"));
         if (formValues) {
             const name = formValues.name;
             const vibe = JSON.parse(formValues.vibe);
@@ -114,7 +141,33 @@ export default function Preview() {
                     });
                 });
         } else home();
+        if (linkValues) {
+            setLinks(prevLinks => {
+                const updatedLinks = { ...prevLinks };
+                for (const key in linkValues) {
+                    if (linkValues[key]) {
+                        updatedLinks[key].displayName = links[key].displayNamePrepend + linkValues[key];
+                        updatedLinks[key].url = links[key].urlPrepend + linkValues[key];
+                    }
+                }
+                return updatedLinks;
+            });
+        }
     }, []);
+
+    const filteredLinks = Object.entries(links)
+        .filter(([key, value]) => value.url !== "")
+        .map(([key, value]) => (
+            <SocialLink key={key}
+                className={activeLink == key ?
+                    `transition-opacity duration-300 socialLink ${key}` :
+                    `opacity-50 transition-opacity duration-300 socialLink ${key}`}
+                type={key}
+                displayName={value.displayName}
+                label={value.label}
+                url={value.url}
+                onClick={toggleActiveLink} />
+        ));
 
     return (
         <Page className="pt-24">
@@ -127,12 +180,15 @@ export default function Preview() {
             </nav>
             <Contact src={data.src} displayName={data.displayName} vibe={data.vibe} label={data.label}
                 style={editing ? { "opacity": 0 } : null} />
-            {Object.entries(links).filter(([key, value]) => value.url != "").length < 1 ?
-                <TextButton className="z-10 mt-24 px-8 py-5 rounded-full bg-black/10
-                active:bg-black/[.15] opacity-75 transition-all duration-100 !border-none"
-                    style={editing ? { "opacity": 0 } : null}
-                    onClick={editLinks}>Add links</TextButton> : null}
-            {editing ? <EditPane editContact={editContact} editLinks={null} /> : null}
+            <div className="z-10 mt-16 flex flex-wrap justify-center max-w-20
+            opacity-75 transition-all duration-300"
+                style={editing ? { "opacity": 0 } : null}>
+                {Object.values(links).every(value => value.url === "") ?
+                    <TextButton className="mt-8 px-8 py-5 rounded-full bg-black/10
+                active:bg-black/[.15] !border-none"
+                        onClick={editLinks}>Add links</TextButton> : filteredLinks}
+            </div>
+            {editing ? <EditPane editContact={editContact} editLinks={editLinks} /> : null}
         </Page>
     );
 };

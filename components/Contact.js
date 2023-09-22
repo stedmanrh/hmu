@@ -55,7 +55,7 @@ export default function Contact({ displayName, label, vibe, src, style }) {
                 </div>
                 <div className="text-center">
                     <h1 className="text-3xl leading-tight max-w-sm text-slate-800">{displayName}</h1>
-                    <p className="mt-2 text-xl text-slate-600">Contact</p>
+                    <p className="mt-2 text-xl text-slate-600">{label}</p>
                 </div>
             </header>
             <div className="p-3 flex items-center justify-center mt-8 rounded-[24px]"

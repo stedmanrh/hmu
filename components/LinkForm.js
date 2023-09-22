@@ -1,14 +1,12 @@
 import Button from './Button.js';
 import Input from './Input.js';
-import Modal from './Modal.js';
 import TextButton from './TextButton.js';
-import vibes from "../utils/vibes.json";
 
 import { useRouter } from 'next/router';
 import { useState, useEffect } from 'react';
 import secureLocalStorage from "react-secure-storage";
 
-export default function LinkForm(props) {
+export default function LinkForm() {
     const router = useRouter();
 
     const [formfield, setFormfield] = useState({
