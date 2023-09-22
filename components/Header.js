@@ -7,6 +7,7 @@ export default function Header() {
             
             <meta name="description" content="Connect faster IRL with personal QR codes for what matters to you." />
             <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+            <meta name="apple-mobile-web-app-capable" content="yes" />
             
             <link rel="icon" href="/favicon.ico" />
             <link rel="manifest" href="/manifest.json" />
