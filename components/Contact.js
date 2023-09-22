@@ -2,7 +2,7 @@ import * as convert from 'color-convert';
 import Image from 'next/image';
 import { useState, useEffect } from "react";
 
-export default function Contact({ name, vibe, src, style }) {
+export default function Contact({ displayName, label, vibe, src, style }) {
     const [stops, setStops] = useState({
         start: "",
         startRGBA: "",
@@ -35,7 +35,7 @@ export default function Contact({ name, vibe, src, style }) {
         }
         const interval = setInterval(updateGradientAngle, 15);
         return () => clearInterval(interval);
-    }, [vibe, name, src]);
+    }, [vibe, displayName, label, src]);
 
     return (
         <div className="flex flex-col items-center justify-center z-0">
@@ -54,7 +54,7 @@ export default function Contact({ name, vibe, src, style }) {
                     }
                 </div>
                 <div className="text-center">
-                    <h1 className="text-3xl leading-tight max-w-sm text-slate-800">{name}</h1>
+                    <h1 className="text-3xl leading-tight max-w-sm text-slate-800">{displayName}</h1>
                     <p className="mt-2 text-xl text-slate-600">Contact</p>
                 </div>
             </header>
@@ -67,7 +67,7 @@ export default function Contact({ name, vibe, src, style }) {
                 bg-white">
                     {src &&
                         <Image src={src} width={168} height={168} priority={true}
-                            alt={`QR code for ${name}'s contact information`} />
+                            alt={`${label} QR code for ${displayName}`} />
                     }
                 </div>
             </div>

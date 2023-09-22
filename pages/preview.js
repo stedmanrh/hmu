@@ -12,10 +12,25 @@ import QRCode from "qrcode";
 export default function Preview() {
     const router = useRouter();
 
-    const [contact, setContact] = useState({
+    const [data, setData] = useState({
         src: "",
-        name: "",
+        displayName: "",
+        label: "",
         vibe: "",
+    });
+
+    const [contact, setContact] = useState({
+        name: "",
+        src: ""
+    });
+
+    const [links, setLinks] = useState({
+        instagram: {
+            iconSrc: "/assets/instagram.svg",
+            label: "Instagram",
+            displayName: "",
+            url: ""
+        }
     });
 
     const [editing, setEditing] = useState(false);
@@ -31,8 +46,19 @@ export default function Preview() {
         return vCard;
     }
 
+    // Show the edit pane
     const edit = () => {
         setEditing(!editing);
+    }
+
+    // Show default contact
+    const displayContact = () => {
+        setData((prevData) => ({
+            ...prevData,
+            displayName: contact.name,
+            src: contact.src,
+            label: "Contact"
+        }));
     }
 
     const home = () => {
@@ -58,11 +84,16 @@ export default function Preview() {
                     width: 168,
                     errorCorrectionLevel: 'L',
                 }).then((url) => {
-                    setContact({
+                    setData({
                         src: url,
-                        name: name,
+                        displayName: name,
+                        label: "Contact",
                         vibe: vibe,
-                    })
+                    });
+                    setContact({
+                        name: name,
+                        src: url
+                    });
                 });
         } else home();
     }, []);
@@ -76,8 +107,14 @@ export default function Preview() {
                     {editing ? "Cancel" : "Edit"}
                 </TextButton>
             </nav>
-            <Contact src={contact.src} name={contact.name} vibe={contact.vibe}
+            <Contact src={data.src} displayName={data.displayName} vibe={data.vibe} label={data.label}
                 style={editing ? { "opacity": 0 } : null} />
+            {Object.entries(links).filter(([key, value]) => value.url != "").length < 1 ?
+                <TextButton className="z-10 mt-24 px-8 py-5 rounded-full bg-black/10
+                active:bg-black/[.15] transition-all duration-100
+                text-xl font-medium !border-none"
+                    style={editing ? { "opacity": 0 } : null}
+                    onClick={editLinks}>Add links</TextButton> : null}
             {editing ? <EditPane editContact={editContact} editLinks={null} /> : null}
         </Page>
     );
