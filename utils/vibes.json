@@ -8,6 +8,30 @@
         ]
     },
     {
+        "label": "Tuff",
+        "emoji": "⚓️",
+        "group": [
+            "#C9D4E1",
+            "#20293B"
+        ]
+    },
+    {
+        "label": "Ded",
+        "emoji": "💀",
+        "group": [
+            "#C9D4E1",
+            "#20293B"
+        ]
+    },
+    {
+        "label": "Hammered",
+        "emoji": "🛠️",
+        "group": [
+            "#C9D4E1",
+            "#20293B"
+        ]
+    },
+    {
         "label": "Linked",
         "emoji": "🔗",
         "group": [
@@ -72,6 +96,14 @@
         ]
     },
     {
+        "label": "Cocky",
+        "emoji": "🐓",
+        "group": [
+            "#f09819",
+            "#ff5858"
+        ]
+    },
+    {
         "label": "Sunkissed",
         "emoji": "🌻",
         "group": [
@@ -96,7 +128,7 @@
         ]
     },
     {
-        "label": "Cheersful",
+        "label": "Cheerful",
         "emoji": "🍻",
         "group": [
             "#f9d423",
@@ -138,6 +170,14 @@
     {
         "label": "Sour",
         "emoji": "🥝",
+        "group": [
+            "#e0f040",
+            "#30a000"
+        ]
+    },
+    {
+        "label": "Radical",
+        "emoji": "🛹",
         "group": [
             "#e0f040",
             "#30a000"
@@ -202,6 +242,22 @@
     {
         "label": "Unique",
         "emoji": "🦄",
+        "group": [
+            "#21d4fd",
+            "#b721ff"
+        ]
+    },
+    {
+        "label": "Rollin'",
+        "emoji": "🛼",
+        "group": [
+            "#4afcff",
+            "#ff88aa"
+        ]
+    },
+    {
+        "label": "Groovy",
+        "emoji": "🪩",
         "group": [
             "#21d4fd",
             "#b721ff"
@@ -282,6 +338,22 @@
     {
         "label": "Drippy",
         "emoji": "💧",
+        "group": [
+            "#04befe",
+            "#4481eb"
+        ]
+    },
+    {
+        "label": "Fly",
+        "emoji": "🦋",
+        "group": [
+            "#04befe",
+            "#4481eb"
+        ]
+    },
+    {
+        "label": "Squidrific",
+        "emoji": "🦑",
         "group": [
             "#04befe",
             "#4481eb"
