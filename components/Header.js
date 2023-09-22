@@ -22,9 +22,6 @@ export default function Header() {
 
             <meta name="twitter:card" content="summary_large_image" />
             <meta name="twitter:creator" content="@stedmanhalliday" />
-            <meta name="twitter:title" content="Tactful" />
-            <meta name="twitter:description" content="Connect faster IRL with personal QR codes for what matters to you." />
-            <meta name="twitter:image" content="https://hmu.world/assets/og-image.png" />
 
             <link rel="icon" href="/favicon.ico" />
             <link rel="manifest" href="/manifest.json" />
