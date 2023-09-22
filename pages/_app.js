@@ -1,13 +1,12 @@
 import '../styles/reset.css';
 import '../dist/main.css';
-
-import { Analytics } from '@vercel/analytics/react';
+import Analytics from '../components/Analytics';
 
 function MyApp({ Component, pageProps }) {
   return (
     <div>
-      <Component {...pageProps} />
       <Analytics />
+      <Component {...pageProps} />
     </div>
   )
 }
