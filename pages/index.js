@@ -39,6 +39,11 @@ export default function Home() {
             setInstallPrompt(e);
         });
 
+        window.addEventListener('appinstalled', () => {
+            // Install analytics
+            gtag("event", "android_install");
+          });
+
         // Standalone mode media query
         if (window.matchMedia("(display-mode: standalone)").matches) {
             setIsStandalone(true);
@@ -69,10 +74,18 @@ export default function Home() {
         installPrompt.prompt();
         // Wait for the user to respond to the prompt ("accepted" | "dismissed")
         const { outcome } = await installPrompt.userChoice;
-        // TODO: log promo to prompt install analytics
-        console.log(`User ${outcome} install prompt`);
+        // Prompt install analytics
+        gtag("event", "android_install_prompt", {
+            "outcome": outcome
+        });
         // Discard used prompt
         setInstallPrompt(null);
+    }
+
+    const pressInstallButton = () => {
+        // Log install button press
+        gtag("event", "install_button");
+        isPromptable ? showPrompt() : toggleInstallModal();
     }
 
     const toggleInstallModal = () => { setInstallModal(!installModal) }
@@ -90,7 +103,7 @@ export default function Home() {
             {isStandalone ?
                 <Contacts />
                 : <div className="mt-16 flex flex-col items-center">
-                    <Button className="mb-4" onClick={isPromptable ? showPrompt : toggleInstallModal}>Install app</Button>
+                    <Button className="mb-4" onClick={pressInstallButton}>Install app</Button>
                     <TextButton onClick={togglePrivacyModal}>Privacy</TextButton>
                 </div>
             }
@@ -98,7 +111,7 @@ export default function Home() {
             {privacyModal ?
                 <Modal title="Privacy" dismiss={togglePrivacyModal}>
                     <div className="text-base text-slate-600 space-y-3">
-                        <p>{`Tactful doesn't keep your personal information. Any data that the app uses is encrypted and stored locally on your mobile device.`}</p>
+                        <p>{`Tactful doesn't keep your personal information. Basic metrics are tracked with Google Analytics. Any personal data that the app uses is encrypted and stored locally on your mobile device.`}</p>
                         <p>{`If you'd like to delete your data:`}</p>
                         <ol className="ml-5 list-decimal space-y-3">
                             <li>Open the site settings for <span className="text-purple-600">hmu.world</span> on your mobile device.</li>

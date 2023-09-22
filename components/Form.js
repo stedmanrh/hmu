@@ -62,7 +62,12 @@ export default function Form(props) {
         const formValues = JSON.stringify(formfield);
         secureLocalStorage.setItem("formValues", formValues);
         router.push("/preview");
-        // TODO: analytics event
+        // Log form submission
+        gtag("event", "form_submit", {
+            "form_id": "contactForm",
+            "form_name": "Contact form",
+            "destination": "/create"
+        });
     }
 
     const dismiss = () => {
@@ -89,7 +94,7 @@ export default function Form(props) {
     }, []);
 
     return (
-        <form className="w-full max-w-md flex flex-col px-2"
+        <form id="contactForm" className="w-full max-w-md flex flex-col px-2"
             onSubmit={handleSubmit}>
             <Input name="name" label="Name" type="text" required={true} value={formfield.name} placeholder="Soulja Boy" onChange={handleChange} />
             <Input name="phone" label="Phone" type="tel" value={formfield.phone} placeholder="+16789998212" onChange={handleChange} />

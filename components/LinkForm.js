@@ -29,7 +29,13 @@ export default function LinkForm() {
         const linkValues = JSON.stringify(formfield);
         secureLocalStorage.setItem("linkValues", linkValues);
         router.push("/preview");
-        // TODO: analytics event
+
+        // Log form submission
+        gtag("event", "form_submit", {
+            "form_id": "linkForm",
+            "form_name": "Link form",
+            "destination": "/links"
+        });
     }
 
     const cancel = () => {
@@ -49,7 +55,7 @@ export default function LinkForm() {
     }, []);
 
     return (
-        <form className="w-full max-w-md flex flex-col px-2"
+        <form id="linkForm" name="Link form" className="w-full max-w-md flex flex-col px-2"
             onSubmit={handleSubmit}>
             <Input name="instagram" label="Instagram username" type="text" value={formfield.instagram} placeholder="garyvee" onChange={handleChange} />
             <Input name="twitter" label="X (Twitter) username" type="text" value={formfield.twitter} placeholder="garyvee" onChange={handleChange} />
