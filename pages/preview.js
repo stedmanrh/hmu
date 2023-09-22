@@ -70,7 +70,8 @@ export default function Preview() {
     }
 
     // Show default contact
-    const displayContact = () => {
+    const showContact = () => {
+        setActiveLink("");
         setData((prevData) => ({
             ...prevData,
             displayName: contact.name,
@@ -100,7 +101,7 @@ export default function Preview() {
 
         if (activeLink == type) {
             setActiveLink("");
-            displayContact()
+            showContact()
         } else {
             setActiveLink(type);
             QRCode.toDataURL(url,
@@ -179,7 +180,8 @@ export default function Preview() {
                 </TextButton>
             </nav>
             <Contact src={data.src} displayName={data.displayName} vibe={data.vibe} label={data.label}
-                style={editing ? { "opacity": 0 } : null} />
+                style={editing ? { "opacity": 0 } : null}
+                onClick={showContact} />
             <div className="z-10 mt-16 flex flex-wrap justify-center max-w-20
             opacity-75 transition-all duration-300"
                 style={editing ? { "opacity": 0 } : null}>
