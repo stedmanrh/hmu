@@ -42,8 +42,9 @@ export default function Contact({ displayName, label, vibe, src, style }) {
             <div className="-z-10 fixed top-0 right-0 bottom-0 left-0 opacity-20"
                 style={{ "background": `linear-gradient(-${angle}deg, ${stops.start}, ${stops.end})` }}>
             </div>
-            <div className="transition-opacity duration-300" style={style}>
-            <header className="flex flex-col items-center space-y-6">
+            <header className="flex flex-col items-center space-y-6
+            transition-opacity duration-300"
+                style={style}>
                 <div className="w-20 h-20 rounded-full
             flex justify-center items-center shrink-0
             bg-white shadow-md
@@ -58,8 +59,10 @@ export default function Contact({ displayName, label, vibe, src, style }) {
                     <p className="mt-2 text-xl text-slate-600">{label}</p>
                 </div>
             </header>
-            <div className="p-3 flex items-center justify-center mt-8 rounded-[24px]"
+            <div className="p-3 flex items-center justify-center mt-8 rounded-[24px]
+            transition-opacity duration-300"
                 style={{
+                    ...style,
                     "background": `linear-gradient(${angle}deg, ${stops.start}, ${stops.end})`,
                     "boxShadow": `0 -4px 16px 0 ${stops.startRGBA}, 0 4px 16px 0 ${stops.endRGBA}`
                 }}>
@@ -72,6 +75,5 @@ export default function Contact({ displayName, label, vibe, src, style }) {
                 </div>
             </div>
         </div>
-        </div >
     )
 }
