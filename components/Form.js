@@ -92,7 +92,7 @@ export default function Form(props) {
         <form className="w-full max-w-md flex flex-col px-2"
             onSubmit={handleSubmit}>
             <Input name="name" label="Name" type="text" required={true} value={formfield.name} placeholder="Soulja Boy" onChange={handleChange} />
-            <Input name="phone" label="Phone" type="tel" value={formfield.phone} placeholder="6789998212" onChange={handleChange} />
+            <Input name="phone" label="Phone" type="tel" value={formfield.phone} placeholder="+16789998212" onChange={handleChange} />
             <Input name="email" label="Email" type="email" value={formfield.email} placeholder="swag@hmu.world" onChange={handleChange} />
             <Input name="url" label="URL" type="url" value={formfield.url} placeholder="https://hmu.world" onChange={handleChange} />
             <label className="mb-4">

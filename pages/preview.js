@@ -1,5 +1,6 @@
 import Page from "../components/Page.js";
 import Contact from "../components/Contact.js";
+import EditPane from "../components/EditPane.js";
 import TextButton from "../components/TextButton.js";
 import styles from "../styles/Preview.module.css";
 
@@ -43,6 +44,10 @@ export default function Preview() {
         router.push("/create?editing=true");
     }
 
+    const editLinks = () => {
+        // router.push("/links");
+    }
+
     useEffect(() => {
         const formValues = JSON.parse(secureLocalStorage.getItem("formValues"));
         if (formValues) {
@@ -68,10 +73,12 @@ export default function Preview() {
                 <TextButton className={styles.home} onClick={home}>Home</TextButton>
                 <TextButton className={editing ? `${styles.edit} ${styles.editing}` : styles.edit}
                     onClick={edit}>
-                    {editing ? "Save" : "Edit"}
+                    {editing ? "Cancel" : "Edit"}
                 </TextButton>
             </nav>
-            <Contact src={contact.src} name={contact.name} vibe={contact.vibe} />
+            <Contact src={contact.src} name={contact.name} vibe={contact.vibe}
+                style={editing ? { "opacity": 0 } : null} />
+            {editing ? <EditPane editContact={editContact} editLinks={null} /> : null}
         </Page>
     );
 };

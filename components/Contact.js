@@ -2,7 +2,7 @@ import * as convert from 'color-convert';
 import Image from 'next/image';
 import { useState, useEffect } from "react";
 
-export default function Contact({ name, vibe, src }) {
+export default function Contact({ name, vibe, src, style }) {
     const [stops, setStops] = useState({
         start: "",
         startRGBA: "",
@@ -42,6 +42,7 @@ export default function Contact({ name, vibe, src }) {
             <div className="-z-10 fixed top-0 right-0 bottom-0 left-0 opacity-20"
                 style={{ "background": `linear-gradient(-${angle}deg, ${stops.start}, ${stops.end})` }}>
             </div>
+            <div className="transition-opacity duration-300" style={style}>
             <header className="flex flex-col items-center space-y-6">
                 <div className="w-20 h-20 rounded-full
             flex justify-center items-center shrink-0
@@ -66,10 +67,11 @@ export default function Contact({ name, vibe, src }) {
                 bg-white">
                     {src &&
                         <Image src={src} width={168} height={168} priority={true}
-                        alt={`QR code for ${name}'s contact information`} />
+                            alt={`QR code for ${name}'s contact information`} />
                     }
                 </div>
             </div>
         </div>
+        </div >
     )
 }
