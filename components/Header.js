@@ -13,8 +13,12 @@ export default function Header() {
             <meta property="og:title" content="Tactful" />
             <meta property="og:description" content="Connect faster IRL with personal QR codes for what matters to you." />
             <meta property="og:type" content="website" />
+            <meta property="og:site_name" content="Tactful" />
             <meta property="og:image" content="https://hmu.world/assets/og-image.png" />
             <meta property="og:url" content="https://hmu.world" />
+            <meta property="og:image:width" content="1136" />
+            <meta property="og:image:height" content="640" />
+            <meta property="og:image:type" content="image/png" />
 
             <meta name="twitter:card" content="summary_large" />
             <meta name="twitter:creator" content="@stedmanhalliday" />
