@@ -11,6 +11,7 @@
     "watch": "npx tailwindcss -i ./styles/main.css -o ./dist/main.css --watch"
   },
   "dependencies": {
+    "@vercel/analytics": "^1.0.2",
     "canvas-txt": "^3.0.0",
     "color-convert": "^2.0.1",
     "image-downloader": "^4.3.0",
