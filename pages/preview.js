@@ -4,7 +4,7 @@ import TextButton from "../components/TextButton.js";
 import styles from "../styles/Preview.module.css";
 
 import { useRouter } from 'next/router';
-import { useCallback, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import secureLocalStorage from "react-secure-storage";
 import QRCode from "qrcode";
 
@@ -17,6 +17,8 @@ export default function Preview() {
         vibe: "",
     });
 
+    const [editing, setEditing] = useState(false);
+
     const vCardValues = (formValues) => {
         let vCard =
             "BEGIN:VCARD\nVERSION:4.0" +
@@ -28,12 +30,16 @@ export default function Preview() {
         return vCard;
     }
 
+    const edit = () => {
+        setEditing(!editing);
+    }
+
     const home = () => {
         // location vs. router.push to fire beforeinstallprompt event
         router.push("/");
     }
 
-    const edit = () => {
+    const editContact = () => {
         router.push("/create?editing=true");
     }
 
@@ -60,7 +66,10 @@ export default function Preview() {
         <Page className="pt-24">
             <nav className="fixed z-10 top-0 w-full p-6 flex justify-between">
                 <TextButton className={styles.home} onClick={home}>Home</TextButton>
-                <TextButton className={styles.edit} onClick={edit}>Edit</TextButton>
+                <TextButton className={editing ? `${styles.edit} ${styles.editing}` : styles.edit}
+                    onClick={edit}>
+                    {editing ? "Save" : "Edit"}
+                </TextButton>
             </nav>
             <Contact src={contact.src} name={contact.name} vibe={contact.vibe} />
         </Page>
