@@ -111,8 +111,8 @@ export default function Preview() {
                 style={editing ? { "opacity": 0 } : null} />
             {Object.entries(links).filter(([key, value]) => value.url != "").length < 1 ?
                 <TextButton className="z-10 mt-24 px-8 py-5 rounded-full bg-black/10
-                active:bg-black/[.15] transition-all duration-100
-                text-xl font-medium !border-none"
+                active:bg-black/[.15] opacity-75 transition-all duration-100
+                text-xl !border-none"
                     style={editing ? { "opacity": 0 } : null}
                     onClick={editLinks}>Add links</TextButton> : null}
             {editing ? <EditPane editContact={editContact} editLinks={null} /> : null}

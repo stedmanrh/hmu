@@ -22,13 +22,13 @@ export default function EditPane(props) {
             <div className={`relative z-10 grow flex items-center justify-center animate-pulse editContact`}>
                 <TextButton className="px-8 py-5 rounded-full bg-black/10
                 active:bg-black/[.15] transition-all duration-100
-                text-xl font-medium !border-none"
+                text-xl !border-none"
                     onClick={props.editContact}>Edit contact</TextButton>
             </div>
             <div className={`relative z-10 grow flex items-center justify-center animate-pulse editLinks`}>
                 <TextButton className="px-8 py-5 rounded-full bg-black/10
                 active:bg-black/[.15] transition-all duration-100
-                text-xl font-medium !border-none"
+                text-xl !border-none"
                     onClick={props.editLinks}>Edit links</TextButton>
             </div>
         </div>
