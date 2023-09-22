@@ -20,7 +20,7 @@ export default function Header() {
             <meta property="og:image:height" content="640" />
             <meta property="og:image:type" content="image/png" />
 
-            <meta name="twitter:card" content="summary_large" />
+            <meta name="twitter:card" content="summary_large_image" />
             <meta name="twitter:creator" content="@stedmanhalliday" />
             <meta name="twitter:title" content="Tactful" />
             <meta name="twitter:description" content="Connect faster IRL with personal QR codes for what matters to you." />
