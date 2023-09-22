@@ -8,6 +8,14 @@
         ]
     },
     {
+        "label": "Linked",
+        "emoji": "🔗",
+        "group": [
+            "#C9D4E1",
+            "#20293B"
+        ]
+    },
+    {
         "label": "Magical",
         "emoji": "🔮",
         "group": [
@@ -101,6 +109,14 @@
         "group": [
             "#f09819",
             "#ff5858"
+        ]
+    },
+    {
+        "label": "Global",
+        "emoji": "🌍",
+        "group": [
+            "#b3ffab",
+            "#21d4fd"
         ]
     },
     {
