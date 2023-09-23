@@ -46,6 +46,13 @@ export default function Preview() {
             displayNamePrepend: "@",
             url: "",
             urlPrepend: "https://linkedin.com/in/"
+        },
+        venmo: {
+            label: "Venmo",
+            displayName: "",
+            displayNamePrepend: "@",
+            url: "",
+            urlPrepend: "https://venmo.com/"
         }
     });
 
