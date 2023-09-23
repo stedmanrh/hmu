@@ -60,7 +60,7 @@ export default function LinkForm() {
             <Input name="instagram" label="Instagram username" type="text" value={formfield.instagram} placeholder="garyvee" onChange={handleChange} />
             <Input name="twitter" label="X (Twitter) username" type="text" value={formfield.twitter} placeholder="garyvee" onChange={handleChange} />
             <Input name="linkedin" label="LinkedIn username" type="text" value={formfield.linkedin} placeholder="garyvaynerchuk" onChange={handleChange} />
-            <Button type={submit} className="self-center my-4 shadow-none">Save links</Button>
+            <Button type="submit" className="self-center my-4 shadow-none">Save links</Button>
             <TextButton onClick={cancel} className="self-center">Cancel</TextButton>
         </form>
     );
