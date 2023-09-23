@@ -60,6 +60,7 @@ export default function Preview() {
             "\nTEL:" + formValues.phone +
             "\nEMAIL:" + formValues.email +
             "\nURL:" + formValues.url +
+            "\nNOTE:hmu.world" +
             "\nEND:VCARD";
         return vCard;
     }
