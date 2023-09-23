@@ -55,19 +55,27 @@ export default function Form(props) {
             return;
         }
 
-        // Randomize vibe if not set
+        // Anon vibe if not set
         if (formfield.vibe == "") {
             formfield.vibe = JSON.stringify(vibes.filter(vibe => vibe.label === "Anon")[0]);
         }
         const formValues = JSON.stringify(formfield);
         secureLocalStorage.setItem("formValues", formValues);
-        router.push("/preview");
+
+        // Log first time code creation
+        if (!secureLocalStorage.getItem("converted")) {
+            secureLocalStorage.setItem("converted", true);
+            gtag("event", "first_form_submit");
+        }
+
         // Log form submission
         gtag("event", "form_submit", {
             "form_id": "contactForm",
             "form_name": "Contact form",
             "destination": "/create"
         });
+
+        router.push("/preview");
     }
 
     const dismiss = () => {
