@@ -162,8 +162,8 @@ export default function Preview() {
         .map(([key, value]) => (
             <SocialLink key={key}
                 className={activeLink == key ?
-                    `transition-opacity duration-300 socialLink ${key}` :
-                    `opacity-30 transition-opacity duration-300 socialLink ${key}`}
+                    `transition-opacity duration-100 socialLink ${key}` :
+                    `opacity-30 transition-opacity duration-100 socialLink ${key}`}
                 type={key}
                 displayName={value.displayName}
                 label={value.label}
