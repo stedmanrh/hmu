@@ -119,7 +119,7 @@ export default function Form(props) {
                     ))}
                 </select>
             </label>
-            <Button onClick={handleSubmit} className="self-center my-4 shadow-none">Save contact</Button>
+            <Button type={submit} className="self-center my-4 shadow-none">Save contact</Button>
             <TextButton onClick={cancel} className="self-center">Cancel</TextButton>
             {modal}
         </form>
