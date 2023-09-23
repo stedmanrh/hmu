@@ -163,7 +163,7 @@ export default function Preview() {
             <SocialLink key={key}
                 className={activeLink == key ?
                     `transition-opacity duration-300 socialLink ${key}` :
-                    `opacity-50 transition-opacity duration-300 socialLink ${key}`}
+                    `opacity-30 transition-opacity duration-300 socialLink ${key}`}
                 type={key}
                 displayName={value.displayName}
                 label={value.label}
@@ -183,7 +183,7 @@ export default function Preview() {
             <Contact src={data.src} displayName={data.displayName} vibe={data.vibe} label={data.label}
                 style={editing ? { "opacity": 0 } : null}
                 onClick={showContact} />
-            <div className="z-10 mt-16 flex flex-wrap justify-center max-w-20
+            <div className="z-10 mt-12 flex flex-wrap justify-center max-w-20
             opacity-75 transition-all duration-300"
                 style={editing ? { "opacity": 0 } : null}>
                 {Object.values(links).every(value => value.url === "") ?
@@ -192,6 +192,7 @@ export default function Preview() {
                         onClick={editLinks}>Add links</TextButton> : filteredLinks}
             </div>
             {editing ? <EditPane editContact={editContact} editLinks={editLinks} /> : null}
+            <p className="absolute bottom-6 text-lg tracking-wide text-slate-600/50">hmu.world</p>
         </Page>
     );
 };
