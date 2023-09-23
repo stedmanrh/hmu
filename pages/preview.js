@@ -126,7 +126,7 @@ export default function Preview() {
         const matchResult = inputString.match(/[^/]+$/);
         if (matchResult) {
             const textAfterLastSlash = matchResult[0];
-            return(textAfterLastSlash);
+            return (textAfterLastSlash);
         } else {
             // No match found, output the input string as is
             return inputString;
@@ -170,19 +170,28 @@ export default function Preview() {
         }
     }, []);
 
-    const filteredLinks = Object.entries(links)
-        .filter(([key, value]) => value.url !== "")
-        .map(([key, value]) => (
-            <SocialLink key={key}
-                className={activeLink == key ?
-                    `transition-opacity duration-100 socialLink ${key}` :
-                    `opacity-30 transition-opacity duration-100 socialLink ${key}`}
-                type={key}
-                displayName={value.displayName}
-                label={value.label}
-                url={value.url}
-                onClick={toggleActiveLink} />
-        ));
+    const filteredLinks =
+        <div className="flex flex-wrap justify-center">
+            <SocialLink
+                className={!activeLink ?
+                    "transition-opacity duration-100 socialLink contactLink"
+                    : "opacity-30 transition-opacity duration-100 socialLink contactLink"}
+                onClick={showContact}
+            />
+            {Object.entries(links)
+                .filter(([key, value]) => value.url !== "")
+                .map(([key, value]) => (
+                    <SocialLink key={key}
+                        className={activeLink == key ?
+                            `transition-opacity duration-100 socialLink ${key}`
+                            : `opacity-30 transition-opacity duration-100 socialLink ${key}`}
+                        type={key}
+                        displayName={value.displayName}
+                        label={value.label}
+                        url={value.url}
+                        onClick={toggleActiveLink} />
+                ))}
+        </div>;
 
     return (
         <Page className="pt-24">
@@ -196,7 +205,7 @@ export default function Preview() {
             <Contact src={data.src} displayName={data.displayName} vibe={data.vibe} label={data.label}
                 style={editing ? { "opacity": 0 } : null}
                 onClick={showContact} />
-            <div className="z-10 mt-12 flex flex-wrap justify-center max-w-20
+            <div className="z-10 mt-12 flex justify-center max-w-20
             opacity-75 transition-all duration-300"
                 style={editing ? { "opacity": 0 } : null}>
                 {Object.values(links).every(value => value.url === "") ?
