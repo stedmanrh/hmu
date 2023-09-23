@@ -53,6 +53,11 @@ export default function Preview() {
             displayNamePrepend: "@",
             url: "",
             urlPrepend: "https://venmo.com/"
+        },
+        custom: {
+            label: "Link",
+            displayName: "",
+            url:""
         }
     });
 
@@ -140,6 +145,20 @@ export default function Preview() {
         }
     }
 
+    // get domain from URL
+    function processURL(url) {
+        // Use a regex pattern to match the domain
+        const domainRegex = /^(?:https?:\/\/)?(?:[^@\n]+@)?(?:www\.)?([^:/\n?]+)(?:[^/\n]*)(?:\/.*)?$/i;
+        const matches = url.match(domainRegex);
+
+        if (matches && matches.length >= 2) {
+            // The domain is captured in the second group (index 1) of the matches array
+            return matches[1];
+        } else {
+            return null;
+        }
+    }
+
     useEffect(() => {
         const formValues = JSON.parse(secureLocalStorage.getItem("formValues"));
         const linkValues = JSON.parse(secureLocalStorage.getItem("linkValues"));
@@ -167,7 +186,11 @@ export default function Preview() {
             setLinks(prevLinks => {
                 const updatedLinks = { ...prevLinks };
                 for (const key in linkValues) {
-                    if (linkValues[key]) {
+                    if (key == "custom") {
+                        updatedLinks[key].displayName = processURL(linkValues[key]);
+                        updatedLinks[key].url = linkValues[key];
+                    }
+                    else if (linkValues[key]) {
                         updatedLinks[key].displayName = links[key].displayNamePrepend + processDisplayName(linkValues[key]);
                         updatedLinks[key].url = links[key].urlPrepend + linkValues[key];
                     }

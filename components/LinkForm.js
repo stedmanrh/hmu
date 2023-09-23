@@ -13,7 +13,8 @@ export default function LinkForm() {
         instagram: "",
         twitter: "",
         linkedin: "",
-        venmo: ""
+        venmo: "",
+        custom: ""
     });
 
     const handleChange = (event) => {
@@ -51,7 +52,8 @@ export default function LinkForm() {
                 instagram: linkValues.instagram,
                 twitter: linkValues.twitter,
                 linkedin: linkValues.linkedin,
-                venmo: linkValues.venmo
+                venmo: linkValues.venmo,
+                custom: linkValues.custom
             }));
         }
     }, []);
@@ -59,10 +61,11 @@ export default function LinkForm() {
     return (
         <form id="linkForm" name="Link form" className="w-full max-w-md flex flex-col px-2"
             onSubmit={handleSubmit}>
-            <Input name="instagram" label="Instagram" type="text" value={formfield.instagram} placeholder="garyvee" onChange={handleChange} />
-            <Input name="twitter" label="X (Twitter)" type="text" value={formfield.twitter} placeholder="garyvee" onChange={handleChange} />
-            <Input name="linkedin" label="LinkedIn" type="text" value={formfield.linkedin} placeholder="garyvaynerchuk" onChange={handleChange} />
-            <Input name="venmo" label="Venmo" type="text" value={formfield.venmo} placeholder="garyvaynerchuk" onChange={handleChange} />
+            <Input name="instagram" label="Instagram" type="text" value={formfield.instagram} placeholder="snoopdogg" onChange={handleChange} />
+            <Input name="twitter" label="X (Twitter)" type="text" value={formfield.twitter} placeholder="snoopdogg" onChange={handleChange} />
+            <Input name="linkedin" label="LinkedIn" type="text" value={formfield.linkedin} placeholder="snoopdogg" onChange={handleChange} />
+            <Input name="venmo" label="Venmo" type="text" value={formfield.venmo} placeholder="snoopdogg" onChange={handleChange} />
+            <Input name="custom" label="Link" type="url" value={formfield.custom} placeholder="https://hmu.world" onChange={handleChange} />
             <Button type="submit" className="self-center my-4 shadow-none">Save links</Button>
             <TextButton onClick={cancel} className="self-center">Cancel</TextButton>
         </form>
