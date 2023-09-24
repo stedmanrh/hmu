@@ -234,7 +234,7 @@ export default function Preview() {
             </nav>
             <Contact src={data.src} displayName={data.displayName} vibe={data.vibe} label={data.label}
                 style={editing ? { "opacity": 0 } : null}
-                onClick={showContact} />
+                activeLink={activeLink} />
             <div className="z-10 mt-12 flex justify-center max-w-20
             opacity-75 transition-all duration-300"
                 style={editing ? { "opacity": 0 } : null}>
