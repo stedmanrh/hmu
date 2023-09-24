@@ -135,7 +135,7 @@ export default function Preview() {
     // get usernames from links
     const processDisplayName = (inputString) => {
         // Using match method
-        const matchResult = inputString.match(/[^/]+$/);
+        const matchResult = inputString.match(/\/([^/?]+)(?:\?.*)?$/);
         if (matchResult) {
             const textAfterLastSlash = matchResult[0];
             return (textAfterLastSlash);

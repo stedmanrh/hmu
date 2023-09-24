@@ -65,7 +65,7 @@ export default function LinkForm() {
             <Input name="twitter" label="X (Twitter)" type="text" value={formfield.twitter} placeholder="snoopdogg" onChange={handleChange} />
             <Input name="linkedin" label="LinkedIn" type="text" value={formfield.linkedin} placeholder="snoopdogg" onChange={handleChange} />
             <Input name="venmo" label="Venmo" type="text" value={formfield.venmo} placeholder="snoopdogg" onChange={handleChange} />
-            <Input name="custom" label="Link" type="url" value={formfield.custom} placeholder="https://hmu.world" onChange={handleChange} />
+            <Input name="custom" label="Link" type="text" value={formfield.custom} placeholder="https://hmu.world" onChange={handleChange} />
             <Button type="submit" className="self-center my-4 shadow-none">Save links</Button>
             <TextButton onClick={cancel} className="self-center">Cancel</TextButton>
         </form>
