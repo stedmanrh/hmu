@@ -16,6 +16,7 @@ export default function Home() {
     const [installPrompt, setInstallPrompt] = useState(null);
     const [installModal, setInstallModal] = useState(false);
     const [privacyModal, setPrivacyModal] = useState(false);
+    const [feedbackModal, setFeedbackModal] = useState(false);
 
     // Create reference to store the DOM element containing the animation
     const el = useRef("#shuffle");
@@ -42,7 +43,7 @@ export default function Home() {
         window.addEventListener('appinstalled', () => {
             // Install analytics
             gtag("event", "android_install");
-          });
+        });
 
         // Standalone mode media query
         if (window.matchMedia("(display-mode: standalone)").matches) {
@@ -90,6 +91,7 @@ export default function Home() {
 
     const toggleInstallModal = () => { setInstallModal(!installModal) }
     const togglePrivacyModal = () => { setPrivacyModal(!privacyModal) }
+    const toggleFeedbackModal = () => { setFeedbackModal(!feedbackModal) }
 
     return (
         <Page className="justify-center bg-slate-100">
@@ -117,6 +119,24 @@ export default function Home() {
                             <li>Open the site settings for <span className="text-purple-600">hmu.world</span> on your mobile device.</li>
                             <li>Delete the site data.</li>
                             <li>Quit and reopen the app.</li>
+                        </ol>
+                    </div>
+                </Modal>
+                : null}
+            <a className="fixed w-6 h-6 bottom-6 right-6 flex items-center justify-center rounded-full
+            bg-purple-200 text-purple-400 cursor-pointer"
+                onClick={toggleFeedbackModal}>?</a>
+            {feedbackModal ?
+                <Modal title="Feedback" dismiss={toggleFeedbackModal}>
+                    <div className="text-base text-slate-600 space-y-3">
+                        <p>Questions, comments, or bug reports?</p>
+                        <ol>
+                            <li>Email me at <a href="mailto:stedmanrh@gmail.com" target="_blank" 
+                            className="text-purple-600 transition-all duration-150
+                            hover:text-purple-400 focus:text-purple-400 active:text-purple-400">stedman.rh@gmail.com</a></li>
+                            <li>DM me on Twitter <a href="https://x.com/stedmanhalliday" target="_blank" 
+                            className="text-purple-600 transition-all duration-150
+                            hover:text-purple-400 focus:text-purple-400 active:text-purple-400">@stedmanhalliday</a></li>
                         </ol>
                     </div>
                 </Modal>
