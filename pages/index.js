@@ -24,7 +24,7 @@ export default function Home() {
     useEffect(() => {
         // Initialize headline shuffle
         const typed = new Typed(el.current, {
-            strings: ["instantly.", "flexibly.", "Tactfully."],
+            strings: ["instantly.", "flexibly.", "tactfully."],
             startDelay: 5000,
             backDelay: 5000,
             typeSpeed: 20,
@@ -98,7 +98,7 @@ export default function Home() {
             <div className={styles.siteCode}></div>
             <header className="text-center text-slate-600">
                 <p className="mt-8 mb-6 text-4xl leading-tight">Share your contact&nbsp;info
-                    <span id="shuffle" className="block h-10 text-purple-600 textGlow">Tactfully.</span>
+                    <span id="shuffle" className="block h-10 text-purple-600 textGlow">tactfully.</span>
                 </p>
                 <p className="text-xl max-w-md leading-normal">Connect faster IRL with personal QR codes for what matters to you.</p>
             </header>
@@ -109,6 +109,9 @@ export default function Home() {
                     <TextButton onClick={togglePrivacyModal}>Privacy</TextButton>
                 </div>
             }
+            <a className="fixed w-6 h-6 bottom-6 right-6 flex items-center justify-center rounded-full
+            bg-purple-200 text-purple-400 cursor-pointer"
+                onClick={toggleFeedbackModal}>?</a>
             {installModal ? <InstallModal os={os} dismiss={toggleInstallModal} /> : null}
             {privacyModal ?
                 <Modal title="Privacy" dismiss={togglePrivacyModal}>
@@ -123,19 +126,16 @@ export default function Home() {
                     </div>
                 </Modal>
                 : null}
-            <a className="fixed w-6 h-6 bottom-6 right-6 flex items-center justify-center rounded-full
-            bg-purple-200 text-purple-400 cursor-pointer"
-                onClick={toggleFeedbackModal}>?</a>
             {feedbackModal ?
                 <Modal title="Feedback" dismiss={toggleFeedbackModal}>
                     <div className="text-base text-slate-600 space-y-3">
                         <p>Questions, comments, or bug reports?</p>
                         <ol>
                             <li>Email me: <a href="mailto:stedmanrh@gmail.com?subject=Tactful%20Feedback" target="_blank" rel="noreferrer"
-                            className="text-purple-600 transition-all duration-150
+                                className="text-purple-600 transition-all duration-150
                             hover:text-purple-400 focus:text-purple-400 active:text-purple-400">stedman.rh@gmail.com</a></li>
                             <li>DM me on Twitter: <a href="https://x.com/stedmanhalliday" target="_blank" rel="noreferrer"
-                            className="text-purple-600 transition-all duration-150
+                                className="text-purple-600 transition-all duration-150
                             hover:text-purple-400 focus:text-purple-400 active:text-purple-400">@stedmanhalliday</a></li>
                         </ol>
                     </div>
