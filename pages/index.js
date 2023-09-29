@@ -116,7 +116,7 @@ export default function Home() {
             {privacyModal ?
                 <Modal title="Privacy" dismiss={togglePrivacyModal}>
                     <div className="text-base text-slate-600 space-y-3">
-                        <p>{`Tactful doesn't keep your personal information. Basic metrics are tracked with Google Analytics. Any personal data that the app uses is encrypted and stored locally on your mobile device.`}</p>
+                        <p>{`hmu.world doesn't keep your personal information. Basic metrics are tracked with Google Analytics. Any personal data that the app uses is encrypted and stored locally on your mobile device.`}</p>
                         <p>{`If you'd like to delete your data:`}</p>
                         <ol className="ml-5 list-decimal space-y-3">
                             <li>Open the site settings for <span className="text-purple-600">hmu.world</span> on your mobile device.</li>
@@ -131,12 +131,12 @@ export default function Home() {
                     <div className="text-base text-slate-600 space-y-3">
                         <p>Questions, comments, or bug reports?</p>
                         <ol>
-                            <li>Email me: <a href="mailto:stedmanrh@gmail.com?subject=Tactful%20Feedback" target="_blank" rel="noreferrer"
+                            <li>Email me: <a href="mailto:sup@hmu.world?subject=hmu.world%20Feedback" target="_blank" rel="noreferrer"
                                 className="text-purple-600 transition-all duration-150
-                            hover:text-purple-400 focus:text-purple-400 active:text-purple-400">stedman.rh@gmail.com</a></li>
-                            <li>DM me on Twitter: <a href="https://x.com/stedmanhalliday" target="_blank" rel="noreferrer"
+                            hover:text-purple-400 focus:text-purple-400 active:text-purple-400">sup@hmu.world</a></li>
+                            <li>DM me on Twitter: <a href="https://x.com/hmudotworld" target="_blank" rel="noreferrer"
                                 className="text-purple-600 transition-all duration-150
-                            hover:text-purple-400 focus:text-purple-400 active:text-purple-400">@stedmanhalliday</a></li>
+                            hover:text-purple-400 focus:text-purple-400 active:text-purple-400">@hmudotworld</a></li>
                         </ol>
                     </div>
                 </Modal>

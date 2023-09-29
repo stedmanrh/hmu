@@ -1,6 +1,5 @@
 {
-    "name": "Tactful",
-    "short_name": "Tactful",
+    "name": "hmu.world",
     "icons": [
         {
             "src": "/icons/any_icon_x192.png",
@@ -39,7 +38,7 @@
         {
           "name": "Share contact",
           "short_name": "Contact",
-          "description": "Share your primary Tactful contact",
+          "description": "Share your primary hmu.world contact",
           "url": "/preview",
           "icons": [{ "src": "/icons/icon_x192.png", "sizes": "192x192" }]
         }
