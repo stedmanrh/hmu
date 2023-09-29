@@ -131,10 +131,10 @@ export default function Home() {
                     <div className="text-base text-slate-600 space-y-3">
                         <p>Questions, comments, or bug reports?</p>
                         <ol>
-                            <li>Email me at <a href="mailto:stedmanrh@gmail.com" target="_blank" 
+                            <li>Email me at <a href="mailto:stedmanrh@gmail.com" target="_blank" rel="noopener"
                             className="text-purple-600 transition-all duration-150
                             hover:text-purple-400 focus:text-purple-400 active:text-purple-400">stedman.rh@gmail.com</a></li>
-                            <li>DM me on Twitter <a href="https://x.com/stedmanhalliday" target="_blank" 
+                            <li>DM me on Twitter <a href="https://x.com/stedmanhalliday" target="_blank" rel="noopener"
                             className="text-purple-600 transition-all duration-150
                             hover:text-purple-400 focus:text-purple-400 active:text-purple-400">@stedmanhalliday</a></li>
                         </ol>
