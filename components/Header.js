@@ -3,7 +3,7 @@ import Head from "next/head";
 export default function Header() {
     return (
         <Head>
-            <title>Tactful</title>
+            <title>hmu.world | Personal QR codes for what matters to you</title>
             <meta content="text/html; charset=UTF-8" name="Content-Type" />
             <meta name="description" content="Connect faster IRL with personal QR codes for what matters to you." />
             <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
@@ -12,18 +12,23 @@ export default function Header() {
 
             <meta name="apple-mobile-web-app-capable" content="yes" />
 
-            <meta property="og:title" content="Tactful" />
+            <meta property="og:title" content="hmu.world | Personal QR codes for what matters to you" />
             <meta property="og:description" content="Connect faster IRL with personal QR codes for what matters to you." />
             <meta property="og:type" content="website" />
-            <meta property="og:site_name" content="Tactful" />
+            <meta property="og:site_name" content="hmu.world" />
             <meta property="og:image" content="https://hmu.world/assets/og-image.png" />
             <meta property="og:url" content="https://hmu.world" />
-            <meta property="og:image:width" content="1136" />
-            <meta property="og:image:height" content="640" />
+            <meta property="og:image:width" content="1200" />
+            <meta property="og:image:height" content="630" />
             <meta property="og:image:type" content="image/png" />
 
             <meta name="twitter:card" content="summary_large_image" />
+            <meta name="twitter:site" content="@hmudotworld" />
             <meta name="twitter:creator" content="@stedmanhalliday" />
+            <meta name="twitter:title" content="hmu.world | Personal QR codes for what matters to you" />
+            <meta name="twitter:description" content="Connect faster IRL with personal QR codes for what matters to you." />
+            <meta name="twitter:image" content="https://hmu.world/assets/og-image.png" />
+
 
             <link rel="icon" href="/favicon.ico" />
             <link rel="manifest" href="/manifest.json" />
