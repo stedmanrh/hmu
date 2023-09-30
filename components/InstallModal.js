@@ -8,7 +8,7 @@ function Instructions({ os }) {
                     <li>Tap the <em className="relative font-medium uppercase tracking-wide pl-5 ml-1 mr-0.5 safariShare">share</em> icon at the bottom of the screen (Safari) or top right in the address bar (Chrome).</li>
                     <li>Scroll down and tap the <em className="font-medium uppercase tracking-wide">Add to home screen</em> option.</li>
                 </ol>
-                <p>Make sure you're using the lastest version of Safari or Chrome.</p>
+                <p>Make sure you&apos;re using the lastest version of Safari or Chrome.</p>
             </div>
         );
     } else if (os == "android") {
