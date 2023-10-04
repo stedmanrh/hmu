@@ -33,14 +33,56 @@
     "scope": "/",
     "theme_color": "#9333ea",
     "description": "Connect faster IRL with personal QR codes for what matters to you.",
+    "screenshots": [
+        {
+            "src": "/screenshots/screen-00.png",
+            "type": "image/png",
+            "sizes": "498x1080"
+        },
+        {
+            "src": "/screenshots/screen-01.png",
+            "type": "image/png",
+            "sizes": "498x1080"
+        },
+        {
+            "src": "/screenshots/screen-02.png",
+            "type": "image/png",
+            "sizes": "498x1080"
+        },
+        {
+            "src": "/screenshots/screen-03.png",
+            "type": "image/png",
+            "sizes": "498x1080"
+        },
+        {
+            "src": "/screenshots/screen-04.png",
+            "type": "image/png",
+            "sizes": "498x1080"
+        },
+        {
+            "src": "/screenshots/screen-05.png",
+            "type": "image/png",
+            "sizes": "498x1080"
+        },
+        {
+            "src": "/screenshots/screen-06.png",
+            "type": "image/png",
+            "sizes": "498x1080"
+        }
+    ],
     "//": "For use with multiple contacts",
     "//shortcuts": [
         {
-          "name": "Share contact",
-          "short_name": "Contact",
-          "description": "Share your primary hmu.world contact",
-          "url": "/preview",
-          "icons": [{ "src": "/icons/icon_x192.png", "sizes": "192x192" }]
+            "name": "Share contact",
+            "short_name": "Contact",
+            "description": "Share your primary hmu.world contact",
+            "url": "/preview",
+            "icons": [
+                {
+                    "src": "/icons/icon_x192.png",
+                    "sizes": "192x192"
+                }
+            ]
         }
     ]
 }
