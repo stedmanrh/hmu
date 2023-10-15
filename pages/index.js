@@ -22,8 +22,8 @@ export default function Home() {
 
     // Existing contact data
     const [contact, setContact] = useState({
-        name: "",
-        vibe: "",
+        name: JSON.parse(secureLocalStorage.getItem("formValues")).name,
+        vibe: JSON.parse(JSON.parse(secureLocalStorage.getItem("formValues")).vibe),
     });
 
     // Create reference to store the DOM element containing the animation
@@ -31,15 +31,15 @@ export default function Home() {
 
     useEffect(() => {
         // Check if "formValues" exists in secureLocalStorage
-        const formValues = JSON.parse(secureLocalStorage.getItem("formValues"));
-        if (formValues) {
-            const name = formValues.name;
-            const vibe = JSON.parse(formValues.vibe);
-            setContact({
-                name: name,
-                vibe: vibe,
-            });
-        }
+        // const formValues = JSON.parse(secureLocalStorage.getItem("formValues"));
+        // if (formValues) {
+        //     const name = formValues.name;
+        //     const vibe = JSON.parse(formValues.vibe);
+        //     setContact({
+        //         name: name,
+        //         vibe: vibe,
+        //     });
+        // }
 
         // Initialize headline shuffle
         const typed = new Typed(el.current, {
