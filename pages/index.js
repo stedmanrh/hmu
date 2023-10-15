@@ -22,25 +22,14 @@ export default function Home() {
 
     // Existing contact data
     const [contact, setContact] = useState({
-        name: JSON.parse(secureLocalStorage.getItem("formValues")).name,
-        vibe: JSON.parse(JSON.parse(secureLocalStorage.getItem("formValues")).vibe),
+        name: JSON.parse(secureLocalStorage.getItem("formValues"))?.name || "",
+        vibe: JSON.parse(secureLocalStorage.getItem("formValues"))?.vibe || "",
     });
 
     // Create reference to store the DOM element containing the animation
     const el = useRef("#shuffle");
 
     useEffect(() => {
-        // Check if "formValues" exists in secureLocalStorage
-        // const formValues = JSON.parse(secureLocalStorage.getItem("formValues"));
-        // if (formValues) {
-        //     const name = formValues.name;
-        //     const vibe = JSON.parse(formValues.vibe);
-        //     setContact({
-        //         name: name,
-        //         vibe: vibe,
-        //     });
-        // }
-
         // Initialize headline shuffle
         const typed = new Typed(el.current, {
             strings: ["instantly.", "flexibly.", "tactfully."],
@@ -130,8 +119,8 @@ export default function Home() {
                 <p className="text-xl max-w-md leading-normal">Connect faster IRL with personal QR codes for what matters to you.</p>
             </header>
             {isStandalone ?
-                contact.name ?
-                    <Contacts name={contact.name} vibe={contact.vibe} />
+                contact.name && contact.vibe ?
+                    <Contacts name={contact.name} vibe={JSON.parse(contact.vibe)} />
                     : <Button className="mt-16" onClick={create}>+ New contact</Button>
                 : <div className="mt-16 flex flex-col items-center">
                     <Button className="mb-4" onClick={pressInstallButton}>Install app</Button>
