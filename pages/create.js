@@ -7,6 +7,8 @@ import secureLocalStorage from "react-secure-storage";
 
 export default function Create() {
 
+    const [formValues, setFormValues] = useState(JSON.parse(secureLocalStorage.getItem("formValues")));
+
     const [emoji, setEmoji] = useState(null);
 
     const [stops, setStops] = useState({
@@ -32,8 +34,7 @@ export default function Create() {
     }
 
     useEffect(() => {
-        const formValues = JSON.parse(secureLocalStorage.getItem("formValues"));
-        if (formValues != null) {
+        if (formValues) {
             handleChange(formValues.vibe);
         }
         const interval = setInterval(updateGradientAngle, 15);

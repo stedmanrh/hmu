@@ -9,6 +9,8 @@ import secureLocalStorage from "react-secure-storage";
 export default function LinkForm() {
     const router = useRouter();
 
+    const [linkValues, setLinkValues] = useState(JSON.parse(secureLocalStorage.getItem("linkValues")));
+
     const [formfield, setFormfield] = useState({
         instagram: "",
         twitter: "",
@@ -30,6 +32,7 @@ export default function LinkForm() {
 
         const linkValues = JSON.stringify(formfield);
         secureLocalStorage.setItem("linkValues", linkValues);
+        setLinkValues(linkValues);
         router.push("/preview");
 
         // Log form submission
@@ -45,8 +48,7 @@ export default function LinkForm() {
     }
 
     useEffect(() => {
-        const linkValues = JSON.parse(secureLocalStorage.getItem("linkValues"));
-        if (linkValues != null) {
+        if (linkValues) {
             setFormfield(prevState => ({
                 ...prevState,
                 instagram: linkValues.instagram,
