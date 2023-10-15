@@ -198,7 +198,7 @@ export default function Preview() {
                 return updatedLinks;
             });
         }
-    }, []);
+    }, [formValues, linkValues]);
 
     const filteredLinks =
         <div className="flex flex-wrap justify-center">

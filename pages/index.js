@@ -75,7 +75,7 @@ export default function Home() {
             // Destroy Typed instance during cleanup to stop animation
             typed.destroy();
         };
-    }, [])
+    }, [contact])
 
     // App install prompt flow
     const showPrompt = async () => {

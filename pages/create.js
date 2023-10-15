@@ -39,7 +39,7 @@ export default function Create() {
         }
         const interval = setInterval(updateGradientAngle, 15);
         return () => clearInterval(interval);
-    }, [])
+    }, [formValues])
 
     return (
         <Page className={stops.start != "" ? "justify-center z-0" : "justify-center bg-slate-100"}>

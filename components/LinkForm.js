@@ -58,7 +58,7 @@ export default function LinkForm() {
                 custom: linkValues.custom
             }));
         }
-    }, []);
+    }, [linkValues]);
 
     return (
         <form id="linkForm" name="Link form" className="w-full max-w-md flex flex-col px-2"
