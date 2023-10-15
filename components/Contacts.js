@@ -1,19 +1,11 @@
-import Button from "./Button.js";
 import styles from "../styles/Preview.module.css";
 
 import * as convert from 'color-convert';
 import Image from "next/image.js";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
-import secureLocalStorage from "react-secure-storage";
 
-export default function Contacts() {
-
-    // Existing contact data
-    const [contact, setContact] = useState({
-        name: "",
-        vibe: "",
-    });
+export default function Contacts({ name, vibe }) {
 
     const [stops, setStops] = useState({
         start: "",
@@ -39,59 +31,40 @@ export default function Contacts() {
     // Initialize router
     const router = useRouter();
 
-    // Navigate to contact form
-    const create = () => {
-        router.push("/create");
-    }
-
     // Navigate to QR code
     const preview = () => {
         router.push("/preview");
     }
 
     useEffect(() => {
-        // Check if "formValues" exists in secureLocalStorage
-        const formValues = JSON.parse(secureLocalStorage.getItem("formValues"));
-        if (formValues) {
-            const name = formValues.name;
-            const vibe = JSON.parse(formValues.vibe);
-            setContact({
-                name: name,
-                vibe: vibe,
-            });
-            setStops({
-                start: vibe.group[0],
-                end: vibe.group[vibe.group.length - 1],
-                startRGBA: rgbaColor(vibe.group[0], 0.5),
-                endRGBA: rgbaColor(vibe.group[vibe.group.length - 1], 0.5)
-            });
-            const interval = setInterval(updateGradientAngle, 15);
-            return () => clearInterval(interval);
-        }
+        setStops({
+            start: vibe.group[0],
+            end: vibe.group[vibe.group.length - 1],
+            startRGBA: rgbaColor(vibe.group[0], 0.5),
+            endRGBA: rgbaColor(vibe.group[vibe.group.length - 1], 0.5)
+        });
+        const interval = setInterval(updateGradientAngle, 15);
+        return () => clearInterval(interval);
     }, []);
 
-    if (contact.name != "") {
-        return (
-            <div className={`${styles.miniCard} relative mt-16 rounded-xl
+    return (
+        <div className={`${styles.miniCard} relative mt-16 rounded-xl
             cursor-pointer active:scale-[.98] p-0.5`}
-                style={{
-                    "background": `linear-gradient(${angle}deg, ${stops.start}, ${stops.end})`,
-                    "boxShadow": `0 -2px 8px 0 ${stops.startRGBA}, 0 2px 8px 0 ${stops.endRGBA}`
-                }}
-                onClick={preview}>
-                <div className="w-80 pl-4 pr-10 py-4 flex items-center rounded-xl
+            style={{
+                "background": `linear-gradient(${angle}deg, ${stops.start}, ${stops.end})`,
+                "boxShadow": `0 -2px 8px 0 ${stops.startRGBA}, 0 2px 8px 0 ${stops.endRGBA}`
+            }}
+            onClick={preview}>
+            <div className="w-80 pl-4 pr-10 py-4 flex items-center rounded-xl
             bg-white shadow-md">
-                    <span className="mr-3 text-2xl flex items-center">
-                        {contact.vibe.emoji &&
-                            <Image src={`/emoji/${contact.vibe.emoji}.png`} alt={contact.vibe.emoji}
-                                width={24} height={24} priority={true} />
-                        }
-                    </span>
-                    <p className="text-lg truncate text-slate-800">{contact.name}</p>
-                </div>
+                <span className="mr-3 text-2xl flex items-center">
+                    {vibe.emoji &&
+                        <Image src={`/emoji/${vibe.emoji}.png`} alt={vibe.emoji}
+                            width={24} height={24} priority={true} />
+                    }
+                </span>
+                <p className="text-lg truncate text-slate-800">{name}</p>
             </div>
-        )
-    } else return (
-        <Button className="mt-16" onClick={create}>+ New contact</Button>
+        </div>
     );
 }

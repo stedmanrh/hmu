@@ -3,11 +3,13 @@ import Button from "../components/Button.js";
 import Contacts from "../components/Contacts.js";
 import InstallModal from "../components/InstallModal.js";
 import Modal from "../components/Modal.js";
+import TextButton from "../components/TextButton";
 import styles from "../styles/Home.module.css";
 
 import { useEffect, useRef, useState } from "react";
+import { useRouter } from "next/router";
 import Typed from "typed.js";
-import TextButton from "../components/TextButton";
+import secureLocalStorage from "react-secure-storage";
 
 export default function Home() {
     const [isStandalone, setIsStandalone] = useState(false);
@@ -18,10 +20,27 @@ export default function Home() {
     const [privacyModal, setPrivacyModal] = useState(false);
     const [feedbackModal, setFeedbackModal] = useState(false);
 
+    // Existing contact data
+    const [contact, setContact] = useState({
+        name: "",
+        vibe: "",
+    });
+
     // Create reference to store the DOM element containing the animation
     const el = useRef("#shuffle");
 
     useEffect(() => {
+        // Check if "formValues" exists in secureLocalStorage
+        const formValues = JSON.parse(secureLocalStorage.getItem("formValues"));
+        if (formValues) {
+            const name = formValues.name;
+            const vibe = JSON.parse(formValues.vibe);
+            setContact({
+                name: name,
+                vibe: vibe,
+            });
+        }
+
         // Initialize headline shuffle
         const typed = new Typed(el.current, {
             strings: ["instantly.", "flexibly.", "tactfully."],
@@ -83,6 +102,14 @@ export default function Home() {
         setInstallPrompt(null);
     }
 
+    // Initialize router
+    const router = useRouter();
+
+    // Navigate to contact form
+    const create = () => {
+        router.push("/create");
+    }
+
     const pressInstallButton = () => {
         // Log install button press
         gtag("event", "install_button");
@@ -103,7 +130,9 @@ export default function Home() {
                 <p className="text-xl max-w-md leading-normal">Connect faster IRL with personal QR codes for what matters to you.</p>
             </header>
             {isStandalone ?
-                <Contacts />
+                contact.name ?
+                    <Contacts name={contact.name} vibe={contact.vibe} />
+                    : <Button className="mt-16" onClick={create}>+ New contact</Button>
                 : <div className="mt-16 flex flex-col items-center">
                     <Button className="mb-4" onClick={pressInstallButton}>Install app</Button>
                     <TextButton onClick={togglePrivacyModal}>Privacy</TextButton>
