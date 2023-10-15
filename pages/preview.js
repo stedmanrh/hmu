@@ -13,6 +13,9 @@ import QRCode from "qrcode";
 export default function Preview() {
     const router = useRouter();
 
+    const [formValues, setFormValues] = useState(JSON.parse(secureLocalStorage.getItem("formValues")));
+    const [linkValues, setLinkValues] = useState(JSON.parse(secureLocalStorage.getItem("linkValues")));
+
     const [data, setData] = useState({
         src: "",
         displayName: "",
@@ -57,7 +60,7 @@ export default function Preview() {
         custom: {
             label: "Link",
             displayName: "",
-            url:""
+            url: ""
         }
     });
 
@@ -94,7 +97,6 @@ export default function Preview() {
     }
 
     const home = () => {
-        // location vs. router.push to fire beforeinstallprompt event
         router.push("/");
     }
 
@@ -160,8 +162,6 @@ export default function Preview() {
     }
 
     useEffect(() => {
-        const formValues = JSON.parse(secureLocalStorage.getItem("formValues"));
-        const linkValues = JSON.parse(secureLocalStorage.getItem("linkValues"));
         if (formValues) {
             const name = formValues.name;
             const vibe = JSON.parse(formValues.vibe);
