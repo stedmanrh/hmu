@@ -13,8 +13,20 @@ import QRCode from "qrcode";
 export default function Preview() {
     const router = useRouter();
 
-    const [formValues, setFormValues] = useState(JSON.parse(secureLocalStorage.getItem("formValues")));
-    const [linkValues, setLinkValues] = useState(JSON.parse(secureLocalStorage.getItem("linkValues")));
+    const loadLocalStorageData = (item) => {
+        try {
+            const localStorageData = secureLocalStorage.getItem(item);
+            console.count("localStorageData", localStorageData);
+            const parsedData = JSON.parse(localStorageData);
+            console.count("parsedData", parsedData);
+            return parsedData;
+        } catch (e) {
+            console.log(e);
+        }
+    }
+
+    const [formValues, setFormValues] = useState(loadLocalStorageData("formValues"));
+    const [linkValues, setLinkValues] = useState(loadLocalStorageData("linkValues"));
 
     const [data, setData] = useState({
         src: "",
@@ -162,7 +174,11 @@ export default function Preview() {
     }
 
     useEffect(() => {
-        if (formValues) {
+        if (secureLocalStorage.getItem("converted") === false) {
+            home();
+            return;
+        }
+        if (formValues && secureLocalStorage.getItem("converted") === true) {
             const name = formValues.name;
             const vibe = JSON.parse(formValues.vibe);
             QRCode.toDataURL(vCardValues(formValues),
@@ -181,8 +197,8 @@ export default function Preview() {
                         src: url
                     });
                 });
-        } else home();
-        if (linkValues) {
+        }
+        if (linkValues && secureLocalStorage.getItem("linkValues")) {
             setLinks(prevLinks => {
                 const updatedLinks = { ...prevLinks };
                 for (const key in linkValues) {
@@ -197,6 +213,10 @@ export default function Preview() {
                 }
                 return updatedLinks;
             });
+        }
+        console.log("formValues state", formValues, "formValues storage", secureLocalStorage.getItem("formValues"));
+        if (formValues != secureLocalStorage.getItem("formValues")) {
+            console.error("Inconsistent state and storage values");
         }
     }, [formValues, linkValues]);
 
