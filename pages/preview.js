@@ -174,6 +174,7 @@ export default function Preview() {
     }
 
     useEffect(() => {
+        // not initially false
         if (secureLocalStorage.getItem("converted") === false) {
             home();
             return;
