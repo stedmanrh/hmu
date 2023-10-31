@@ -161,12 +161,15 @@ export default function Preview() {
     }
 
     useEffect(() => {
+        // send home if no vals in storage, wait to load localstorage
+
         // not initially false
-        if (secureLocalStorage.getItem("converted") === false) {
-            home();
-            return;
-        }
-        if (formValues && secureLocalStorage.getItem("converted") === true) {
+        // if (secureLocalStorage.getItem("converted") === false) {
+        //     home();
+        //     return;
+        // }
+        // detect loading?
+        if (formValues) {
             const name = formValues.name;
             const vibe = JSON.parse(formValues.vibe);
             QRCode.toDataURL(vCardValues(formValues),
@@ -186,7 +189,8 @@ export default function Preview() {
                     });
                 });
         }
-        if (linkValues && secureLocalStorage.getItem("linkValues")) {
+        // detect loading?
+        if (linkValues) {
             setLinks(prevLinks => {
                 const updatedLinks = { ...prevLinks };
                 for (const key in linkValues) {
@@ -201,10 +205,6 @@ export default function Preview() {
                 }
                 return updatedLinks;
             });
-        }
-        console.log("formValues state", formValues, "formValues storage", secureLocalStorage.getItem("formValues"));
-        if (formValues != secureLocalStorage.getItem("formValues")) {
-            console.error("Inconsistent state and storage values");
         }
     }, [formValues, linkValues]);
 

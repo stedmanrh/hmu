@@ -86,8 +86,8 @@ export default function Contact(props) {
                 flex justify-center items-center shrink-0
                 bg-white shadow-md text-5xl">
                     {props.vibe.emoji &&
-                        <Image src={imageAttributes.src} alt={imageAttributes.alt}
-                            width={48} height={48} priority={true} />
+                        <img src={imageAttributes.src} alt={imageAttributes.alt}
+                            width={48} height={48} />
                     }
                 </div>
                 <div className="text-center">
@@ -105,7 +105,7 @@ export default function Contact(props) {
                 <div className="flex p-1.5 rounded-[16px]
                 bg-white">
                     {props.src &&
-                        <Image src={props.src} width={168} height={168} priority={true}
+                        <img src={props.src} width={168} height={168}
                             alt={`${props.label} QR code for ${props.displayName}`} />
                     }
                 </div>

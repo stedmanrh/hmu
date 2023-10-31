@@ -59,8 +59,8 @@ export default function Contacts({ name, vibe }) {
             bg-white shadow-md">
                 <span className="mr-3 text-2xl flex items-center">
                     {vibe.emoji &&
-                        <Image src={`/emoji/${vibe.emoji}.png`} alt={vibe.emoji}
-                            width={24} height={24} priority={true} />
+                        <img src={`/emoji/${vibe.emoji}.png`} alt={vibe.emoji}
+                            width={24} height={24} />
                     }
                 </span>
                 <p className="text-lg truncate text-slate-800">{name}</p>

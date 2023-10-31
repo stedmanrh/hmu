@@ -50,8 +50,8 @@ export default function Create() {
                 flex justify-center items-center shrink-0 
                 bg-white shadow-md
                 text-5xl">
-                    <Image src={emoji ? `/emoji/${emoji}.png` : "/emoji/👤.png"}
-                        width={48} height={48} priority={true}
+                    <img src={emoji ? `/emoji/${emoji}.png` : "/emoji/👤.png"}
+                        width={48} height={48}
                         alt={emoji || "👤"} />
                 </div>
                 <h1 className="text-center text-4xl leading-tight text-slate-600">
