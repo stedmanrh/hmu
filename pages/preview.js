@@ -1,3 +1,4 @@
+import { StorageContext } from "./_app.js";
 import Page from "../components/Page.js";
 import Contact from "../components/Contact.js";
 import EditPane from "../components/EditPane.js";
@@ -6,27 +7,13 @@ import TextButton from "../components/TextButton.js";
 import styles from "../styles/Preview.module.css";
 
 import { useRouter } from 'next/router';
-import { useEffect, useState } from "react";
-import secureLocalStorage from "react-secure-storage";
+import { useContext, useEffect, useState } from "react";
 import QRCode from "qrcode";
 
 export default function Preview() {
     const router = useRouter();
 
-    const loadLocalStorageData = (item) => {
-        try {
-            const localStorageData = secureLocalStorage.getItem(item);
-            console.count("localStorageData", localStorageData);
-            const parsedData = JSON.parse(localStorageData);
-            console.count("parsedData", parsedData);
-            return parsedData;
-        } catch (e) {
-            console.log(e);
-        }
-    }
-
-    const [formValues, setFormValues] = useState(loadLocalStorageData("formValues"));
-    const [linkValues, setLinkValues] = useState(loadLocalStorageData("linkValues"));
+    const {formValues, setFormValues, linkValues, setLinkValues} = useContext(StorageContext);
 
     const [data, setData] = useState({
         src: "",
