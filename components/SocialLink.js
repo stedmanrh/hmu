@@ -5,7 +5,7 @@ export default function SocialLink(props) {
             bg-white shadow-md
             text-5xl ${props.className}`}
             onClick={props.onClick}
-            data-displayName={props.displayName}
+            data-displayname={props.displayName}
             data-label={props.label}
             data-url={props.url}
             data-type={props.type} >
