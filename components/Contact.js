@@ -38,7 +38,7 @@ export default function Contact(props) {
         }
         const interval = setInterval(updateGradientAngle, 15);
 
-        if (props.activeLink == "") {
+        if (props.activeLink == "" && props.vibe.emoji) {
             setImageAttributes({
                 src: `/emoji/${props.vibe.emoji}.png`,
                 alt: props.vibe.emoji
