@@ -1,8 +1,6 @@
 import Page from "../components/Page.js";
 import LinkForm from "../components/LinkForm.js";
 
-import Image from "next/image.js";
-
 export default function Links() {
 
     return (

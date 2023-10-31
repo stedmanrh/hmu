@@ -1,7 +1,6 @@
 import Page from "../components/Page.js";
 import Form from "../components/Form.js";
 
-import Image from "next/image.js";
 import { useEffect, useState } from "react";
 import secureLocalStorage from "react-secure-storage";
 

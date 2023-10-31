@@ -1,7 +1,6 @@
 import styles from "../styles/Preview.module.css";
 
 import * as convert from 'color-convert';
-import Image from "next/image.js";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 
