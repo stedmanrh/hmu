@@ -1,3 +1,4 @@
+import { StorageContext } from "./_app.js";
 import Page from "../components/Page.js";
 import Button from "../components/Button.js";
 import Contacts from "../components/Contacts.js";
@@ -6,12 +7,13 @@ import Modal from "../components/Modal.js";
 import TextButton from "../components/TextButton";
 import styles from "../styles/Home.module.css";
 
-import { useEffect, useRef, useState } from "react";
+import { useContext, useEffect, useRef, useState } from "react";
 import { useRouter } from "next/router";
 import Typed from "typed.js";
-import secureLocalStorage from "react-secure-storage";
 
 export default function Home() {
+    const { formValues, setFormValues, linkValues, setLinkValues } = useContext(StorageContext);
+
     const [isStandalone, setIsStandalone] = useState(false);
     const [os, setOs] = useState(null);
     const [isPromptable, setIsPromptable] = useState(false);
@@ -19,12 +21,6 @@ export default function Home() {
     const [installModal, setInstallModal] = useState(false);
     const [privacyModal, setPrivacyModal] = useState(false);
     const [feedbackModal, setFeedbackModal] = useState(false);
-
-    // Existing contact data
-    const [contact, setContact] = useState({
-        name: JSON.parse(secureLocalStorage.getItem("formValues"))?.name || "",
-        vibe: JSON.parse(secureLocalStorage.getItem("formValues"))?.vibe || "",
-    });
 
     // Create reference to store the DOM element containing the animation
     const el = useRef("#shuffle");
@@ -75,7 +71,7 @@ export default function Home() {
             // Destroy Typed instance during cleanup to stop animation
             typed.destroy();
         };
-    }, [contact])
+    }, [formValues])
 
     // App install prompt flow
     const showPrompt = async () => {
@@ -119,8 +115,8 @@ export default function Home() {
                 <p className="text-xl max-w-md leading-normal">Connect faster IRL with personal QR codes for what matters to you.</p>
             </header>
             {isStandalone ?
-                contact.name && contact.vibe ?
-                    <Contacts name={contact.name} vibe={JSON.parse(contact.vibe)} />
+                formValues.name && formValues.vibe ?
+                    <Contacts name={formValues.name} vibe={JSON.parse(formValues.vibe)} />
                     : <Button className="mt-16" onClick={create}>+ New contact</Button>
                 : <div className="mt-16 flex flex-col items-center">
                     <Button className="mb-4" onClick={pressInstallButton}>Install app</Button>
