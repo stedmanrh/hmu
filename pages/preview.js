@@ -235,32 +235,28 @@ export default function Preview() {
         </div>;
 
     return (
-        <div>
-            {
-                loading ? <Page /> :
-                    <Page className="pt-24">
-                        <nav className="fixed z-10 top-0 w-full p-6 flex justify-between">
-                            <TextButton className={styles.home} onClick={home}>Home</TextButton>
-                            <TextButton className={editing ? `${styles.edit} ${styles.editing}` : styles.edit}
-                                onClick={edit}>
-                                {editing ? "Cancel" : "Edit"}
-                            </TextButton>
-                        </nav>
-                        <Contact src={data.src || ""} displayName={data.displayName || ""} vibe={data.vibe || ""} label={data.label || ""}
-                            style={editing ? { "opacity": 0 } : null}
-                            activeLink={activeLink} />
-                        <div className="z-10 mt-12 flex justify-center max-w-20
+        <Page className="pt-24 opacity-0"
+            style={loading ? null : { "opacity": 1 }}>
+            <nav className="fixed z-10 top-0 w-full p-6 flex justify-between">
+                <TextButton className={styles.home} onClick={home}>Home</TextButton>
+                <TextButton className={editing ? `${styles.edit} ${styles.editing}` : styles.edit}
+                    onClick={edit}>
+                    {editing ? "Cancel" : "Edit"}
+                </TextButton>
+            </nav>
+            <Contact src={data.src || ""} displayName={data.displayName || ""} vibe={data.vibe || ""} label={data.label || ""}
+                style={editing ? { "opacity": 0 } : null}
+                activeLink={activeLink} />
+            <div className="z-10 mt-12 flex justify-center max-w-20
             opacity-75 transition-all duration-300"
-                            style={editing ? { "opacity": 0 } : null}>
-                            {Object.values(links).every(value => value.url === "") ?
-                                <TextButton className="mt-8 px-8 py-5 rounded-full bg-black/10
+                style={editing ? { "opacity": 0 } : null}>
+                {Object.values(links).every(value => value.url === "") ?
+                    <TextButton className="mt-8 px-8 py-5 rounded-full bg-black/10
                 active:bg-black/[.15] !border-none"
-                                    onClick={editLinks}>Add links</TextButton> : filteredLinks}
-                        </div>
-                        {editing ? <EditPane editContact={editContact} editLinks={editLinks} /> : null}
-                        <p className="absolute bottom-6 text-lg tracking-wide text-slate-600/50">hmu.world</p>
-                    </Page>
-            }
-        </div>
+                        onClick={editLinks}>Add links</TextButton> : filteredLinks}
+            </div>
+            {editing ? <EditPane editContact={editContact} editLinks={editLinks} /> : null}
+            <p className="absolute bottom-6 text-lg tracking-wide text-slate-600/50">hmu.world</p>
+        </Page>
     );
 };
