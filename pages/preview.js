@@ -209,7 +209,7 @@ export default function Preview() {
                 return updatedLinks;
             });
         }
-    }, [formValues, linkValues]);
+    }, [formValues, linkValues, loading]);
 
     const filteredLinks =
         <div className="flex flex-wrap justify-center">
