@@ -86,7 +86,7 @@ export default function Contact(props) {
                 bg-white shadow-md text-5xl">
                     {props.vibe.emoji &&
                         <img src={imageAttributes.src} alt={imageAttributes.alt}
-                            width={48} height={48} />
+                            width={48} height={48} className="h-12" />
                     }
                 </div>
                 <div className="text-center">
