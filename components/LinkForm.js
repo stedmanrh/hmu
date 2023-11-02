@@ -33,12 +33,13 @@ export default function LinkForm() {
         const matchResult = inputString.match(/\/([^/?]+)(?:\?.*)?$/);
         if (matchResult) {
             const textAfterLastSlash = matchResult[1];
-            // Remove query strings
-            const textBeforeQuery = textAfterLastSlash.split('?')[0];
-            return (textBeforeQuery);
+            return (processDisplayName(textAfterLastSlash));
         } else {
+            // Remove query strings
+            const textBeforeQuery = inputString.split('?')[0];
             // No match found, output the input string without "@" if present
-            return inputString.replace(/^@/, '');
+            const textAfterAt = textBeforeQuery.replace(/^@/, '');
+            return textAfterAt;
         }
     }
 
