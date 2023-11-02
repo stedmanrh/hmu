@@ -1,15 +1,15 @@
+import { StorageContext } from "../pages/_app.js";
 import Button from './Button.js';
 import Input from './Input.js';
 import TextButton from './TextButton.js';
 
 import { useRouter } from 'next/router';
-import { useState, useEffect } from 'react';
-import secureLocalStorage from "react-secure-storage";
+import { useContext, useEffect, useState } from 'react';
 
 export default function LinkForm() {
     const router = useRouter();
 
-    const [linkValues, setLinkValues] = useState(JSON.parse(secureLocalStorage.getItem("linkValues")));
+    const { formValues, setFormValues, linkValues, setLinkValues } = useContext(StorageContext);
 
     const [formfield, setFormfield] = useState({
         instagram: "",
@@ -30,10 +30,7 @@ export default function LinkForm() {
     const handleSubmit = (event) => {
         event.preventDefault();
 
-        const linkValues = JSON.stringify(formfield);
-        secureLocalStorage.setItem("linkValues", linkValues);
-        setLinkValues(linkValues);
-        router.push("/preview");
+        setLinkValues(formfield);
 
         // Log form submission
         gtag("event", "form_submit", {
@@ -41,6 +38,8 @@ export default function LinkForm() {
             "form_name": "Link form",
             "destination": "/links"
         });
+
+        router.push("/preview");
     }
 
     const cancel = () => {
