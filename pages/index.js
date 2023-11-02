@@ -31,7 +31,9 @@ export default function Home() {
         if (formValues !== null) {
             setLoading(false);
         }
+    }, [formValues])
 
+    useEffect(() => {
         // Initialize headline shuffle
         const typed = new Typed(el.current, {
             strings: ["instantly.", "flexibly.", "tactfully."],
@@ -77,7 +79,7 @@ export default function Home() {
             // Destroy Typed instance during cleanup to stop animation
             typed.destroy();
         };
-    }, [formValues])
+    }, [])
 
     // App install prompt flow
     const showPrompt = async () => {
