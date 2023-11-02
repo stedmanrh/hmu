@@ -135,19 +135,6 @@ export default function Preview() {
         }
     }
 
-    // get usernames from links
-    const processDisplayName = (inputString) => {
-        // Using match method
-        const matchResult = inputString.match(/\/([^/?]+)(?:\?.*)?$/);
-        if (matchResult) {
-            const textAfterLastSlash = matchResult[0];
-            return (textAfterLastSlash);
-        } else {
-            // No match found, output the input string as is
-            return inputString;
-        }
-    }
-
     // get domain from URL
     function processURL(url) {
         // Use a regex pattern to match the domain
@@ -202,7 +189,7 @@ export default function Preview() {
                         updatedLinks[key].url = linkValues[key];
                     }
                     else if (linkValues[key]) {
-                        updatedLinks[key].displayName = links[key].displayNamePrepend + processDisplayName(linkValues[key]);
+                        updatedLinks[key].displayName = links[key].displayNamePrepend + linkValues[key];
                         updatedLinks[key].url = links[key].urlPrepend + linkValues[key];
                     }
                 }

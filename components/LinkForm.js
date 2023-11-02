@@ -27,10 +27,36 @@ export default function LinkForm() {
         }));
     }
 
+    // get usernames from links
+    const processDisplayName = (inputString) => {
+        // Using match method
+        const matchResult = inputString.match(/\/([^/?]+)(?:\?.*)?$/);
+        if (matchResult) {
+            const textAfterLastSlash = matchResult[1];
+            // Remove query strings
+            const textBeforeQuery = textAfterLastSlash.split('?')[0];
+            return (textBeforeQuery);
+        } else {
+            // No match found, output the input string without "@" if present
+            return inputString.replace(/^@/, '');
+        }
+    }
+
     const handleSubmit = (event) => {
         event.preventDefault();
 
-        setLinkValues(formfield);
+        // Process form values to yield display names
+        const processedLinks = Object.fromEntries(
+            Object.entries(formfield).map(([key, value]) => {
+                if (key == "custom") {
+                    return [key, value];
+                } else {
+                    return [key, processDisplayName(value)];
+                }
+            })
+        );
+
+        setLinkValues(processedLinks);
 
         // Log form submission
         gtag("event", "form_submit", {
