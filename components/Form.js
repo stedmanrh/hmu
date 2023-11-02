@@ -1,3 +1,4 @@
+import { StorageContext } from "../pages/_app.js";
 import Button from "./Button.js";
 import Input from "./Input.js";
 import Modal from "./Modal.js";
@@ -5,11 +6,13 @@ import TextButton from "./TextButton.js";
 import vibes from "../utils/vibes.json";
 
 import { useRouter } from "next/router";
-import { useState, useEffect } from "react";
+import { useContext, useEffect, useState } from "react";
 import secureLocalStorage from "react-secure-storage";
 
 export default function Form(props) {
     const router = useRouter();
+
+    const { formValues, setFormValues, linkValues, setLinkValues } = useContext(StorageContext);
 
     const [formfield, setFormfield] = useState({
         name: "",
@@ -59,8 +62,8 @@ export default function Form(props) {
         if (formfield.vibe == "") {
             formfield.vibe = JSON.stringify(vibes.filter(vibe => vibe.label === "Anon")[0]);
         }
-        const formValues = JSON.stringify(formfield);
-        secureLocalStorage.setItem("formValues", formValues);
+        
+        setFormValues(formfield);
 
         // Log first time code creation
         if (!secureLocalStorage.getItem("converted")) {
@@ -88,8 +91,7 @@ export default function Form(props) {
     }
 
     useEffect(() => {
-        const formValues = JSON.parse(secureLocalStorage.getItem("formValues"));
-        if (formValues != null) {
+        if (formValues) {
             setFormfield(prevState => ({
                 ...prevState,
                 name: formValues.name,
@@ -99,7 +101,7 @@ export default function Form(props) {
                 vibe: formValues.vibe
             }));
         }
-    }, []);
+    }, [formValues]);
 
     return (
         <form id="contactForm" className="w-full max-w-md flex flex-col px-2"

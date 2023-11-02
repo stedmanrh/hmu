@@ -1,12 +1,12 @@
+import { StorageContext } from "./_app.js";
 import Page from "../components/Page.js";
 import Form from "../components/Form.js";
 
-import { useEffect, useState } from "react";
-import secureLocalStorage from "react-secure-storage";
+import { useContext, useEffect, useState } from "react";
 
 export default function Create() {
 
-    const [formValues, setFormValues] = useState(JSON.parse(secureLocalStorage.getItem("formValues")));
+    const { formValues, setFormValues, linkValues, setLinkValues } = useContext(StorageContext);
 
     const [emoji, setEmoji] = useState(null);
 

@@ -25,14 +25,14 @@ function MyApp({ Component, pageProps }) {
     const [formValues, _setFormValues] = useState(null);
     // Custom setter: storage and state
     const setFormValues = (value) => {
-        secureLocalStorage.setItem("formValues", value);
+        secureLocalStorage.setItem("formValues", JSON.stringify(value));
         _setFormValues(value);
     }
 
     const [linkValues, _setLinkValues] = useState(null);
     // Custom setter: storage and state
     const setLinkValues = (value) => {
-        secureLocalStorage.setItem("linkValues", value);
+        secureLocalStorage.setItem("linkValues", JSON.stringify(value));
         _setLinkValues(value);
     }
 
