@@ -14,6 +14,8 @@ import Typed from "typed.js";
 export default function Home() {
     const { formValues, setFormValues, linkValues, setLinkValues } = useContext(StorageContext);
 
+    const [loading, setLoading] = useState(true);
+
     const [isStandalone, setIsStandalone] = useState(false);
     const [os, setOs] = useState(null);
     const [isPromptable, setIsPromptable] = useState(false);
@@ -26,6 +28,10 @@ export default function Home() {
     const el = useRef("#shuffle");
 
     useEffect(() => {
+        if (formValues !== null) {
+            setLoading(false);
+        }
+
         // Initialize headline shuffle
         const typed = new Typed(el.current, {
             strings: ["instantly.", "flexibly.", "tactfully."],
@@ -106,7 +112,8 @@ export default function Home() {
     const toggleFeedbackModal = () => { setFeedbackModal(!feedbackModal) }
 
     return (
-        <Page className="justify-center bg-slate-100">
+        <Page className="justify-center bg-slate-100 opacity-0"
+            style={loading ? null : { "opacity": 1 }}>
             <div className={styles.siteCode}></div>
             <header className="text-center text-slate-600">
                 <p className="mt-8 mb-6 text-4xl leading-tight">Share your contact&nbsp;info
