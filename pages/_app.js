@@ -21,7 +21,8 @@ const loadLocalStorageData = (item) => {
 export const StorageContext = createContext(null);
 
 function MyApp({ Component, pageProps }) {
-
+    
+    const [loading, setLoading] = useState(true);
     const [formValues, _setFormValues] = useState(null);
     // Custom setter: storage and state
     const setFormValues = (value) => {
@@ -42,12 +43,19 @@ function MyApp({ Component, pageProps }) {
         _setLinkValues(loadLocalStorageData("linkValues"));
     }, [])
 
+    useEffect(() => {
+        if (formValues !== null) {
+            setLoading(false);
+        }
+    }, [formValues]);
+
     return (
-        <StorageContext.Provider value={{ formValues, setFormValues, linkValues, setLinkValues }} >
-            <Analytics />
-            <Component {...pageProps} />
-        </StorageContext.Provider>
+        loading ? null :
+            <StorageContext.Provider value={{ formValues, setFormValues, linkValues, setLinkValues }} >
+                <Analytics />
+                <Component {...pageProps} />
+            </StorageContext.Provider>
     )
 }
 
-export default MyApp
+export default MyApp;
