@@ -157,9 +157,6 @@ export default function Home() {
                             <li>Email me: <a href="mailto:sup@hmu.world?subject=hmu.world%20Feedback" target="_blank" rel="noreferrer"
                                 className="text-purple-600 transition-all duration-150
                             hover:text-purple-400 focus:text-purple-400 active:text-purple-400">sup@hmu.world</a></li>
-                            <li>DM me on Twitter: <a href="https://x.com/hmudotworld" target="_blank" rel="noreferrer"
-                                className="text-purple-600 transition-all duration-150
-                            hover:text-purple-400 focus:text-purple-400 active:text-purple-400">@hmudotworld</a></li>
                         </ol>
                     </div>
                 </Modal>
