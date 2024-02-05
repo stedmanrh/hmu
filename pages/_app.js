@@ -7,12 +7,14 @@ import secureLocalStorage from "react-secure-storage";
 
 const loadLocalStorageData = (item) => {
     try {
-        const localStorageData = secureLocalStorage.getItem(item);
-        console.count("localStorageData", localStorageData);
-        const parsedData = JSON.parse(localStorageData);
-        console.count("parsedData", parsedData);
-        console.log(item, parsedData);
-        return parsedData || "";
+        if (typeof window !== 'undefined') {
+            const localStorageData = secureLocalStorage.getItem(item);
+            console.count("localStorageData", localStorageData);
+            const parsedData = JSON.parse(localStorageData);
+            console.count("parsedData", parsedData);
+            console.log(item, parsedData);
+            return parsedData || "";
+        }
     } catch (e) {
         console.log(e);
     }
@@ -21,7 +23,7 @@ const loadLocalStorageData = (item) => {
 export const StorageContext = createContext(null);
 
 function MyApp({ Component, pageProps }) {
-    
+
     const [loading, setLoading] = useState(true);
     const [formValues, _setFormValues] = useState(null);
     // Custom setter: storage and state
