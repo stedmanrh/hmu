@@ -10,6 +10,17 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Save multiple contacts
 - Delete contact
 
+## [0.1.4] - 2024-09-05
+
+### Fixed
+
+- Improved local storage and loading reliability
+
+### Added
+
+- Cloudflare DNS
+- Email redirects for support address
+
 ## [0.1.3] - 2023-12-23
 
 ### Fixed
