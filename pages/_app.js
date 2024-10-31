@@ -3,15 +3,13 @@ import '../dist/main.css';
 import Analytics from '../components/Analytics';
 
 import { createContext, useEffect, useState, useCallback } from 'react';
-import secureLocalStorage from "react-secure-storage";
+
 
 const loadLocalStorageData = (item) => {
     try {
         if (typeof window !== 'undefined') {
-            const localStorageData = secureLocalStorage.getItem(item);
-            console.count("localStorageData", localStorageData);
+            const localStorageData = localStorage.getItem(item);
             const parsedData = JSON.parse(localStorageData);
-            console.count("parsedData", parsedData);
             console.log(item, parsedData);
             return parsedData || "";
         }
@@ -30,12 +28,12 @@ function MyApp({ Component, pageProps }) {
 
     // Custom setters remain unchanged
     const setFormValues = (value) => {
-        secureLocalStorage.setItem("formValues", JSON.stringify(value));
+        localStorage.setItem("formValues", JSON.stringify(value));
         _setFormValues(value);
     }
 
     const setLinkValues = (value) => {
-        secureLocalStorage.setItem("linkValues", JSON.stringify(value));
+        localStorage.setItem("linkValues", JSON.stringify(value));
         _setLinkValues(value);
     }
 
